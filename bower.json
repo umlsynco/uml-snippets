@@ -1,0 +1,6 @@
+{
+    "name": "uml-snippets",
+    "dependencies": {
+        "backbone.marionette": "2.2.1"
+    }
+}
