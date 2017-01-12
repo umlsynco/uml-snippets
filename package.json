@@ -4,17 +4,18 @@
   "description": "Platform for an UML snippets creation",
   "licence": "MIT",
   "dependencies": {
+    "consolidate": "0.10.0",
     "express": "4.x",
     "grunt": "0.4.5",
-    "grunt-contrib-uglify": "0.6.0",
+    "grunt-autoprefixer": "^3.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "0.10.0",
-    "grunt-contrib-requirejs": "0.4.4",
     "grunt-contrib-jst": "0.6.0",
     "grunt-contrib-less": "0.11.4",
+    "grunt-contrib-requirejs": "0.4.4",
+    "grunt-contrib-uglify": "0.6.0",
     "grunt-contrib-watch": "0.6.1",
-    "consolidate": "0.10.0",
-    "underscore": "1.7.0",
-    "grunt-autoprefixer": "^3.0.0"
+    "underscore": "1.7.0"
   },
   "author": "Evgeny Alexeyev <evgeny.alexeyev@gmail.com>",
   "main": "Gruntfile.js",

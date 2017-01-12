@@ -1,6 +1,3 @@
-/**
- * Created by 40in on 08.10.14.
- */
 module.exports = function(grunt) {
 
     var http = require('http');
