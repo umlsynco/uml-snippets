@@ -1,68 +1,87 @@
 a {
     color: #39464E;
 }
-
-blockquote, body, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
-    margin: 0px;
-    padding: 0px;
+blockquote,
+body,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+li,
+ol,
+p,
+pre,
+td,
+textarea,
+th,
+ul {
+    margin: 0;
+    padding: 0;
 }
-
 body {
-  background: #F3F5F6 none repeat scroll 0% 0%;
-  overflow: hidden;
-  position: relative;
-  font-size: 14px;
-  color: #39464E;
+    background: #F3F5F6 none repeat scroll 0 0;
+    overflow: hidden;
+    position: relative;
+    font-size: 14px;
+    color: #39464E;
 }
-
 header {
     height: 55px;
-    background: #FFF none repeat scroll 0% 0%;
-    box-shadow: 0px 0px 5px rgba(57, 70, 78, 0.2);
+    background: #FFF none repeat scroll 0 0;
+    box-shadow: 0 0 5px rgba(57, 70, 78, 0.2);
     z-index: 100;
 }
-
-#branding, .branding .changelog-badge, #content, header, .abuseDetected {
+#branding,
+#content,
+.abuseDetected,
+.branding .changelog-badge,
+header {
     position: relative;
 }
-
 .branding {
     width: 50px;
-    padding: 0px;
+    padding: 0;
     margin-left: 15px;
     margin-right: 15px;
     z-index: 800;
 }
-
-.actions .actionCont, .branding, .pull-left {
+.actions .actionCont,
+.branding,
+.pull-left {
     float: left;
 }
-
 #home {
     display: block;
     width: 55px;
     height: 55px;
     line-height: 55px;
     background-color: transparent;
-background-image: url("http://celestialteapot.com/runway/i/icon.png");
-background-repeat: no-repeat;
-background-attachment: scroll;
-background-position: 0px 50%;
-background-clip: border-box;
-background-origin: padding-box;
-background-size: 42px auto;
+    background-image: url("http://celestialteapot.com/runway/i/icon.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 0 50%;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-size: 42px auto;
     text-transform: uppercase;
     text-decoration: none;
     font-size: 17px;
     text-indent: -900em;
 }
-
 a {
-    outline: 0px none;
+    outline: 0 none;
     color: #39464E;
     text-decoration: none;
 }
-
 #branding .changelog-badge #HW_badge_cont {
     position: absolute !important;
     top: 2px;
@@ -81,20 +100,19 @@ a {
     cursor: pointer;
     position: relative;
 }
-
 #branding .changelog-badge #HW_badge_cont #HW_badge {
-    box-shadow: 0px 0px 0px 2px #FFF;
+    box-shadow: 0 0 0 2px #FFF;
     font-weight: 700;
 }
 #HW_badge.HW_softHidden {
-    background: #D4D4D4 none repeat scroll 0% 0%;
+    background: #D4D4D4 none repeat scroll 0 0;
     opacity: 1;
     transform: scale(0.6);
 }
 #HW_badge {
     display: block;
     border-radius: 20px;
-    background: #CD4B5B none repeat scroll 0% 0%;
+    background: #CD4B5B none repeat scroll 0 0;
     height: 16px;
     width: 16px;
     color: #FFF;
@@ -109,58 +127,55 @@ a {
     transform: scale(0);
     transition: all 0.3s ease 0s;
 }
-
 .actions {
     height: 55px;
     font-size: 13px;
     position: relative;
     z-index: 300;
 }
-
-.actions .actionCont, .branding, .pull-left {
+.actions .actionCont,
+.branding,
+.pull-left {
     float: left;
 }
-
 .actions .actionItem {
     float: left;
     position: relative;
     margin-right: 1px;
 }
-
 .actions .actionItem a.aiButton {
     display: block;
-    outline: 0px none;
-    padding: 0px 10px;
+    outline: 0 none;
+    padding: 0 10px;
     line-height: 55px;
 }
-
-.actions .actionItem a.aiButton,
 #documentation-info a,
 #sidebar #external-resources-form .submit:hover,
-#sidebar .submit:hover, div.dropdownCont .dcWrapper.diffCont a.apply:hover {
+#sidebar .submit:hover,
+.actions .actionItem a.aiButton,
+div.dropdownCont .dcWrapper.diffCont a.apply:hover {
     text-decoration: none;
 }
-
 .actions .actionItem .aiButton,
 .actions .actionItem .aiButton span,
 .actions .dropdown .actionItem a.aiButton {
     height: 52px;
 }
-
 .actions .actionItem a.aiButton:hover {
     border-bottom: 3px solid #1C90F3;
 }
-
 .actions i {
     font-weight: 400;
     margin-right: 6px;
 }
-
 .bts {
     font-weight: 900;
 }
-
-.btb, .btl, .btm, .bts, .fab {
+.btb,
+.btl,
+.btm,
+.bts,
+.fab {
     display: inline-block;
     font-family: "Black Tie";
     font-style: normal;
@@ -178,50 +193,46 @@ a {
     text-rendering: auto;
     transform: translate(0px, 0px);
 }
-
 .bt-pencil::before {
     content: "";
 }
-
-.actions-fw, .actions-uml {
-  float: left;
-}
-
+.actions-fw,
 .actions-uml {
- margin-left: 40px;
+    float: left;
 }
-
+.actions-uml {
+    margin-left: 40px;
+}
 .actions-user {
-  float: right;
+    float: right;
 }
-
 #progressbar {
     height: 3px;
     top: 55px;
-    left: 0px;
-    right: 0px;
+    left: 0;
+    right: 0;
 }
-#progressbar, .bt-stack-sm, h1, h2 {
+#progressbar,
+.bt-stack-sm,
+h1,
+h2 {
     position: absolute;
 }
-
-
-
 #sidebar {
-    padding: 0px;
-    margin: 0px;
+    top: 0px !important;
+    padding: 0;
+    margin: 0;
     font-size: 11px;
     width: 190px;
     position: absolute;
     top: 55px;
-    left: 0px;
+    left: 0;
     border-right: 1px solid #E9ECED;
     height: calc(100vh - 55px);
-    background: #FFF none repeat scroll 0% 0%;
+    background: #FFF none repeat scroll 0 0;
     display: flex;
     flex-direction: column;
 }
-
 * {
     text-decoration: none;
 }

@@ -6,7 +6,7 @@ requirejs.config({
         'marionette': 'js/lib/backbone.marionette/lib/backbone.marionette',
         'underscore': 'js/lib/underscore/underscore',
         'jquery': 'js/lib/jquery/dist/jquery',
-        'jquery-ui': 'js/lib/jquery-ui/jquery-ui',
+        'jquery-ui': 'js/lib/jquery-ui',
         'app': 'js/app',
         'module': 'js/app/modules',
         'model': 'js/app/models',
@@ -30,6 +30,9 @@ requirejs.config({
         },
         jquery: {
             exports: '$'
+        },
+        'jquery-ui': {
+          deps: ['css!jquery-ui/themes/base/jquery-ui.css']
         }
     }
 });

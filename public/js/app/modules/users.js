@@ -1,6 +1,4 @@
-/**
- * Created by 40in on 08.10.14.
- */
+
 define(['app', 'marionette', 'js/app/routing-module', 'view/text-view'], function(app, Marionette, RoutingModule, TextView) {
 
     var UsersModule = RoutingModule.extend({

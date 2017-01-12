@@ -1,4 +1,4 @@
-define(['marionette', 'jquery-ui',
+define(['marionette', 'jquery-ui/jquery-ui',
 'js/app/modules/diagram/assets/main_menu.js',
 'js/app/modules/diagram/assets/class_menu.js',
 'js/app/modules/diagram/assets/package_menu.js',
@@ -41,7 +41,7 @@ function(Marionette, ui, MainMenu, Class, Package, Component, Sequence) {
            }
        }
    });
-   
+
    var connectorView = Marionette.ItemView.extend({
        tagName: 'li',
        className: 'connector-selector',
@@ -80,10 +80,10 @@ function(Marionette, ui, MainMenu, Class, Package, Component, Sequence) {
            // hide all accordions
            this.$el.parent().children("DIV").hide();
            // show only active one
-           this.$el.parent().children("DIV.ui-item-"+ this.model.get("type")).show();
+           this.$el.parent().children("DIV.ui-item-"+ this.model.get("id")).show();
        },
        onBeforeDestroy: function() {
-           this.$el.parent().children("DIV.ui-item-"+ this.model.get("type")).remove();
+           this.$el.parent().children("DIV.ui-item-"+ this.model.get("id")).remove();
        },
        onShow: function() {
            this.$el.trigger("click");
@@ -103,7 +103,7 @@ function(Marionette, ui, MainMenu, Class, Package, Component, Sequence) {
            this.connectors.render();
            //this.$el.append();
            this.elements.$el
-           .wrap('<div aria-hidden="false" role="tabpanel" aria-labelledby="ui-id-3" style="display: block; min-height: 119px;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active ui-item-'+model.type+'"></div>')
+           .wrap('<div aria-hidden="false" role="tabpanel" aria-labelledby="ui-id-3" style="display: block; min-height: 119px;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active ui-item-'+model.id+'"></div>')
                .parent()    .append(this.connectors.$el);
 //           .wrap('<p></p>');
        },
@@ -131,10 +131,10 @@ function(Marionette, ui, MainMenu, Class, Package, Component, Sequence) {
 			this.accordion = new collectionView({collection : new Backbone.Collection()});
 			this.getRegion('sidemenu').show(this.accordion);
 			// todo reuire and then initalize items
-			this.accordion.addMenu(new Backbone.Model(MainMenu[0]), Class);
-			this.accordion.addMenu(new Backbone.Model(MainMenu[1]), Package);
-			this.accordion.addMenu(new Backbone.Model(MainMenu[2]), Component);
-			this.accordion.addMenu(new Backbone.Model(MainMenu[3]), Sequence);
+			this.accordion.addMenu(MainMenu[0], Class);
+			this.accordion.addMenu(MainMenu[1], Package);
+			this.accordion.addMenu(MainMenu[2], Component);
+			this.accordion.addMenu(MainMenu[3], Sequence);
 
 			//this.getRegion('content').show(new ElementsMenu());
 		}

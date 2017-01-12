@@ -20,7 +20,8 @@ define('app', ['marionette', 'backbone', 'jquery'], function(Marionette, Backbon
 
         regions: {
             Header: '#header',
-            Content: '#content',
+            ContentLeft: '#content>#content-left',
+            ContentRight: '#content>#content-right',
             Footer: '#footer'
         },
 
@@ -40,8 +41,11 @@ define('app', ['marionette', 'backbone', 'jquery'], function(Marionette, Backbon
             this.currentModule.start();
         },
 
-        content: function(view) {
-            this.Content.show(view);
+        content: function(view, left) {
+            if (left)
+              this.ContentLeft.show(view);
+            else
+              this.ContentRight.show(view);
         }
     });
 
