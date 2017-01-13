@@ -53,8 +53,8 @@ var test =
         startWithParent: false,
 
         routesList: {
-            'home': 'homeAction',
-            '': 'homeAction'
+            '/*': 'homeAction', // Try to load item
+            '': 'homeAction' // New item creation
         },
 
         initialize: function() {
@@ -64,6 +64,10 @@ var test =
 
         onStart: function() {
             console.log('HomeModule start');
+            // Could be triggered from the select menu, to create a new empty diagram
+            app.vent.on("load:diagram", function(payload) {
+              console.log("Load diagram type: " + payload.type);
+            });
         },
 
         onStop: function() {

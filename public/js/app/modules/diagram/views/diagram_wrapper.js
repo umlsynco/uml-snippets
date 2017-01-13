@@ -1,5 +1,5 @@
-define(['marionette', 'jquery-ui/jquery-ui'],
-function(Marionette, ui) {
+define(['marionette', 'module/umlsync/dm/loader'],
+function(Marionette, DiagramLoader) {
 
 
     var ContentView = Marionette.ItemView.extend({
@@ -11,7 +11,19 @@ function(Marionette, ui) {
          </div>'),
     className: 'ui-scrollable-tabs ui-widget-content ui-corner-all',
 		onRender: function() {
-      // handle re-write options
+       // temporaty solution
+       $.log = $.log || function(msg) { console.log(msg)};
+       this.diagramLoader = new DiagramLoader('module/umlsync/');
+       var jsonData = {baseTyp: "base", type: "class"};
+       var that = this;
+       this.activeDiagram = this.diagramLoader.Diagram(
+                    jsonData.type,
+                    jsonData.base_type || "base",
+                    jsonData,
+                    "#class0",
+                    function (obj) {
+                      console.dir(obj);
+                    });
 		}
 	});
 

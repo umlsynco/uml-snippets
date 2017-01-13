@@ -30,9 +30,6 @@ requirejs.config({
         },
         jquery: {
             exports: '$'
-        },
-        'jquery-ui': {
-          deps: ['css!jquery-ui/themes/base/jquery-ui.css']
         }
     }
 });
