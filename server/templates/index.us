@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/shokai/jQuery.editable/master/jquery.editable.min.js"></script>
 </head>
 <body>
     <header id="header"></header>
@@ -17,14 +18,10 @@
 </div>
 <div id="content-left-right-resize"
      style="width:6px;left:200px;height:100%;position:absolute;padding:0;margin:0;border:0px solid gray;background-color:gray;cursor: col-resize;"></div>
-<div id="content-right" style="left:206px;height:100%;position:absolute;padding:0;margin:0;">
+<div id="content-right">
     <div id="diagram-menu">
     </div>
     <div id="tabs">
-        <ul>
-        </ul>
-        <canvas init="true" id="SingleCanvas" class="us-canvas ui-droppable" style="left: 17.6px; top: 45.2px;" width="1609" height="450">YOUR BROWSER DOESN't SUPPORT CANVAS !!!</canvas>
-        <div id="diagram-iconmenu-region"></div>
     </div>
 </div>
 

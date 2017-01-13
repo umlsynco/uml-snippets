@@ -30,7 +30,7 @@ URL:
 Version:
   2.0.0 (2012-07-12)
  */
-define(['jquery', 'module/umlsync/ds/base'], function($) {
+define(['jquery', 'module/umlsync/ds/base', 'module/umlsync/cs/all', 'module/umlsync/es/all'], function($) {
 
     (function($, dm, undefined) {
 
@@ -165,7 +165,7 @@ define(['jquery', 'module/umlsync/ds/base'], function($) {
                     //@proexp
                     'Menu': function(type, specific, options) {
                         this._addToLoadQueue({
-                            url: "/dm/ms/" + type + "/" + specific + ".js",
+                            url: "/ms/" + type + "/" + specific + ".js",
                             precondition: function() {
                                 if ((dm.ms[type] == undefined) ||
                                     (dm.ms[type][specific] == undefined)) {
@@ -247,7 +247,7 @@ define(['jquery', 'module/umlsync/ds/base'], function($) {
                         opt.parrent = parrent;
 
                         this._addToLoadQueue({
-                            url: "/dm/ds/" + dType + ".js",
+                            url: "/ds/" + dType + ".js",
                             precondition: function() {
                                 if ((dm['ds'] == undefined) ||
                                     (dm['ds'][dType] == undefined)) {
@@ -286,7 +286,7 @@ define(['jquery', 'module/umlsync/ds/base'], function($) {
                         if (dm['es'][type] == undefined) {
                             // start element loading, but do not allocate it
                             this._addToLoadQueue({
-                                url: "/dm/es/" + type + ".js",
+                                url: "/es/" + type + ".js",
                                 precondition: function() {
                                     if (dm['es'][type] == undefined) {
                                         return true;
@@ -310,7 +310,7 @@ define(['jquery', 'module/umlsync/ds/base'], function($) {
                         opt.type = type;
                         opt.diagram = diagram;
                         this._addToLoadQueue({
-                            url: "/dm/es/" + type + ".js",
+                            url: "/es/" + type + ".js",
                             precondition: function() {
                                 if (dm['es'][type] == undefined) {
                                     return true;

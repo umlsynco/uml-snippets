@@ -1,9 +1,8 @@
-/**
-  *  
-  */
+define(['module/umlsync/ds/diagram'], function(diagram) {
+	
 (function( $, dm, undefined ) {
 
-dm.base.diagram("es.class", dm['es']['element'], {
+dm.base.diagram("es.class", dm.es.element, {
     'options': {
         'nameTemplate': 'Class',
         'width': '150px',
@@ -612,4 +611,7 @@ dm.base.diagram("es.class", dm['es']['element'], {
     'ec': 0
 });
 
-})(jQuery, dm);
+})(jQuery, window.dm);
+
+    return dm.es.class;
+}); 

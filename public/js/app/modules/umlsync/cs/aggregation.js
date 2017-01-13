@@ -15,7 +15,8 @@ URL:
 Version:
   2.0.0 (2012-07-12)
  */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function($, dm, undefined) {
 
     dm.base.diagram("cs.aggregation", dm['cs']['connector'], {
@@ -82,3 +83,5 @@ Version:
     });
 //@aspect
 })(jQuery, dm);
+
+});

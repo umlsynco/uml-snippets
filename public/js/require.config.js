@@ -7,6 +7,7 @@ requirejs.config({
         'underscore': 'js/lib/underscore/underscore',
         'jquery': 'js/lib/jquery/dist/jquery',
         'jquery-ui': 'js/lib/jquery-ui',
+        'jquery-editable': 'js/lib/editable/editable',
         'app': 'js/app',
         'module': 'js/app/modules',
         'model': 'js/app/models',
@@ -24,6 +25,9 @@ requirejs.config({
         'marionette': {
             deps: ['backbone'],
             exports: 'Marionette'
+        },
+        'jquery-editable': {
+            deps: ['jquery']
         },
         'underscore': {
             exports: '_'

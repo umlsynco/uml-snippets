@@ -1,4 +1,4 @@
-define(['jquery', 'jquery-ui/jquery-ui'], function(jQuery, jui) {
+define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, jui) {
 
     var dm = (function(window, undefined) {
         var dm = {};
@@ -1013,7 +1013,7 @@ define(['jquery', 'jquery-ui/jquery-ui'], function(jQuery, jui) {
                 // For all elements in JSON description try to create an element
                 for (var i in this.options['elements']) {
                     // How to get options which described in menu JSON ?
-                    this.Element(this.options['elements'][i].type, this.options['elements'][i]);
+                  this.Element(this.options['elements'][i].type, this.options['elements'][i]);
                 }
 
                 // For all connectors in JSON description try to create a connector
@@ -3346,5 +3346,6 @@ define(['jquery', 'jquery-ui/jquery-ui'], function(jQuery, jui) {
 
         });
     })(jQuery, dm);
+
     return dm.ds.diagram;
 });
