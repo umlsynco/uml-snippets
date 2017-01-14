@@ -246,48 +246,48 @@ define(['module/umlsync/ds/diagram',
 
 
   //Common element menu loader
-  dm.ms.IconMenuBuilder = function() {
+  dm.ms.IconMenuBuilder = function(menus_loaded) {
 
 	// singleton
 	function getInstance() {
 		dm.dm = dm.dm || {};
 		if (!dm.dm['IconMenuBuilder']) {
 
-		var icon_menus = [
+		var icon_menus_stub = [
 		  {"id":"us-class-menu",
 		   "items": [
 					{"element":{"type": "class"},
 					 "connector":[
 							{"type":"association",
-							 "icon":"dm/icons/us/cs/class/class/association.png"
+							 "icon":"icons/us/cs/class/class/association.png"
 							},
 							{"type":"aggregation",
-							 "icon":"dm/icons/us/cs/class/class/aggregation.png"
+							 "icon":"icons/us/cs/class/class/aggregation.png"
 							},
 							{"type":"composition",
-							 "icon":"dm/icons/us/cs/class/class/composition.png"
+							 "icon":"icons/us/cs/class/class/composition.png"
 							},
 							{"type":"selfassociation",
-							 "icon":"dm/icons/us/cs/class/class/self-association.png"
+							 "icon":"icons/us/cs/class/class/self-association.png"
 							},
 							{"type":"dependency",
-							 "icon":"dm/icons/us/cs/class/class/dependency.png"
+							 "icon":"icons/us/cs/class/class/dependency.png"
 							},
 							{"type":"realization",
-							 "icon":"dm/icons/us/cs/class/class/realization.png"
+							 "icon":"icons/us/cs/class/class/realization.png"
 							},
 							{"type":"generalization",
-							 "icon":"dm/icons/us/cs/class/class/generalization.png"
+							 "icon":"icons/us/cs/class/class/generalization.png"
 							},
 							{"type":"nested",
-							 "icon":"dm/icons/us/cs/class/class/nested.png"
+							 "icon":"icons/us/cs/class/class/nested.png"
 							}
 						  ]
 					},
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"dm/icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -297,13 +297,13 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"class"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"dm/icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
 						  ]
 					},
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"dm/icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -313,7 +313,7 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"dm/icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -323,41 +323,41 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"component"},
 					 "connector":[
 							{"type":"association",
-							 "icon":"dm/icons/us/cs/association.png"
+							 "icon":"icons/us/cs/association.png"
 							},
 							{"type":"aggregation",
-							 "icon":"dm/icons/us/cs/aggregation.png"
+							 "icon":"icons/us/cs/aggregation.png"
 							},
 							{"type":"composition",
-							 "icon":"dm/icons/us/cs/composition.png"
+							 "icon":"icons/us/cs/composition.png"
 							}
 						  ]
 					},
 					{"element":{"type":"interface"},
 					 "connector":[
 							{"type":"association",
-							 "icon":"dm/icons/us/cs/interface.png"
+							 "icon":"icons/us/cs/interface.png"
 							}
 						  ]
 					},
 					{"element":{"type":"empty"},
 					 "connector":[
 							{"type":"arc",
-							 "icon":"dm/icons/us/cs/interface_required.png"
+							 "icon":"icons/us/cs/interface_required.png"
 							}
 						  ]
 					},
 					{"element":{"type":"port"},
 					 "connector":[
 							{"type":"association",
-							 "icon":"dm/icons/us/cs/association.gif"
+							 "icon":"icons/us/cs/association.gif"
 							}
 						  ]
 					},
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"dm/icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -367,32 +367,32 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"package"},
 					 "connector":[
 							{"type":"dependency",
-							 "icon":"dm/icons/us/cs/dependency.png"
+							 "icon":"icons/us/cs/dependency.png"
 							},
 							{"type":"access",
-							 "icon":"dm/icons/us/cs/access.png"
+							 "icon":"icons/us/cs/access.png"
 							},
 							{"type":"import",
-							 "icon":"dm/icons/us/cs/import.png"
+							 "icon":"icons/us/cs/import.png"
 							},
 							{"type":"generalization",
-							 "icon":"dm/icons/us/cs/generalization.png"
+							 "icon":"icons/us/cs/generalization.png"
 							},
 							{"type":"realization",
-							 "icon":"dm/icons/us/cs/realization.png"
+							 "icon":"icons/us/cs/realization.png"
 							},
 							{"type":"dependency",
-							 "icon":"dm/icons/us/cs/merge.png"
+							 "icon":"icons/us/cs/merge.png"
 							},
 							{"type":"nested",
-							 "icon":"dm/icons/us/cs/nested.png"
+							 "icon":"icons/us/cs/nested.png"
 							}
 						  ]
 					},
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"dm/icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -402,7 +402,7 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"dm/icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -412,33 +412,33 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"objinstance"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"dm/icons/us/cs/createobject.png"
+							 "icon":"icons/us/cs/createobject.png"
 							},
 							{"type":"llreturn",
-							 "icon":"dm/icons/us/cs/return.png"
+							 "icon":"icons/us/cs/return.png"
 							}
 						  ]
 					},
 					{"element":{"type":"llport"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"dm/icons/us/cs/sequence.png"
+							 "icon":"icons/us/cs/sequence.png"
 							},
 							{"type":"llselfcall",
-							 "icon":"dm/icons/us/cs/self-call.png"
+							 "icon":"icons/us/cs/self-call.png"
 							}
 						  ]
 					},
 					{"element":{"type":"lldel"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"dm/icons/us/cs/killobject.png"}
+							 "icon":"icons/us/cs/killobject.png"}
 						  ]
 					},
 					{"element":{"type":"message"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"dm/icons/us/cs/lostmessage.png"}
+							 "icon":"icons/us/cs/lostmessage.png"}
 						  ]
 					}
 				 ]
@@ -448,14 +448,14 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"objinstance"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"dm/icons/us/cs/createobject.png"
+							 "icon":"icons/us/cs/createobject.png"
 							}
 						  ]
 					},
 					{"element":{"type":"llport"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"dm/icons/us/cs/sequence.png"
+							 "icon":"icons/us/cs/sequence.png"
 							}
 						  ]
 					}
@@ -466,13 +466,16 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"dm/icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
 		  }
 		  ];
-		var mapping_icons = {};
+
+var icon_menus = icon_menus_stub;
+
+    var mapping_icons = {};
 			mapping_icons["note"] = {};
 			// Class diagram
 			mapping_icons["class"] = {icon_menu:"us-class-menu"};
@@ -560,7 +563,8 @@ define(['module/umlsync/ds/diagram',
 		  var menu_items = [];
 		  for (var c in menu) {       // element descriptor
 			for (var r in menu[c]["connector"])  // connector descriptor
-			  menu_items.push("<img src='" + dm.dm.loader.url + menu[c]["connector"][r].icon +"' id='" + menu[c]["connector"][r].type +"' title='"+ menu[c]["connector"][r].type + "' aux='" + menu[c]["element"].type + "' style='padding:1px;'></img>");
+        var prefix = "/images/"; //dm.dm.loader.url
+			  menu_items.push("<img src='" + prefix + menu[c]["connector"][r].icon +"' id='" + menu[c]["connector"][r].type +"' title='"+ menu[c]["connector"][r].type + "' aux='" + menu[c]["element"].type + "' style='padding:1px;'></img>");
 	      }
 
 		  var cells = menu_items.join('');
@@ -753,7 +757,7 @@ define(['module/umlsync/ds/diagram',
     //
     // Do nothing if menus was loaded before
 	//
-  console.log("MAKE COMMMON !!!");
+  console.log("MAKE COMMMON !!!  " + type);
     if (dm.ms.ds[type]) {
       // Initialize the context menu for Elements of diagram
       var iconMenuBuilder = new dm.ms.IconMenuBuilder(null),
@@ -773,16 +777,16 @@ console.log("MAKE ICON MENUS");
 
     var diagramMenuBuilder = this;
 
-    // Load the JSON description of the 'type' diagram
-    dm.dm.loader.LoadDiagramMenuData(type, function(json) {
-	  // Do nothing in case of wrong JSON
-	  if (!json || !json[0]) {
+// Load the JSON description of the 'type' diagram
+dm.dm.loader.LoadDiagramMenuData(type, function(json) {
+  // Do nothing in case of wrong JSON
+	  if (!json) {
 	    return;
 	  }
 
 	  // JSON description was loaded, setup the menu builder for the diagram
 	  dm.ms.ds[type] = {
-	    main: diagramMenuBuilder
+	    //main: diagramMenuBuilder
 	  };
 
 	  // Unique id's for the accordion menu
@@ -793,7 +797,7 @@ console.log("MAKE ICON MENUS");
 	  // Increase global counter
       dm.dm.dmc++;
 
-      var ddata = json[0];
+      var ddata = json;
       var items = [];
 
       diagramMenuBuilder.elements = ddata['elements'];
@@ -804,7 +808,7 @@ console.log("MAKE ICON MENUS");
 
 
       // TODO: disable menu items if loader failed to load element or connector type
-      diagram.setMenuBuilder("main", diagramMenuBuilder);
+      //diagram.setMenuBuilder("main", diagramMenuBuilder);
 
       diagramMenuBuilder.getElementByKey = function(id, key) {
 	    for (var v in diagramMenuBuilder.elements) {
@@ -825,12 +829,13 @@ console.log("MAKE ICON MENUS");
       }
 
       // Initialize the context menu for Element
-      var iconMenuBuilder = new dm.ms.IconMenuBuilder(ddata['icon_menus']),
-      ctxMenuBuilder = new dm.ms.ContextMenuBuilder(loader);
+      var iconMenuBuilder = new dm.ms.IconMenuBuilder(ddata['menus']);
+      //var ctxMenuBuilder = new dm.ms.ContextMenuBuilder(loader);
 
-	  diagram.setMenuBuilder("context", ctxMenuBuilder);
+	  //diagram.setMenuBuilder("context", ctxMenuBuilder);
 	  diagram.setMenuBuilder("icon", iconMenuBuilder);
-
+    iconMenuBuilder.load("class", diagram);
+/*
       var fw = dm.dm.fw;
 		fw['CreateDiagramMenu'](type, innerHtml, function() {
           //
@@ -865,7 +870,7 @@ console.log("MAKE ICON MENUS");
 		  //
 		  // Connector selection menu
 		  //
-		  $("#"+ulid).listmenu({
+		  $("#"+ulid).listmenu(         {
 			selector: "connector-selector",
 			selectable: true,
 			urlPrefix: dm.dm.loader.getUrl(),
@@ -881,8 +886,12 @@ console.log("MAKE ICON MENUS");
 			}
 		  }
 		  });
-        }); // CreateDiagramMenu
+  }); // CreateDiagramMenu
+
+*/
     });
+
+
   }
 //@aspect
 })(jQuery, dm);

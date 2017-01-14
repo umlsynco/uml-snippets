@@ -29,7 +29,9 @@ function(Marionette, DiagramLoader) {
                       obj.draw(); // re-draw connectors
                       that.diagramLoader.OnLoadComplete(function() {
                         console.log("ON FOCUS!!!");
-                        obj.onFocus(true);
+                        setTimeout(function() {
+                          obj.onFocus(true);
+                        }, 500);
                       });
 
                     });
