@@ -259,35 +259,35 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type": "class"},
 					 "connector":[
 							{"type":"association",
-							 "icon":"icons/us/cs/class/class/association.png"
+							 "icon":"icons/cs/class/class/association.png"
 							},
 							{"type":"aggregation",
-							 "icon":"icons/us/cs/class/class/aggregation.png"
+							 "icon":"icons/cs/class/class/aggregation.png"
 							},
 							{"type":"composition",
-							 "icon":"icons/us/cs/class/class/composition.png"
+							 "icon":"icons/cs/class/class/composition.png"
 							},
 							{"type":"selfassociation",
-							 "icon":"icons/us/cs/class/class/self-association.png"
+							 "icon":"icons/cs/class/class/self-association.png"
 							},
 							{"type":"dependency",
-							 "icon":"icons/us/cs/class/class/dependency.png"
+							 "icon":"icons/cs/class/class/dependency.png"
 							},
 							{"type":"realization",
-							 "icon":"icons/us/cs/class/class/realization.png"
+							 "icon":"icons/cs/class/class/realization.png"
 							},
 							{"type":"generalization",
-							 "icon":"icons/us/cs/class/class/generalization.png"
+							 "icon":"icons/cs/class/class/generalization.png"
 							},
 							{"type":"nested",
-							 "icon":"icons/us/cs/class/class/nested.png"
+							 "icon":"icons/cs/class/class/nested.png"
 							}
 						  ]
 					},
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -297,13 +297,13 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"class"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/cs/diagram/anchor_with_note.gif"}
 						  ]
 					},
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -313,7 +313,7 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -323,41 +323,41 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"component"},
 					 "connector":[
 							{"type":"association",
-							 "icon":"icons/us/cs/association.png"
+							 "icon":"icons/cs/association.png"
 							},
 							{"type":"aggregation",
-							 "icon":"icons/us/cs/aggregation.png"
+							 "icon":"icons/cs/aggregation.png"
 							},
 							{"type":"composition",
-							 "icon":"icons/us/cs/composition.png"
+							 "icon":"icons/cs/composition.png"
 							}
 						  ]
 					},
 					{"element":{"type":"interface"},
 					 "connector":[
 							{"type":"association",
-							 "icon":"icons/us/cs/interface.png"
+							 "icon":"icons/cs/interface.png"
 							}
 						  ]
 					},
 					{"element":{"type":"empty"},
 					 "connector":[
 							{"type":"arc",
-							 "icon":"icons/us/cs/interface_required.png"
+							 "icon":"icons/cs/interface_required.png"
 							}
 						  ]
 					},
 					{"element":{"type":"port"},
 					 "connector":[
 							{"type":"association",
-							 "icon":"icons/us/cs/association.gif"
+							 "icon":"icons/cs/association.gif"
 							}
 						  ]
 					},
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -367,32 +367,32 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"package"},
 					 "connector":[
 							{"type":"dependency",
-							 "icon":"icons/us/cs/dependency.png"
+							 "icon":"icons/cs/dependency.png"
 							},
 							{"type":"access",
-							 "icon":"icons/us/cs/access.png"
+							 "icon":"icons/cs/access.png"
 							},
 							{"type":"import",
-							 "icon":"icons/us/cs/import.png"
+							 "icon":"icons/cs/import.png"
 							},
 							{"type":"generalization",
-							 "icon":"icons/us/cs/generalization.png"
+							 "icon":"icons/cs/generalization.png"
 							},
 							{"type":"realization",
-							 "icon":"icons/us/cs/realization.png"
+							 "icon":"icons/cs/realization.png"
 							},
 							{"type":"dependency",
-							 "icon":"icons/us/cs/merge.png"
+							 "icon":"icons/cs/merge.png"
 							},
 							{"type":"nested",
-							 "icon":"icons/us/cs/nested.png"
+							 "icon":"icons/cs/nested.png"
 							}
 						  ]
 					},
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -402,7 +402,7 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -412,33 +412,33 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"objinstance"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"icons/us/cs/createobject.png"
+							 "icon":"icons/cs/createobject.png"
 							},
 							{"type":"llreturn",
-							 "icon":"icons/us/cs/return.png"
+							 "icon":"icons/cs/return.png"
 							}
 						  ]
 					},
 					{"element":{"type":"llport"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"icons/us/cs/sequence.png"
+							 "icon":"icons/cs/sequence.png"
 							},
 							{"type":"llselfcall",
-							 "icon":"icons/us/cs/self-call.png"
+							 "icon":"icons/cs/self-call.png"
 							}
 						  ]
 					},
 					{"element":{"type":"lldel"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"icons/us/cs/killobject.png"}
+							 "icon":"icons/cs/killobject.png"}
 						  ]
 					},
 					{"element":{"type":"message"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"icons/us/cs/lostmessage.png"}
+							 "icon":"icons/cs/lostmessage.png"}
 						  ]
 					}
 				 ]
@@ -448,14 +448,14 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"objinstance"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"icons/us/cs/createobject.png"
+							 "icon":"icons/cs/createobject.png"
 							}
 						  ]
 					},
 					{"element":{"type":"llport"},
 					 "connector":[
 							{"type":"llsequence",
-							 "icon":"icons/us/cs/sequence.png"
+							 "icon":"icons/cs/sequence.png"
 							}
 						  ]
 					}
@@ -466,7 +466,7 @@ define(['module/umlsync/ds/diagram',
 					{"element":{"type":"note"},
 					 "connector":[
 							{"type":"anchor",
-							 "icon":"icons/us/cs/diagram/anchor_with_note.gif"}
+							 "icon":"icons/cs/diagram/anchor_with_note.gif"}
 						  ]
 					}
 				 ]
@@ -561,10 +561,10 @@ var icon_menus = icon_menus_stub;
 		  }
 
 		  var menu_items = [];
-		  for (var c in menu) {       // element descriptor
-			for (var r in menu[c]["connector"])  // connector descriptor
-        var prefix = "/images/"; //dm.dm.loader.url
-			  menu_items.push("<img src='" + prefix + menu[c]["connector"][r].icon +"' id='" + menu[c]["connector"][r].type +"' title='"+ menu[c]["connector"][r].type + "' aux='" + menu[c]["element"].type + "' style='padding:1px;'></img>");
+		  for (var c in menu)        // element descriptor
+			  for (var r in menu[c]["connector"])  {// connector descriptor
+          var prefix = "/images/"; //dm.dm.loader.url
+			    menu_items.push("<img src='" + prefix + menu[c]["connector"][r].icon +"' id='" + menu[c]["connector"][r].type +"' title='"+ menu[c]["connector"][r].type + "' aux='" + menu[c]["element"].type + "' style='padding:1px;'></img>");
 	      }
 
 		  var cells = menu_items.join('');

@@ -14,6 +14,10 @@ function(Marionette, DiagramLoader) {
        if (!this.diagramLoader)
          this.diagramLoader = new DiagramLoader('module/umlsync');
      },
+     RedrawConnectors: function() {
+       if (this.activeDiagram)
+         this.activeDiagram.draw();
+     },
      LoadDiagram: function(jsonData) {
        //var jsonData = {baseTyp: "base", type: "class"};
        $("#diagram-c100").empty();

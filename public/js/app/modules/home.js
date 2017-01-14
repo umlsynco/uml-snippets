@@ -89,6 +89,10 @@ var jsonData =
               if (that.diagramView)
                 that.diagramView.Element(payload);
             });
+            app.vent.on("redraw:diagram", function() {
+              if (that.diagramView)
+                that.diagramView.RedrawConnectors();
+            });
 
         },
 
