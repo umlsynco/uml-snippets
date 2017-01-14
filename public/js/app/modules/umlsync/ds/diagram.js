@@ -1350,6 +1350,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
              */
 
             setMenuBuilder: function(type, menu) {
+              console.log("SET MENU BUILDER: " + type);
                 if (type == "main") {
 
                     this.menuMain = menu;
@@ -1890,8 +1891,10 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
             //
             onFocus: function(flag) {
                 if (flag) {
+                  console.log("DRAWWWWWWWWWWWWWW");
                     this.draw();
                     if (this.menuIcon) {
+                      console.log("SSSSSSSSSSSSSSSSSSSSSS");
                         if (this.selectedElement) {
                             this.menuIcon['Enable'](this.selectedElement);
                         }

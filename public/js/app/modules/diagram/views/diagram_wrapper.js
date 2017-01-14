@@ -18,6 +18,7 @@ function(Marionette, DiagramLoader) {
        //var jsonData = {baseTyp: "base", type: "class"};
        $("#diagram-c100").empty();
        var that = this;
+       jsonData.editable = true;
        this.diagramLoader.Diagram(
                     jsonData.type,
                     jsonData.base_type || "base",
@@ -26,6 +27,11 @@ function(Marionette, DiagramLoader) {
                     function (obj) {
                       that.activeDiagram = obj;
                       obj.draw(); // re-draw connectors
+                      that.diagramLoader.OnLoadComplete(function() {
+                        console.log("ON FOCUS!!!");
+                        obj.onFocus(true);
+                      });
+
                     });
 		},
     Element: function(jsonData) {

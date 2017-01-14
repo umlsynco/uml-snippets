@@ -9,13 +9,19 @@ Author:
 
 Copyright:
   Copyright (c) 2010-2014 Evgeny Alexeyev (evgeny.alexeyev@googlemail.com).
-  All rights reserved. 
+  All rights reserved.
 
 URL:
   http://umlsync.org/about
 
  */
 
+define(['module/umlsync/ds/diagram',
+'module/diagram/assets/class_menu',
+'module/diagram/assets/package_menu',
+'module/diagram/assets/component_menu',
+'module/diagram/assets/sequence_menu'
+], function(diagram, dddd) {
 
 (function($, dm, undefined) {
   //
@@ -30,7 +36,7 @@ URL:
   //                  click - on click handler with diagram element as argument
   //
   dm.ms.ctx['common'] = function(menuBuilder, options, actions) {
-    this.options = options;  
+    this.options = options;
     var menu = $('<ul id="' + options.uid + '" class="context-menu" ></ul>').hide().appendTo("#tabs");
     menuBuilder.append(this, options.id); // element Class Context append to diagram
     var self = this;
@@ -41,12 +47,12 @@ URL:
 		//
         data:actions,
 		//
-		// TODO: Some usless prefix ? 
+		// TODO: Some usless prefix ?
 		//
         urlPrefix: dm.dm.loader.getUrl(),
 		//
 		// On context menu item selct handler
-		// 
+		//
         onSelect: function(item) {
           if (item.click)
             item.click(menuBuilder.currentElement, self.x, self.y);
@@ -55,14 +61,14 @@ URL:
         },
 		//
 		// Helper method for a menu extension
-		// 
+		//
         onMouseEnter: function(item, evt) {
           if (item.mouseenter)
             item.mouseenter(menuBuilder.currentElement, evt);
         },
 		//
 		// Helper method for a menu extension
-		// 
+		//
         onMouseLeave: function(item, evt) {
           if (item.mouseleave)
             item.mouseleave(menuBuilder.currentElement, evt);
@@ -133,7 +139,7 @@ URL:
 
 //param  name - name of the context menu
 //param loader - common loader for components
-//param diagram.id - diagram unique DIV id 
+//param diagram.id - diagram unique DIV id
 //diagram - the diagram class
 
   dm.ms.ContextMenuBuilder = function(loader) {
@@ -144,7 +150,7 @@ URL:
 			// create a instance
 			dm.dm['ContextMenuBuilder'] = new ContextMenuBuilder(loader);
 			// load the connector context mennu on initialization
-		    dm.dm['ContextMenuBuilder'].load('connector');	
+		    dm.dm['ContextMenuBuilder'].load('connector');
 		}
 
 		// return the instance of the singletonClass
@@ -222,7 +228,7 @@ URL:
 		  this.currentMenu = this.menus[name];
 		  this.currentElement = element;
 		  if (this.currentMenu != undefined)
-			this.currentMenu['show'](element, x, y); // TODO: relocate to element position  
+			this.currentMenu['show'](element, x, y); // TODO: relocate to element position
 		},
         //
 		// Hide all context menus
@@ -241,12 +247,12 @@ URL:
 
   //Common element menu loader
   dm.ms.IconMenuBuilder = function() {
-  
+
 	// singleton
 	function getInstance() {
 		dm.dm = dm.dm || {};
 		if (!dm.dm['IconMenuBuilder']) {
-		    
+
 		var icon_menus = [
 		  {"id":"us-class-menu",
 		   "items": [
@@ -551,7 +557,7 @@ URL:
 		    return;
 		  }
 
-		  var menu_items = [];		  
+		  var menu_items = [];
 		  for (var c in menu) {       // element descriptor
 			for (var r in menu[c]["connector"])  // connector descriptor
 			  menu_items.push("<img src='" + dm.dm.loader.url + menu[c]["connector"][r].icon +"' id='" + menu[c]["connector"][r].type +"' title='"+ menu[c]["connector"][r].type + "' aux='" + menu[c]["element"].type + "' style='padding:1px;'></img>");
@@ -567,7 +573,7 @@ URL:
 
 		  var iconMenuBuilder = this;
 
-		  // Make it possible to click + drag images 
+		  // Make it possible to click + drag images
 		  // ==========================================================================
 		  //               THERE ARE TWO CALL's HERE FOR DRAGGABLE!!!!!
 		  //               IT IS NECESSARY TO JOIN THEM - OR DESCRIBE THE DIFFERENCE :)
@@ -578,13 +584,13 @@ URL:
 			'appendTo': "#tabs",
 			'helper': function(event) {
 			   // Use the double wrapper because of element's structrure
-			   return $("<div id='ConnectionHelper_Border' style='border:solid black;border-width:1px;'>" + 
+			   return $("<div id='ConnectionHelper_Border' style='border:solid black;border-width:1px;'>" +
 			            "<div id='ConnectionHelper' style='border:solid yellow;border-width:1px;'> [ x ]</div></div>");
 		    },
 		    'start': function(event) {
 			  if (iconMenuBuilder.diagram) {
 				  var tid = $(this).attr("aux");
-				  
+
 				  var element = tid, //iconMenuBuilder.dmb.getElementById(tid),
 				  lcon = this.id; //iconMenuBuilder.dmb.getConnectorById(this.id);
 
@@ -655,7 +661,7 @@ URL:
 			$(this).stop().animate({opacity:"1"});
 		  })
 		  .mouseleave(function() {$(this).stop().animate({opacity:"0"});});
-		  
+
 		  return menu_id;
 	  },
 	  //
@@ -674,7 +680,7 @@ URL:
         this.refEl = element;
 		this.diagram = element.parrent;
 		$("#tabs .elmenu-" + this.currentMenu + " img").draggable('option', 'appendTo', "#" + this.diagram.euid);
-		
+
 		// Allows to prevent menus showing of mouse over icons
 		// on diagram change
         $(".elmenu-" + this.currentMenu).css({display:"block"});
@@ -689,7 +695,7 @@ URL:
 		// on diagram change
 		$(".elmenu-" + menu_id).css({display:"none"});
 
-        // Prevent usage of icons over the wrong diagram		
+        // Prevent usage of icons over the wrong diagram
 		$("#tabs .elmenu-" + menu_id + " img").draggable('option', 'appendTo', "#tabs");
         this.currentMenu = undefined;
       },
@@ -731,31 +737,32 @@ URL:
   //Common diagram menu namespace
   //
   dm.ms['ds'] = dm.ms.ds;
-  // 
+  //
   // Diagram menus counter  - GLOBAL OBJECT
   //
   dm.dm.dmc = 0;
-  
+
   //
   // COMMON functionality for the ACCORDION MENU and icon and context menu loading on diagram-type activation
   // STEPS:
   // 1. Load the diagram description menu (if not available)
   // 2. Initiate an element context menu and icon menu for all available elements
   // 3. Setup menus handlers for the accordion
-  // 
+  //
   dm.ms.ds['common'] = function(type, diagram, loader) {
     //
     // Do nothing if menus was loaded before
 	//
+  console.log("MAKE COMMMON !!!");
     if (dm.ms.ds[type]) {
-      // Initialize the context menu for Elements of diagram 
+      // Initialize the context menu for Elements of diagram
       var iconMenuBuilder = new dm.ms.IconMenuBuilder(null),
         ctxMenuBuilder = new dm.ms.ContextMenuBuilder(loader);
-
+console.log("MAKE ICON MENUS");
 	  // Setup menus
 	  diagram.setMenuBuilder("context", ctxMenuBuilder);
 	  diagram.setMenuBuilder("icon", iconMenuBuilder);
-	  diagram.setMenuBuilder("main", dm.ms.ds[type]["main"]);
+	  //diagram.setMenuBuilder("main", dm.ms.ds[type]["main"]);
 	  return;
 	}
 
@@ -765,7 +772,7 @@ URL:
     this.menus = [];  //elmenu[state] [state] [connector]  = image;
 
     var diagramMenuBuilder = this;
-	
+
     // Load the JSON description of the 'type' diagram
     dm.dm.loader.LoadDiagramMenuData(type, function(json) {
 	  // Do nothing in case of wrong JSON
@@ -777,7 +784,7 @@ URL:
 	  dm.ms.ds[type] = {
 	    main: diagramMenuBuilder
 	  };
-	
+
 	  // Unique id's for the accordion menu
       var euid = "element-menu-" + dm.dm.dmc,
       ulid = "element-item-" + dm.dm.dmc;
@@ -817,7 +824,7 @@ URL:
         return null;
       }
 
-      // Initialize the context menu for Element 
+      // Initialize the context menu for Element
       var iconMenuBuilder = new dm.ms.IconMenuBuilder(ddata['icon_menus']),
       ctxMenuBuilder = new dm.ms.ContextMenuBuilder(loader);
 
@@ -879,3 +886,6 @@ URL:
   }
 //@aspect
 })(jQuery, dm);
+
+  return dm.ms;
+});

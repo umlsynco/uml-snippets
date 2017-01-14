@@ -33,7 +33,10 @@ Version:
 define(['jquery',
 'module/umlsync/ds/base', // all diagrams has base type
 'module/umlsync/ds/sequence', // except sequence diagram
-'module/umlsync/cs/all', 'module/umlsync/es/all'], function($) {
+'module/umlsync/cs/all', // load all connectors
+'module/umlsync/es/all', // load all elements
+'module/umlsync/ms/ds/common' // load menu builders
+], function($) {
 
     (function($, dm, undefined) {
 
@@ -81,10 +84,13 @@ define(['jquery',
                             // It is possible that previous item
                             // loaded all necessary data yet.
                             if (item.precondition()) {
-                                require([(urlArg + item.url)], function(js) {
-                                  callback(data);
-                                  self.working = false;
-                                  self._process(true);
+                                var URL = (item.url[0] == "/" ? (urlArg + item.url) :item.url);
+                                require([URL], function(js) {
+                                  callback(js);
+                                  setTimeout(function() {
+                                    self.working = false;
+                                    self._process(true);
+                                  }, 1);
                                 });
                                 /*
                                 $.ajax({
@@ -105,8 +111,10 @@ define(['jquery',
                                 });*/
                             } else {
                                 callback(data);
-                                self.working = false;
-                                self._process(true);
+                                setTimeout(function() {
+                                  self.working = false;
+                                  self._process(true);
+                                }, 1);
                             }
                         } else {
                             instance.working = false;
@@ -127,6 +135,8 @@ define(['jquery',
                     },
                     //@proexp
                     'LoadMainMenuData': function(callback) {
+                      callback({});
+                      return;
                         // There is no dependency on main menu load sequence
                         // therefore it is possible to load is asynchronious
                         $.ajax({
@@ -152,16 +162,15 @@ define(['jquery',
                             return;
                         }
 
-                        $.ajax({
-                            'url': urlArg + "/dm/ms/us/ds/" + type + "_with_menu.json",
-                            'dataType': 'json',
-                            'success': function(data) {
+                        this._addToLoadQueue({
+                            'url': "module/diagram/assets/" + type + "_menu",
+                            precondition: function() {
+                              return (self.dmenus[type] == undefined);
+                            },
+                            callback: function(data) {
                                 self.dmenus[type] = data;
                                 if (callback)
                                     callback(data);
-                            },
-                            'error': function(XMLHttpRequest, textStatus, errorThrown) {
-                                alert("Load the diagram menu description failed:" + textStatus + ":\n XHTTP" + XMLHttpRequest + "\n ERR:" + errorThrown);
                             }
                         }); //ajax
                     },
@@ -202,7 +211,7 @@ define(['jquery',
                     'CreateDiagramMenu': function(type, diagram, callback2) {
                         var self2 = this;
                         this._addToLoadQueue({
-                            url: "dm/ms/ds/common.js",
+                            url: "/ms/ds/common",
                             precondition: function() {
                                 if ((dm['dm'] == undefined) ||
                                     (dm['ms']['ds'] == undefined) ||
@@ -212,6 +221,7 @@ define(['jquery',
                                 return false;
                             },
                             callback: function(data) {
+                               console.log("CREATE COMMON !!!");
                                 var obj = new dm['ms']['ds']['common'](data.type, diagram, self2);
                                 if (data.callback != undefined)
                                     data.callback(obj);
@@ -250,7 +260,7 @@ define(['jquery',
                         opt.parrent = parrent;
 
                         this._addToLoadQueue({
-                            url: "/ds/" + dType + ".js",
+                            url: "/ds/" + dType,
                             precondition: function() {
                                 if ((dm['ds'] == undefined) ||
                                     (dm['ds'][dType] == undefined)) {
@@ -261,11 +271,14 @@ define(['jquery',
                             callback: function(data) {
                                 var newdiagram = new dm['ds'][data.type](options, parrent);
                                 $.log("NAME: " + parrent);
+
+                                //        @ifdef EDITOR
+                                self['CreateDiagramMenu'](opt.diagram, newdiagram);
+
                                 if (argCallback) {
                                     argCallback(newdiagram);
                                 }
-                                //        @ifdef EDITOR
-                                // self['CreateDiagramMenu'](opt.diagram, newdiagram);
+
                                 //        @endif
                                 return newdiagram;
                             },
