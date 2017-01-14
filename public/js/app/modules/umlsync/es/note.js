@@ -1,7 +1,8 @@
 /**
-  *  
+  *
   */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 
 dm.base.diagram("es.note", dm.es.element, {
@@ -21,8 +22,8 @@ dm.base.diagram("es.note", dm.es.element, {
 										(p1.left + w1) + ' ' + (p1.top + 20) + ',' +
 										(p1.left + w1 - 20) + ' ' + p1.top + ',' +
 										p1.left + ' ' + p1.top + '"/>';
-			desc += '<polyline fill="white" points="'+ (p1.left + w1) + ' ' + (p1.top + 20) + ',' 
-			                            + (p1.left + w1 - 20) + ' ' + (p1.top + 20) + ',' 
+			desc += '<polyline fill="white" points="'+ (p1.left + w1) + ' ' + (p1.top + 20) + ','
+			                            + (p1.left + w1 - 20) + ' ' + (p1.top + 20) + ','
 										+ (p1.left + w1 - 20) + ' ' + p1.top + '"/>';
 		return desc;
 	},
@@ -42,3 +43,6 @@ dm.base.diagram("es.note", dm.es.element, {
 });
 //@aspect
 })(jQuery, dm);
+
+    return dm.es.note;
+});

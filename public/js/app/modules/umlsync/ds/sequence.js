@@ -1,3 +1,4 @@
+define(['module/umlsync/ds/base'], function($) {
 
 (function( $, dm, undefined ) {
 dm.base.diagram("ds.sequence", dm.ds.base, {
@@ -45,10 +46,10 @@ dm.base.diagram("ds.sequence", dm.ds.base, {
 		 } else
 		   if (this.elements[el.from].drop_parent)
 			   el.from = this.elements[el.from].drop_parent;
-		   
+
 		 // if to element has only one connector
          single = true;
-		 
+
 		 // if connector toId is objinstance then it is single = true !!!!!!
 		 if (this.elements[el.toId].options.type == "objinstance") {
 		    // moove objinstance !!!
@@ -61,12 +62,12 @@ dm.base.diagram("ds.sequence", dm.ds.base, {
 				   single = false;
 		       break; // element has one more connector. Could not be moved.
 		       }
-			   
+
           }
 		 if (single) {
 		   if (el.isCreator)
 		     this.elements[el.toId].onDragStart(ui, true); // true means skipDropped
-		   else 
+		   else
 		     this.elements[el.toId].onDragStart(ui);
          } else
 		   if (this.elements[el.toId].drop_parent)
@@ -93,22 +94,22 @@ dm.base.diagram("ds.sequence", dm.ds.base, {
 			}
 		  }
 
-	    for (i in this.connectors) 
+	    for (i in this.connectors)
 	      if (this.elements[this.connectors[i].from].option("dragStart")
 	        || this.elements[this.connectors[i].toId].option("dragStart"))
             this.connectors[i].onDragStart(ui);
-		
+
 		if (skip_objects)
 		for (i in this.connectors) {
 	      var f = this.elements[this.connectors[i].from].option("dragStart"),
-	        t = this.elements[this.connectors[i].toId].option("dragStart"); 
+	        t = this.elements[this.connectors[i].toId].option("dragStart");
 		  if (f && !t) {
 			  var dp = true; // drag possible
 			  for (j in this.connectors)
 				if (!this.connectors[j].option("dragStart")
 				  && (this.connectors[j].from == this.connectors[i].toId
 				      || this.connectors[j].from == this.connectors[i].toId))
-				      dp = false; // some of the connectors goes to another element				      
+				      dp = false; // some of the connectors goes to another element
 			  if (dp)
 			    this.elements[this.connectors[i].toId].onDragStart(ui);
 		  }
@@ -174,7 +175,7 @@ dm.base.diagram("ds.sequence", dm.ds.base, {
 		    this.elements[el.toId].dropHelper(upos2, el);
    		  }
 	  }
-	  
+
 	  var diag = this;
 	  // Perform function on diagram load completion
 	  dm.dm.loader.OnLoadComplete(function() {
@@ -187,3 +188,6 @@ dm.base.diagram("ds.sequence", dm.ds.base, {
 	},
 });
 }) ( jQuery, dm );
+
+  return dm.ds.sequence;
+});

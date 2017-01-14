@@ -15,8 +15,8 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
-(function($, dm, undefined) {
+define(['module/umlsync/ds/diagram'], function(diagram) {
+  (function($, dm, undefined) {
 
 dm.base.diagram("cs.composition", dm.cs['connector'], {
     'draw': function(context2, points, color, isSvg) {
@@ -32,7 +32,7 @@ dm.base.diagram("cs.composition", dm.cs['connector'], {
 
             if (gip<x)
                return;
-            
+
             var sina = dy/gip,
             cosa = dx/gip,
             x3 = points[ep][0] - Math.sqrt(x*x*3/4)*cosa,
@@ -43,7 +43,7 @@ dm.base.diagram("cs.composition", dm.cs['connector'], {
             y4 = y3 - x * cosa/2,
             x5 = x3 - x * sina/2,
             y5 = y3 + x * cosa/2;
-			
+
 			// Return SVG descriptor
 			if (isSvg) {
 				var desc = '<polyline points="';
@@ -53,7 +53,7 @@ dm.base.diagram("cs.composition", dm.cs['connector'], {
 				  comma = ', ';
 				}
 				desc += '"/>';
-				desc += '<polyline fill="black" points="' + points[ep-1][0] + ' ' + points[ep-1][1] + ',' + x6 + ' ' +y6 
+				desc += '<polyline fill="black" points="' + points[ep-1][0] + ' ' + points[ep-1][1] + ',' + x6 + ' ' +y6
                         + ',' + x4 + ' '+ y4 + ','  + points[ep][0] + ' ' + points[ep][1] + ',' + x5 + ' ' +y5 + ',' + x6 + ' ' +y6 + '"/>';
 				return desc;
 			}
@@ -84,8 +84,11 @@ dm.base.diagram("cs.composition", dm.cs['connector'], {
 
 
 
-            
+
     }
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.composition;
+});

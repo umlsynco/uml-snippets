@@ -1,6 +1,8 @@
 /**
-  *  
+  *
   */
+
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function( $, undefined ) {
 dm.base.diagram("es.objinstance", dm.es.element, {
 	options: {
@@ -87,7 +89,7 @@ dm.base.diagram("es.objinstance", dm.es.element, {
 	      $.log("OBJINST RET CREATOR");
 		  return;
 		}
-		
+
 	    if (dndOptions != undefined && (dndOptions.isElFound == undefined || !dndOptions.isElFound)) {
 		  $('#'+ this.euid + "_Border").css({left:posUi.position.left,top:posUi.position.top});
 		 return;
@@ -98,7 +100,7 @@ dm.base.diagram("es.objinstance", dm.es.element, {
 	     var par = this.parrent;
 		 var self = this;
 		 var con = connector;
-		 
+
 		 var dropped_euid = this._getDropHelper(posUi, con.from == self.euid);
          var extra_points = {position:{left:posUi.position.left,top:posUi.position.top}};
 		 $.log("DROP helper: " + dropped_euid);
@@ -120,7 +122,7 @@ dm.base.diagram("es.objinstance", dm.es.element, {
 		   // redraw connector
 		   self.parrent.draw();
 		 }
-		 else 
+		 else
 	       par.Element((dndOptions && dndOptions.expected) ? dndOptions.expected : "llport",
 	         {left: p11.left + w/2 - 5, top:  posUi.position.top, "menu":this.options["menu"]},
         		function(element) {
@@ -189,7 +191,7 @@ dm.base.diagram("es.objinstance", dm.es.element, {
 		} while (has_concat);
 		_seq[m].sort();
 	  }
-	  
+
 	  for (var m=0; m<_seq.length; ++m) {
 		  if (_seq[m].length > 0) {
 			  $.log("Intersection: [" +m + "] = "  + _seq[m]);
@@ -228,8 +230,8 @@ dm.base.diagram("es.objinstance", dm.es.element, {
 
 					if (tc) {
 					  this.parrent.opman.reportShort("recon", f, {fromId:from, toId:to},{fromId:from, toId:_sort[m].name});
-					} 
-					
+					}
+
 					if (fc) {
 					  this.parrent.opman.reportShort("recon", f, {fromId:from, toId:to},{fromId:_sort[m].name, toId:to});
 					}
@@ -246,7 +248,7 @@ dm.base.diagram("es.objinstance", dm.es.element, {
      	    var e = $("#" + euid + "_Border"),
 	   	        p = e.position(),
 			    h = e.height(),
-			    intersection 
+			    intersection
    		           if ((ui.position.top > p.top -10)
 		  && (ui.position.top < p.top + h + 10)) {
 
@@ -257,7 +259,7 @@ dm.base.diagram("es.objinstance", dm.es.element, {
 		    e.css("height", h+10);
 		  }
 		  */
-		
+
 	},
 	addMethod: function(md) {
 		this.options.methods = this.options.methods || new Array();
@@ -365,7 +367,7 @@ dm.base.diagram("es.llport", dm.es.element, {
             if (pos.top + h < pui.top)
               $("#" + this.euid + "_Border").height(pui.top - pos.top);
             else if (pos.top > pui.top)
-              $("#" + this.euid + "_Border").css("top", pui.top).height(pos.top - pui.top + h);		
+              $("#" + this.euid + "_Border").css("top", pui.top).height(pos.top - pui.top + h);
 	},
 	getSvgDescription: function() {
 		var w1 = $("#" + this.euid).width();
@@ -422,7 +424,7 @@ dm.base.diagram("es.lldel", dm.es.element, {
             if (pos.top + h < pui.top)
               $("#" + this.euid + "_Border").height(pui.top - pos.top);
             else if (pos.top > pui.top)
-              $("#" + this.euid + "_Border").css("top", pui.top).height(pos.top - pui.top + h);		
+              $("#" + this.euid + "_Border").css("top", pui.top).height(pos.top - pui.top + h);
 	},
 	getSvgDescription: function() {
 		var w1 = $("#" + this.euid).width();
@@ -434,3 +436,6 @@ dm.base.diagram("es.lldel", dm.es.element, {
 });
 
 }) ( jQuery );
+
+    return dm.es.objinstance;
+});

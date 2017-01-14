@@ -15,7 +15,7 @@ URL:
 Version:
   2.0.0 (2012-Oct-19)
 */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.llreturn", dm.cs.connector, {
@@ -79,7 +79,7 @@ dm.base.diagram("cs.llreturn", dm.cs.connector, {
             y4 = y3 - x * cosa/2,
             x5 = x3 - x * sina/2,
             y5 = y3 + x * cosa/2;
-           
+
 			// Return SVG connector's group
 			if (isSvg) {
 				var desc = '<polyline stroke-dasharray="7 3" points="';
@@ -109,13 +109,13 @@ dm.base.diagram("cs.llreturn", dm.cs.connector, {
               c.arc(this.epoints[i][0], this.epoints[i][1], 3, 0, Math.PI * 2, true);
             }*/
             c.stroke();
-            c.closePath();            
+            c.closePath();
     },
     '_getConnectionPoints': function(fromId, toId, epoints) {
        var p1 = $('#'+ fromId).position();
-       
+
        var p2 = $('#' + toId).position();
-       
+
        var p11 = $('#'+ fromId + "_Border").position();
        if (!p11) {
         return;
@@ -125,7 +125,7 @@ dm.base.diagram("cs.llreturn", dm.cs.connector, {
        w21 = $('#' + toId + "_Border").width() + 26,
        scrollTop = $("#" + this.parrent.euid).scrollTop(),
        scrollLeft = $("#" + this.parrent.euid).scrollLeft();
-    
+
      if (toId == "ConnectionHelper") {
        var y1 = (p11.top + 40 > p21.top) ? p11.top + 40 : p21.top;
        y1+=5;
@@ -224,3 +224,6 @@ dm.base.diagram("cs.llreturn", dm.cs.connector, {
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.llreturn;
+});

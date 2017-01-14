@@ -15,7 +15,7 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.onetomany", dm.cs.connector, {
@@ -48,7 +48,7 @@ dm.base.diagram("cs.onetomany", dm.cs.connector, {
         x1+= (ex + fx);
         y1+= (ey + fy);
       }
-    
+
     },
     'drawEnd': function(c, p1, p2, flag) {
       var x2 = p2[0],
@@ -85,7 +85,7 @@ dm.base.diagram("cs.onetomany", dm.cs.connector, {
             ex = dashe * cosa,
             ey = dashe * sina;
 
-         if (flag) {    
+         if (flag) {
                c.moveTo(x31, y31);
              c.lineTo(x2, y2);
             c.moveTo(x31, y31);
@@ -101,7 +101,7 @@ dm.base.diagram("cs.onetomany", dm.cs.connector, {
 
          }
 
-      
+
     },
     'draw': function(c, points, color) {
       if ((points == null) || (points.length < 2)) {
@@ -150,7 +150,7 @@ dm.base.diagram("cs.onetomany", dm.cs.connector, {
         this.dashedLine(points[i], points[i+1], c);
         //c.arc(points[i][0], points[i][1], 3, 0, Math.PI * 2, true);
       }
-      
+
       this.drawEnd(c, points[0], points[1], false);
       this.drawEnd(c, points[ep-1], points[ep], true);
 /*            for (i=0; i<((gip - 11*x/9)/(dashf + dashe)); ++i) {
@@ -166,3 +166,5 @@ dm.base.diagram("cs.onetomany", dm.cs.connector, {
     });
 //@aspect
 })(jQuery, dm);
+
+});

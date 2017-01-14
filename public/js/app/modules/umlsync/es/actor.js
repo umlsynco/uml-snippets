@@ -1,7 +1,8 @@
 /**
-  *  
+  *
   */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 
 dm.base.diagram("es.actor", dm.es.element, {
@@ -21,12 +22,12 @@ dm.base.diagram("es.actor", dm.es.element, {
     },
     '_init': function() {
       // TODO: REPLACE THIS METHOD ON RESIZE OPTION TO KEEP RATIO
-      var self = '#' + this.euid;    
+      var self = '#' + this.euid;
       $('#' + this.euid + "_Border").width(this.options.width).bind( "resize", function(event, ui) {
          var w = $(self).width(),
              h = $(self).height();
          var m = w;
-         if (w > h ) 
+         if (w > h )
             m = h;
          $(self + " img"+self +"img").width(m).height(m);
       });
@@ -41,3 +42,6 @@ dm.base.diagram("es.actor", dm.es.element, {
 
 //@aspect
 })(jQuery, dm);
+
+    return dm.es.actor;
+});

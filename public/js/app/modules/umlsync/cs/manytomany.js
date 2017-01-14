@@ -15,7 +15,7 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.manytomany", dm.cs.connector, {
@@ -48,7 +48,7 @@ dm.base.diagram("cs.manytomany", dm.cs.connector, {
         x1+= (ex + fx);
         y1+= (ey + fy);
       }
-    
+
     },
     'draw': function(c, points, color) {
             if ((points == null) || (points.length < 2)) {
@@ -91,7 +91,7 @@ dm.base.diagram("cs.manytomany", dm.cs.connector, {
             y6 = y1 + Math.sqrt(x*x*3/4)*sina + x * cosa/2,
             x7 = x1 + Math.sqrt(x*x*3/4)*cosa + x * sina/2,
             y7 = y1 + Math.sqrt(x*x*3/4)*sina - x * cosa/2;
-            
+
             c.beginPath();
             c.fillStyle = "rgba(255,255,255,1)";
             c.strokeStyle = col;
@@ -117,3 +117,6 @@ dm.base.diagram("cs.manytomany", dm.cs.connector, {
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.manytomany;
+});

@@ -7,7 +7,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
         dm.ds = {};
         dm.cs = {};
         dm.hs = {};
-        dm.dm = {};
+        dm.dm = {fw:{}};
         dm.ms = {
             ctx: {},
             ds: {}
@@ -1804,7 +1804,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
 
             _mouseClick: function(refElement) {
                 var mtype = (refElement == undefined) ? undefined : refElement.options['type'];
-                var ctrlDown = dm['dm']['fw']['CtrlDown'];
+                var ctrlDown = dm.dm.fw.CtrlDown;
                 this.clickedElement = refElement;
 
                 if (this.snippetMode) {

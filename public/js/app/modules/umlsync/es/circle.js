@@ -1,7 +1,9 @@
 /**
-  *  
+  *
   */
 //@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 
 dm.base.diagram("es.circle", dm.es.element, {
@@ -18,7 +20,7 @@ dm.base.diagram("es.circle", dm.es.element, {
        this.options.height = $("#" + this.euid + "_Border").height();
 
        this.options.name = $("#" + this.euid + " #lable" ).html();
-       
+
     },
     '_create': function() {
       this.innerHtml = '<div id="' + this.euid + '" style="width:100%;height:100%;text-align:center;">\
@@ -45,7 +47,7 @@ dm.base.diagram("es.circle", dm.es.element, {
          var w = $(self).width(),
              h = $(self).height();
          var m = w;
-         if (w > h ) 
+         if (w > h )
             m = h;
          $(self + " .us-interfaces").width(m).height(m);
 
@@ -54,7 +56,7 @@ dm.base.diagram("es.circle", dm.es.element, {
       if (this.options.name) {
           $("#" + this.euid + " .name").val(this.options.name);
       }
-	  
+
 	  if (this.options['left']) {
         $('#' + this.euid + "_Border").css("left", this.options['left']);
       }
@@ -66,3 +68,6 @@ dm.base.diagram("es.circle", dm.es.element, {
 
 //@aspect
 })(jQuery, dm);
+
+    return dm.es.circle;
+});

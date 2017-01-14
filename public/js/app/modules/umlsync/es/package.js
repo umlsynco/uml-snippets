@@ -1,7 +1,7 @@
 /**
-  *  
+  *
   */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function( $, dm, undefined ) {
 dm.base.diagram("es.package", dm.es.element, {
     'options': {
@@ -21,7 +21,7 @@ dm.base.diagram("es.package", dm.es.element, {
 
        // Height of packet body. Width is the same for all part of element
        this.options.height_b = $("#" + this.euid + "_Border .us-package-body").height();
-       
+
        if (this._dropped) {
          this.options.dropped = new Array();
          for (i in this._dropped) {
@@ -46,7 +46,7 @@ dm.base.diagram("es.package", dm.es.element, {
       this.innerHtml = '<div id="' + this.euid + '" class="us-package">\
                                 <div class="us-package-tab grElement"></div>\
             <div class="us-package-body grElement">'
-            + aux + 
+            + aux +
             '<a id="name" class="editablefield">'+ this.options.name + '</a></div>\
                                 </div>';
       $("#" + this.parrent.euid).append(this.innerHtml);
@@ -76,3 +76,6 @@ dm.base.diagram("es.package", dm.es.element, {
 });
 //@aspect
 })(jQuery, dm);
+
+    return dm.es.package;
+});

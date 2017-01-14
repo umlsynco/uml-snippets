@@ -16,6 +16,7 @@ Version:
   2.0.0 (2012-07-12)
 */
 //@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.arc", dm.cs['connector'], {
@@ -30,14 +31,14 @@ dm.base.diagram("cs.arc", dm.cs['connector'], {
                 dy = points[ep][1] - points[ep-1][1],
                 gip = Math.sqrt(dx*dx + dy*dy);
 
-            
+
             var sina = dy/gip,
             cosa = dx/gip,
             x3 = points[ep][0], // - Math.sqrt(x*x*3/4)*cosa,
             y3 = points[ep][1], // - Math.sqrt(x*x*3/4)*sina,
             x6 = points[ep][0] - x*cosa,
             y6 = points[ep][1] - x*sina;
-            
+
             context2.beginPath();
             context2.fillStyle = color;
             context2.strokeStyle = color;
@@ -53,15 +54,18 @@ dm.base.diagram("cs.arc", dm.cs['connector'], {
             context2.lineTo(x6, y6);
             context2.stroke();
 
-			context2.beginPath();            
+			context2.beginPath();
 			asin = Math.acos(sina);
 			if (cosa > 0) asin = -asin; // Keep the direction !!!
 			context2.arc(x3, y3, x, asin, asin + Math.PI , true);
 
             context2.stroke();
             //context2.closePath();
-        
+
     }
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.arc;
+});

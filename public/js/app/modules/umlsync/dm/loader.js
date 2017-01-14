@@ -30,7 +30,10 @@ URL:
 Version:
   2.0.0 (2012-07-12)
  */
-define(['jquery', 'module/umlsync/ds/base', 'module/umlsync/cs/all', 'module/umlsync/es/all'], function($) {
+define(['jquery',
+'module/umlsync/ds/base', // all diagrams has base type
+'module/umlsync/ds/sequence', // except sequence diagram
+'module/umlsync/cs/all', 'module/umlsync/es/all'], function($) {
 
     (function($, dm, undefined) {
 
@@ -318,6 +321,7 @@ define(['jquery', 'module/umlsync/ds/base', 'module/umlsync/cs/all', 'module/uml
                                 return false;
                             },
                             callback: function(o) {
+                              console.log(o.type);
                                 var e2 = new dm['es'][o.type](o.options, o.diagram);
                                 if (callback2)
                                     callback2(e2);

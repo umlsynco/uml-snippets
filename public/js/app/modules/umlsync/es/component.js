@@ -1,7 +1,9 @@
 /**
-   *  
+   *
    */
-//@aspect
+
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 
 dm.base.diagram("es.component", dm.es.element, {
@@ -26,7 +28,7 @@ dm.base.diagram("es.component", dm.es.element, {
 		var p1 = $("#" + this.euid + "_Border").position();
 		var np = $("#" + this.euid + " #name").position();
 		var sp = $("#" + this.euid + " #stereotype").position();
-		
+
 		var	desc = '<rect x="'+ p1.left + '" y="' + p1.top + '" width="' +w1 + '" height="' + h1 + '"/>';
 		desc += '<text x="' + (p1.left + np.left) + '" y="' + (p1.top + np.top + 11) + '">' + $("#" + this.euid + " #name").text() + "</text>";
 		desc += '<text x="' + (p1.left + sp.left) + '" y="' + (p1.top + sp.top + 11) + '">' + $("#" + this.euid + " #stereotype").text() + "</text>";
@@ -52,3 +54,6 @@ dm.base.diagram("es.component", dm.es.element, {
 });
 //@aspect
 })(jQuery, dm);
+
+  return dm.es.component;
+});

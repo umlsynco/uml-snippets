@@ -15,7 +15,7 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.realization", dm.cs['connector'], {
@@ -48,7 +48,7 @@ dm.base.diagram("cs.realization", dm.cs['connector'], {
         x1+= (ex + fx);
         y1+= (ey + fy);
       }
-    
+
     },
     'draw': function(c, points, color, isSvg) {
             if ((points == null) || (points.length < 2)) {
@@ -115,3 +115,6 @@ dm.base.diagram("cs.realization", dm.cs['connector'], {
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.realization;
+});

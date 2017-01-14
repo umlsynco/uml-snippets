@@ -79,11 +79,17 @@ var jsonData =
         },
 
         onStart: function() {
-            console.log('HomeModule start');
             // Could be triggered from the select menu, to create a new empty diagram
+            var that = this;
             app.vent.on("load:diagram", function(payload) {
+              that.diagramView.LoadDiagram(payload);
               console.log("Load diagram type: " + payload.type);
             });
+            app.vent.on("load:element", function(payload) {
+              if (that.diagramView)
+                that.diagramView.Element(payload);
+            });
+
         },
 
         onStop: function() {
@@ -95,10 +101,11 @@ var jsonData =
                 title: 'UmlSync'
             });
             app.content(textView.render(), true);
-            
+
             var diagramView = new DiagramView({model: new Backbone.Model({})});
             app.content(diagramView.render());
             diagramView.LoadDiagram(jsonData);
+            this.diagramView = diagramView;
         }
 
     });

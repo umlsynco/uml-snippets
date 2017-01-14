@@ -1,5 +1,5 @@
 define(['module/umlsync/ds/diagram'], function(diagram) {
-	
+
 (function( $, dm, undefined ) {
 
 dm.base.diagram("es.class", dm.es.element, {
@@ -66,7 +66,7 @@ dm.base.diagram("es.class", dm.es.element, {
           var hideMenuSelector = "#" + diag.euid + " #us-class-ctx-menu";
           // Edit - simple trigger of click
           $("#" + self.parrent.euid + " #us-class-ctx-menu-edit a").click(function(e) {$(hideMenuSelector).hide();$("#" + diag.euid + " " + diag.classItem).click()});
-          
+
           // Add - should call addOperation method of selected class
           $("#" + self.parrent.euid + " #us-class-ctx-menu-add a")
           .click(function(e) {
@@ -158,7 +158,7 @@ dm.base.diagram("es.class", dm.es.element, {
 
        var $op = $('<li id="operation"><a id="'+old_id+'" class="editablefield operation" >' + opt.text + '</a></li>'),
            $idx = $("#" + this.euid + " .us-class-operations .us-sortable li:eq("+idx+")");
-       
+
        // if index not found
        if ($idx.length == 1) {
          $op.insertAfter($idx);
@@ -258,7 +258,7 @@ dm.base.diagram("es.class", dm.es.element, {
        var idx = (opt.idx == undefined) ? this.atrN : opt.idx;
        var $ch = $('<li id="attribute"><a id="'+ old_attr +'" class="editablefield attribute" >' + opt.text + '</a></li>'),
           $idx = $("#" + this.euid + " .us-class-attributes .us-sortable li:eq("+idx+")");
-       
+
        // if index not found
        if ($idx.length == 1) {
          $ch = $ch.insertAfter($idx);
@@ -277,7 +277,7 @@ dm.base.diagram("es.class", dm.es.element, {
        dm.base.editable(this, $ch, true);
 //@endif
        var hg = $ch.height();
-       
+
 
        var h1 = $("#" + this.euid + " .us-class-attributes .us-sortable").sortable("refresh").height(),
            h2 = $("#" + this.euid + " .us-class-attributes").height(),
@@ -318,7 +318,7 @@ dm.base.diagram("es.class", dm.es.element, {
 
          // Update options
          this.options.attributes.splice(idx, 1);
-         
+
          // Report attribute.
          this.parrent.opman.reportShort("-attribute",
                                       this.euid,
@@ -358,7 +358,7 @@ dm.base.diagram("es.class", dm.es.element, {
        // Height of attributes and operations. Width is the same for all components
        this.options['height_a'] = parseInt($("#" + this.euid + "_Border .us-class-attributes").height());
        this.options['height_o'] = parseInt($("#" + this.euid + "_Border .us-class-operations").height());
-       
+
        // Operations and attributes should be up to date
 
 //       this.options['name'] = "" + $("#" + this.euid + " .us-class-name" ).html();
@@ -402,7 +402,7 @@ dm.base.diagram("es.class", dm.es.element, {
            operations += '<li id="operation"><a id="operation-'+this.atrN+'" class="editablefield operation">' + this.options['operations'][i] + '</a></li>';
            this.atrN++;
         }
-    
+
         for (var i in this.options['attributes']) {
            attributes += '<li id="attribute"><a id="attribute-'+this.opN+'" class="editablefield attribute">' + this.options['attributes'][i] +'</a></li>';
            this.opN++;
@@ -420,7 +420,7 @@ dm.base.diagram("es.class", dm.es.element, {
         </div>\
       ';
       $("#" + this['parrent'].euid).append(this.innerHtmlClassInfo);
-      
+
       this.element = $("#"  + this.euid);
 
 //@ifdef EDITOR
@@ -430,7 +430,7 @@ dm.base.diagram("es.class", dm.es.element, {
       .bind('contextmenu', function(e) {
         self.showContextMenu("#" + self.euid + " #" + this.id, e);
       });
-      
+
       this.element
       .children('#attribute')
       .children("a")
@@ -445,7 +445,7 @@ dm.base.diagram("es.class", dm.es.element, {
         this.operations = new Array();
 
        if (this['parrent'].options['editable']) {
-      
+
          var border = "#"+this.euid + "_Border";
          var self = this;
          // stop-function is a fix for attributes area which became not resizizable with black points after internal resize usage
@@ -456,7 +456,7 @@ dm.base.diagram("es.class", dm.es.element, {
                      'start': function() {
                         self._update();
                         self.operation_start = {height_a:self.options.height_a};
-                        $("#tabs #us-editable input").hide();  // TODO: send blur to editable ? 
+                        $("#tabs #us-editable input").hide();  // TODO: send blur to editable ?
                      },
                      'stop': function(event, ui) {
                        self._update();
@@ -469,9 +469,9 @@ dm.base.diagram("es.class", dm.es.element, {
                     }); // resizable
 /*         $("#"+this.euid + " .us-class-operations").resizable({'handles': 's-l', 'alsoResize': border,
                                                            'resize': function(event, ui) { if ($(border).width() < ui.size.width) $(this).width($(border).width());}
-                                               
+
          });
-*/         
+*/
 
         this.sortableHandler = {
           start: function(event, ui) {
@@ -532,7 +532,7 @@ dm.base.diagram("es.class", dm.es.element, {
          $('#' + this.euid  + '_Border .us-class-attributes').css('height', value);
 
          var v = parseInt(value) - parseInt(oval);
-         
+
          if (v != 0) {
            var inc=(v>0)? ("+=" + v) : ("-=" + Math.abs(v));
 
@@ -545,7 +545,7 @@ dm.base.diagram("es.class", dm.es.element, {
          return true;
       }
       else if (key == "editable") {
-        // do not return true because it is only part of 
+        // do not return true because it is only part of
         // transition to none-editable
         $("#" + this.euid + " .us-sortable").sortable({ disabled: (value == true) ? false:true });
       }
@@ -589,7 +589,7 @@ dm.base.diagram("es.class", dm.es.element, {
 			}
 		);
 		var $opp = $("#" + this.euid + " .us-class-operations");
-		
+
 		var p3 = $opp.position();
 		p = p3;
 		var bbb = $opp.height();
@@ -606,7 +606,7 @@ dm.base.diagram("es.class", dm.es.element, {
 		desc += '</g>';
 		return desc;
 
-	}, 
+	},
 //@endif
     'ec': 0
 });
@@ -614,4 +614,4 @@ dm.base.diagram("es.class", dm.es.element, {
 })(jQuery, window.dm);
 
     return dm.es.class;
-}); 
+});

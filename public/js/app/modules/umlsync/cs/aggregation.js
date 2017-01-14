@@ -55,7 +55,7 @@ define(['module/umlsync/ds/diagram'], function(diagram) {
 				  comma = ', ';
 				}
 				desc += '"/>';
-				desc += '<polyline fill="white" points="' + points[ep-1][0] + ' ' + points[ep-1][1] + ',' + x6 + ' ' +y6 
+				desc += '<polyline fill="white" points="' + points[ep-1][0] + ' ' + points[ep-1][1] + ',' + x6 + ' ' +y6
                         + ',' + x4 + ' '+ y4 + ','  + points[ep][0] + ' ' + points[ep][1] + ',' + x5 + ' ' +y5 + ',' + x6 + ' ' +y6 + '"/>';
 				return desc;
 			}
@@ -83,5 +83,5 @@ define(['module/umlsync/ds/diagram'], function(diagram) {
     });
 //@aspect
 })(jQuery, dm);
-
+  return dm.cs.aggregation;
 });

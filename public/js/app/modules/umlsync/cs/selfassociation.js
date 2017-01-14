@@ -15,7 +15,7 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.selfassociation", dm.cs['connector'], {
@@ -42,7 +42,7 @@ dm.base.diagram("cs.selfassociation", dm.cs['connector'], {
          alert("Not found " + this['from']);
          return;
       }
-      
+
       this.dleft = 40;
       this.dtop = 20;
       this.dright = 20;
@@ -77,13 +77,13 @@ dm.base.diagram("cs.selfassociation", dm.cs['connector'], {
 
        var p1 = $('#'+ fromId).position();
        var p2 = p1;
-       
+
        var p11 = $('#'+ fromId + "_Border").position();
        var p21 = p11;
        var scrollTop = 0,//$("#" + this.parrent.euid).scrollTop(),
            scrollLeft = 0;//$("#" + this.parrent.euid).scrollLeft();
 
-       
+
        if ((epoints == undefined) || (epoints.length ==0)) {
          var x1 = this._getRValue(p1.left + p11.left, p2.left + p21.left, $('#'+ fromId).width()) ;
          var y1 = this._getRValue(p1.top + p11.top, p2.top + p21.top, $('#'+ fromId).height()) ;
@@ -105,11 +105,11 @@ dm.base.diagram("cs.selfassociation", dm.cs['connector'], {
 
          var x2 = p2.left + p21.left;
          var y2 = p2.top + p21.top;
-*/      
+*/
         var newpoints = [];
         newpoints[0] = [x1 + scrollLeft,y1 - scrollTop];
         for (i=1;i<=epoints.length;++i) {
-          newpoints[i] = epoints[i-1];          
+          newpoints[i] = epoints[i-1];
         }
         newpoints[epoints.length + 1] = [x2 + scrollLeft,y2 - scrollTop];
         return newpoints;
@@ -118,3 +118,6 @@ dm.base.diagram("cs.selfassociation", dm.cs['connector'], {
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.selfassociation;
+});

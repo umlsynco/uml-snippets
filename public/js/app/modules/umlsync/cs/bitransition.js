@@ -15,8 +15,8 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
-(function($, dm, undefined) {
+define(['module/umlsync/ds/diagram'], function(diagram) {
+  (function($, dm, undefined) {
 
 dm.base.diagram("cs.bitransition", dm.cs.connector, {
     'draw': function(c, points, color) {
@@ -68,8 +68,11 @@ dm.base.diagram("cs.bitransition", dm.cs.connector, {
             c.lineTo(x2, y2);
             c.lineTo(x5, y5);
             c.stroke();
-            c.closePath();            
+            c.closePath();
     }
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.bitransition;
+});

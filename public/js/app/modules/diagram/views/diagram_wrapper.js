@@ -16,16 +16,21 @@ function(Marionette, DiagramLoader) {
      },
      LoadDiagram: function(jsonData) {
        //var jsonData = {baseTyp: "base", type: "class"};
+       $("#diagram-c100").empty();
        var that = this;
-       this.activeDiagram = this.diagramLoader.Diagram(
+       this.diagramLoader.Diagram(
                     jsonData.type,
                     jsonData.base_type || "base",
                     jsonData,
                     "#diagram-c100",
                     function (obj) {
-                      console.dir(obj);
+                      that.activeDiagram = obj;
+                      obj.draw(); // re-draw connectors
                     });
-		}
+		},
+    Element: function(jsonData) {
+      this.activeDiagram.Element(jsonData.type, jsonData);
+    }
 	});
 
     return ContentView;

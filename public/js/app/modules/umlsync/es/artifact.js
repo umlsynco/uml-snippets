@@ -1,6 +1,8 @@
 /**
-   *  
+   *
    */
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 
 dm.base.diagram("es.artifact", dm.es.element, {
@@ -19,3 +21,6 @@ dm.base.diagram("es.artifact", dm.es.element, {
     }
 });
 })(jQuery, dm);
+
+    return dm.es.artifact;
+});

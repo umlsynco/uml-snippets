@@ -16,7 +16,7 @@ Version:
   2.0.0 (2012-07-12)
 */
 
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.llselfcall", dm.cs.connector, {
@@ -50,7 +50,7 @@ dm.base.diagram("cs.llselfcall", dm.cs.connector, {
             y4 = y3 - x * cosa/2,
             x5 = x3 - x * sina/2,
             y5 = y3 + x * cosa/2;
-            
+
             c.beginPath();
             c.fillStyle = color;
             c.strokeStyle = color;
@@ -69,7 +69,7 @@ dm.base.diagram("cs.llselfcall", dm.cs.connector, {
               c.arc(this.epoints[i][0], this.epoints[i][1], 3, 0, Math.PI * 2, true);
             }*/
             c.stroke();
-            c.closePath();            
+            c.closePath();
     },
     '_init': function() {
       var p11 = $('#'+ this.from + "_Border").position();
@@ -96,7 +96,7 @@ dm.base.diagram("cs.llselfcall", dm.cs.connector, {
       this.dleft = 40;
       this.dtop = 20;
       this.dright = 20;
-      
+
       if (this.toId == "ConnectionHelper") {
         $.log("POS1");
         var pos = $("#ConnectionHelper_Border").position();
@@ -152,7 +152,7 @@ dm.base.diagram("cs.llselfcall", dm.cs.connector, {
     '_updateEPoints': function(ui) {
       if (this.epoints && this.epoints.legth > 0)
         this.epoints = [[ui.position.left, ui.position.top]];
-      else 
+      else
         this.epoints = [[ui.position.left, ui.position.top+5]]; // LLPort should be created on the same ui position threfore we have to shift extra point. But it is required for a first time only !!!
       this.cleanOnNextTransform = true;
       this.eppos = 0; // extra point position. Uses for temporary points which should be removed on next transform.
@@ -167,3 +167,6 @@ dm.base.diagram("cs.llselfcall", dm.cs.connector, {
 
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.llselfcall;
+});

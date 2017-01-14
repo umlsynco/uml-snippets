@@ -16,6 +16,7 @@ Version:
   2.0.0 (2012-07-12)
  */
 //@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.anchor", dm.cs['connector'], {
@@ -76,10 +77,13 @@ dm.base.diagram("cs.anchor", dm.cs['connector'], {
 
             this.dashedLine(points[i], points[i+1], c);
             c.stroke();
-            c.closePath();      
+            c.closePath();
             //c.arc(points[i][0], points[i][1], 3, 0, Math.PI * 2, true);
         }
     }
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.anchor;
+});

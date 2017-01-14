@@ -15,7 +15,7 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.onetoone", dm.cs.connector, {
@@ -61,8 +61,8 @@ dm.base.diagram("cs.onetoone", dm.cs.connector, {
             fy = dashf * sina,
             ex = dashe * cosa,
             ey = dashe * sina;
-            
-            
+
+
             c.beginPath();
             c.fillStyle = col;
             c.strokeStyle = col;
@@ -78,8 +78,11 @@ dm.base.diagram("cs.onetoone", dm.cs.connector, {
             c.moveTo(x6, y6);
             c.lineTo(x7, y7);
             c.stroke();
-            c.closePath();            
+            c.closePath();
     }
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.onetoone;
+});

@@ -15,7 +15,7 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.transition", dm.cs.connector, {
@@ -63,8 +63,11 @@ dm.base.diagram("cs.transition", dm.cs.connector, {
             c.lineTo(x2, y2);
             c.lineTo(x5, y5);
             c.stroke();
-            c.closePath();            
+            c.closePath();
     }
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.transition;
+});

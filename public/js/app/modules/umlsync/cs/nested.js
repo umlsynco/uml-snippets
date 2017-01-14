@@ -15,7 +15,7 @@ URL:
 Version:
   2.0.0 (2012-07-12)
 */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function($, dm, undefined) {
 
 dm.base.diagram("cs.nested", dm.cs['connector'], {
@@ -30,7 +30,7 @@ dm.base.diagram("cs.nested", dm.cs['connector'], {
                 dy = points[ep][1] - points[ep-1][1],
                 gip = Math.sqrt(dx*dx + dy*dy);
 
-            
+
             var sina = dy/gip,
             cosa = dx/gip,
             z = x-3,
@@ -46,7 +46,7 @@ dm.base.diagram("cs.nested", dm.cs['connector'], {
             y31 = points[ep][1] - Math.sqrt(z*z*3/4)*sina,
             x61 = points[ep][0] - Math.sqrt(z*z*3)*cosa,
             y61 = points[ep][1] - Math.sqrt(z*z*3)*sina;
-			
+
 			// Return SVG connector's group
 			if (isSvg) {
 				var desc = '<polyline points="';
@@ -62,7 +62,7 @@ dm.base.diagram("cs.nested", dm.cs['connector'], {
                 desc += '<polyline  points="' + x4 + ' ' +y4 + ',' + x5 + ' ' +y5 + ',' + x31 + ' ' +y31+ ','  + x61 + ' ' +y61 +'"/>';
 				return desc;
 			}
-            
+
             context2.beginPath();
             context2.fillStyle = color;
             context2.strokeStyle = color;
@@ -79,18 +79,21 @@ dm.base.diagram("cs.nested", dm.cs['connector'], {
             context2.stroke();
             context2.moveTo(x3, y3);
             context2.arc(x3,y3, x/2, 0, Math.PI * 2, true);
-            
+
             context2.moveTo(x4, y4);
             context2.lineTo(x5, y5);
-            
+
             context2.moveTo(x31, y31);
             context2.lineTo(x61, y61);
             //context2.lineTo(x6, y6);
 
             context2.stroke();
             context2.closePath();
-        
+
     }
     });
 //@aspect
 })(jQuery, dm);
+
+return dm.cs.nested;
+});
