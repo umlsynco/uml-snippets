@@ -722,7 +722,7 @@ var icon_menus = icon_menus_stub;
 			x = x || pz.left + 20;
 			y = y || pz.top;
 
-			$(".elmenu-" + menu_id).stop().css("left", x).css("top", y+30).animate({opacity:"1"});
+			$(".elmenu-" + menu_id).stop().css("left", x).css("top", y-20).animate({opacity:"1"});
 		  }
 	  },
 	  //
