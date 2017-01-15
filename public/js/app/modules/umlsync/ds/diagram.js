@@ -1891,10 +1891,8 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
             //
             onFocus: function(flag) {
                 if (flag) {
-                  console.log("DRAWWWWWWWWWWWWWW");
                     this.draw();
                     if (this.menuIcon) {
-                      console.log("SSSSSSSSSSSSSSSSSSSSSS");
                         if (this.selectedElement) {
                             this.menuIcon['Enable'](this.selectedElement);
                         }

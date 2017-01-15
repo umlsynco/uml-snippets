@@ -93,7 +93,91 @@ var jsonData =
               if (that.diagramView)
                 that.diagramView.RedrawConnectors();
             });
+            this._helperInitializeKeyHandler();
+        },
 
+        _helperInitializeKeyHandler: function () {
+            //@ifdef EDITOR
+            var fw = this;
+            var that = this;
+            $(window).keydown(function (e) {
+                    var params = null;
+                    if (!that.diagramView) {
+                        return;
+                    }
+                    var sendToHandler = false;
+                    if (e.ctrlKey && e.keyCode == 17) {
+                        fw.CtrlDown = true;
+                    } else if (e.keyCode == 46) { // Del
+                        //
+                        // Prevent element remove on edit fields
+                        // TODO: check for dialog open
+                        //
+                        if ($(".editablefield input").length == 0) {
+                            sendToHandler = true;
+                        }
+                    }
+                    if (e.keyCode == 27) { // Esc
+                        var e1 = jQuery.Event("blur");
+                        e1.apply = false;      // Do not apply changes
+                        $(".editablefield input").trigger(e1);
+                    } else if (e.keyCode == 13) { // Enter
+                        $(".editablefield input").trigger('blur');
+                    }
+
+                    if (e.ctrlKey) {
+                        switch (e.keyCode) {
+                            case 65:// Handle Ctrl-A
+                                sendToHandler = true;
+                                break;
+                            case 67: // Handle Ctrl-C
+                                sendToHandler = true;
+                                break;
+                            case 88:
+                                sendToHandler = true;
+                                break;
+                            case 86:// Handle Ctrl-V
+                                sendToHandler = true;
+                                break;
+                            case 90:// Handle Ctrl-Z
+                                sendToHandler = true;
+                                break;
+                            case 89:// Handle Ctrl-Y
+                                sendToHandler = true;
+                                break;
+                            case 83:// Handle Ctrl-S
+                                //
+                                // STOP event propagation first, and then handle it
+                                //
+                                e.preventDefault();
+                                e.stopPropagation();
+                                e.stopImmediatePropagation();
+
+                                if (fw.selectedContentId)
+                                    fw.saveContent(fw.selectedContentId);
+                                //
+                                // Send to handler to mark the current position as default
+                                //
+                                sendToHandler = true;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    //
+                    // Check if editor could handle event itself
+                    //
+                    if (that.diagramView && sendToHandler) {
+                        that.diagramView.onKeyPressed(e);
+                    }
+                }
+            )
+                .keyup(function (e) {
+                    if (e.keyCode == 17) {
+                        fw.CtrlDown = false;
+                    }
+                }
+            );
         },
 
         onStop: function() {

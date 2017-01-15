@@ -834,7 +834,11 @@ dm.dm.loader.LoadDiagramMenuData(type, function(json) {
 
 	  //diagram.setMenuBuilder("context", ctxMenuBuilder);
 	  diagram.setMenuBuilder("icon", iconMenuBuilder);
+    // TODO: move this stuff to the correct position
     iconMenuBuilder.load("class", diagram);
+    iconMenuBuilder.load("note", diagram);
+    iconMenuBuilder.load("package", diagram);
+    iconMenuBuilder.load("component", diagram);
 /*
       var fw = dm.dm.fw;
 		fw['CreateDiagramMenu'](type, innerHtml, function() {
