@@ -8,6 +8,7 @@ requirejs.config({
         'jquery': 'js/lib/jquery/dist/jquery',
         'jquery-ui': 'js/lib/jquery-ui',
         'jquery-editable': 'js/lib/editable/editable',
+        'combomenu': 'js/lib/jquery.combomenu',
         'app': 'js/app',
         'module': 'js/app/modules',
         'model': 'js/app/models',

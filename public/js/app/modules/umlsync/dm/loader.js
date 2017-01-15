@@ -35,7 +35,8 @@ define(['jquery',
 'module/umlsync/ds/sequence', // except sequence diagram
 'module/umlsync/cs/all', // load all connectors
 'module/umlsync/es/all', // load all elements
-'module/umlsync/ms/ds/common' // load menu builders
+'module/umlsync/ms/ds/common', // load menu builders
+'module/umlsync/ms/ctx/connector' // load the connector's menu
 ], function($) {
 
     (function($, dm, undefined) {
@@ -194,7 +195,7 @@ define(['jquery',
                     //@proexp
                     'CreateContextMenu': function(name, menuBuilder) {
                         this._addToLoadQueue({
-                            url: "/ms/ctx/" + name + ".js",
+                            url: "/ms/ctx/" + name,
                             precondition: function(options) {
                                 if (dm.ms['ctx'][name] == undefined) {
                                     return true;

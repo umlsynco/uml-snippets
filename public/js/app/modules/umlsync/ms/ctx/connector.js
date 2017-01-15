@@ -1,8 +1,8 @@
 /**
   *   Class: context menu for all connectors
-  * 
+  *
   */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
 (function( $, dm, undefined ) {
 
 dm.ms.ctx['connector'] = function(menuBuilder) {
@@ -12,7 +12,7 @@ dm.ms.ctx['connector'] = function(menuBuilder) {
                 click: function(connector, x, y) {
                   if (connector.addLabel) {
                     connector.addLabel({text:"Text", left:x, top:y});
-                  }                  
+                  }
                 }
             },
             {
@@ -30,3 +30,5 @@ dm.ms.ctx['connector'] = function(menuBuilder) {
 };
 //@aspect
 })(jQuery, dm);
+
+});

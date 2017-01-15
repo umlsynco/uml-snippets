@@ -20,7 +20,8 @@ define(['module/umlsync/ds/diagram',
 'module/diagram/assets/class_menu',
 'module/diagram/assets/package_menu',
 'module/diagram/assets/component_menu',
-'module/diagram/assets/sequence_menu'
+'module/diagram/assets/sequence_menu',
+'combomenu'
 ], function(diagram, dddd) {
 
 (function($, dm, undefined) {
@@ -830,9 +831,9 @@ dm.dm.loader.LoadDiagramMenuData(type, function(json) {
 
       // Initialize the context menu for Element
       var iconMenuBuilder = new dm.ms.IconMenuBuilder(ddata['menus']);
-      //var ctxMenuBuilder = new dm.ms.ContextMenuBuilder(loader);
+      var ctxMenuBuilder = new dm.ms.ContextMenuBuilder(loader);
 
-	  //diagram.setMenuBuilder("context", ctxMenuBuilder);
+	  diagram.setMenuBuilder("context", ctxMenuBuilder);
 	  diagram.setMenuBuilder("icon", iconMenuBuilder);
     // TODO: move this stuff to the correct position
     iconMenuBuilder.load("class", diagram);

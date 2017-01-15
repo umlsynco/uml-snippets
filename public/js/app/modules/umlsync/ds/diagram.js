@@ -992,7 +992,6 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                         }
                     })
                     .bind('contextmenu', function(e) {
-                        $.log("CONTEXT MENU PRESSED !!!");
                         if (diag.selectedconntector && diag.menuCtx) {
                             diag.menuCtx['hideAll']();
                             diag.menuCtx['visit'](diag.selectedconntector, e.pageX, e.pageY);
