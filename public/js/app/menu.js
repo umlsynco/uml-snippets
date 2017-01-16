@@ -762,7 +762,7 @@ var jsonSequence =
 
     var ActionModels = new Backbone.Collection([
        {
-		   uid: "savenew",
+		   uid: "save",
 		   title: "Save",
 		   tooltip: "Save new Diagram (CTRL + S)",
 		   icon: "pencil",
@@ -856,12 +856,14 @@ var jsonSequence =
       template: _.template('<a class="aiButton" id="<%= uid %>" title="<%= tooltip %>" href="#<%= uid %>"><i class="bts bt-<%= icon%>"></i><%= title %></a>'),
       className: 'actionItem',
       events: {
-        click : 'onSelect'
+        'click  a.aiButton': 'onSelect'
       },
       modelEvents: {
         "change:visibility": "onRender"
       },
       onSelect: function() {
+        if (app)
+          app.vent.trigger("menu:" + this.model.get("uid"), "some title:");
       },
       onRender: function() {
         if (this.model.get("visibility") == "hidden")

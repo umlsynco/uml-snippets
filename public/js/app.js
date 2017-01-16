@@ -1,4 +1,5 @@
-define('app', ['marionette', 'backbone', 'jquery'], function(Marionette, Backbone, $) {
+define('app', ['marionette', 'backbone', 'jquery', 'js/app/controllers/firebase_storage'], function(Marionette, Backbone, $, Storage) {
+
 
     // Redefine Marionette.Renderer.render for production using.
     if (window.JST) {
@@ -112,6 +113,73 @@ if (!this.subscribedForResize) {
         require(['js/app/menu', 'module/users', 'module/home'], function(menu) {
             app.Header.show(menu);
             Backbone.history.start({pushState: true});
+            // handle history state according to content
+            var updateHistory = function(content) {
+              var url = content.toString();
+              var prefix = 'messages';
+              url = url.substring(url.indexOf(prefix) + prefix.length + 2);
+              Backbone.history.navigate(url);
+            };
+
+
+            ////////////////////////////////////////////////
+            // User login/logout
+            ////////////////////////////////////////////////
+            // Allocate storage and subscribe on user change
+            app.storage = new Storage({onAuthStateChanged: function(user) {
+              app.vent.trigger("user:change", user);
+            }});
+            // Make user log-in/out functionality
+            app.vent.on("user:login", function(method) {
+              app.storage.singIn(method);
+            });
+            // Make user log-in/out functionality
+            app.vent.on("user:logout", function(method) {
+              app.storage.singOut();
+            });
+            ////////////////////////////////////////////////
+            // Payload save/update/load
+            ////////////////////////////////////////////////
+            // Save
+            app.vent.on("payload:save", function(payload) {
+              app.storage.saveContent(payload, function(content, error) {
+                if (content) {
+                  updateHistory(content);
+                }
+              });
+            });
+            // update
+            app.vent.on("payload:update", function(type, uid, payload) {
+              app.storage.updateContent(type, uid, payload, function(content) {
+                  alert("content was updated !!!");
+              });
+            });
+            // fork
+            app.vent.on("payload:fork", function(type, uid, payload) {
+              app.storage.forkContent(type, uid, payload, function(content) {
+                  alert("content was updated !!!");
+              });
+            });
+            // Save
+            app.vent.on("payload:load", function(type, uid) {
+              app.storage.loadContent(type, uid, function(content) {
+                  alert("content was loaded !!!");
+                  app.vent.trigger("payload:loaded", content);
+              });
+            });
+            ////////////////////////////////////////////////
+            // menu events
+            ////////////////////////////////////////////////
+            app.vent.on("menu:save", function(title) {
+              app.vent.trigger("umlsync:action", "save", title);
+            });
+            app.vent.on("menu:update", function(title) {
+              app.vent.trigger("umlsync:action", "update", title);
+            });
+            app.vent.on("menu:fork", function(title) {
+              app.vent.trigger("umlsync:action", "fork", title);
+            });
+
         });
     });
 

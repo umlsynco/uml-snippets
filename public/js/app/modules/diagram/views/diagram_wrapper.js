@@ -1,5 +1,5 @@
-define(['marionette', 'module/umlsync/dm/loader'],
-function(Marionette, DiagramLoader) {
+define(['app','marionette', 'module/umlsync/dm/loader'],
+function(app, Marionette, DiagramLoader) {
 
     var ContentView = Marionette.ItemView.extend({
 		template: _.template('\
@@ -8,6 +8,29 @@ function(Marionette, DiagramLoader) {
          <div id="diagram-c100" style="height:100%; width:80%">\
          </div>'),
     className: 'ui-scrollable-tabs ui-widget-content ui-corner-all',
+            initialize: function() {
+              console.log("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                var that = this;
+                app.vent.on("umlsync:action", function(action, title) {
+                  console.log("DDDDDDDDDDDDDDDDDDDDDDd");
+                    if (that.activeDiagram) {
+                        var payload = {
+                            type: "uml",
+                            title: title || "An empty title",
+                            data: that.activeDiagram.getDescription()
+                        };
+                        app.vent.trigger("payload:" + action, payload);
+                    } else if (that.activeMarkdown) {
+                        var payload = {
+                            type: "markdown",
+                            title: title,
+                            data: that.activeDiagram.getDescription()
+                        };
+                        app.vent.trigger("payload:" + action, payload);
+                    }
+                });
+            },
+
 		onRender: function() {
        // temporaty solution
        $.log = $.log || function(msg) { console.log(msg)};

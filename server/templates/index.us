@@ -28,6 +28,19 @@
     </main>
     <footer id="footer"></footer>
 
+<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB8WX-Hi2oIZWE6q59j70MyRS2nIJE63vw",
+    authDomain: "umlsync-6e2da.firebaseapp.com",
+    databaseURL: "https://umlsync-6e2da.firebaseio.com",
+    storageBucket: "umlsync-6e2da.appspot.com",
+    messagingSenderId: "452981891461"
+  };
+  firebase.initializeApp(config);
+</script>
+
 <% _.each(templates, function(template) { %>
 <script type="text/template" id="<%= template.name %>">
     <%= template.content %>
