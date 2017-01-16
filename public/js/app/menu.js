@@ -900,34 +900,31 @@ var jsonSequence =
     		}
 	});
 
-  var DiagramActionsList = Marionette.CompositeView.extend({
+  var DiagramActionsList = Marionette.ItemView.extend({
     template: _.template('\
-      <div class="actionItem" hidden id="edit_diagram">\
-        <a class="aiButton" title="<%= tooltip %>"><i  id="toggleDiagramSelect" class="bts bt-close">[X]</i><input placeholder="Please add diagram title..."></a></div>\
+    <div style="display: block;" class="actionItem"><a class="aiButton" id="edit_diagram_btn" title="Edit Diagram" href="#"><i class="bts bt-class"></i>Edit</a></div>\
+    <div style="display: none;" class="actionItem"><a class="aiButton" id="preview_diagram" title="Preview Diagram" href="#"><i class="bts bt-class"></i>Preview</a></div>\
+      <div class="actionItem" id="edit_diagram">\
+        <a class="aiButton closeButton" title="<%= tooltip %>"><input placeholder="Please add diagram title..."></a></div>\
     '),
 		childView: DiagramActionView,
 		tagName: 'nav',
 		className: 'actionCont collapsed',
-    collectionEvents: {
-       "change:active": "menuSelected"
-    },
     events: {
-      "click #toggleDiagramSelect": "onCloseEdit"
+      "click div.actionItem>a#edit_diagram_btn.aiButton": "editDiagram",
+      "click div.actionItem>a#preview_diagram.aiButton": "previewDiagram",
+      "click a.closeButton": "onCloseEdit"
     },
-    menuSelected: function(model, view) {
-      this.collection.each(function(item){
-        item.set("visibility", "hidden");
-      });
+    editDiagram: function() {
+      $("#edit_diagram_btn").hide();
       $("#edit_diagram").parent().show();
-      this.model.set("tooltip", model.get("tooltip"));
+      $("#preview_diagram").show();
     },
-    onCloseEdit: function() {
-      $("#edit_diagram").parent().hide();
-      this.collection.each(function(item){
-        item.set("visibility", "visible");
-      });
-    }
-	});
+    editDiagram: function() {
+      $("#edit_diagram_btn").show();
+      $("#edit_diagram").parent().show();
+      $("#preview_diagram").hide();
+    }	});
 
 	var ActionsList = Marionette.CollectionView.extend({
 		childView: ActionView,
@@ -948,7 +945,7 @@ var jsonSequence =
       onRender: function() {
 		  this.getRegion('brand').show(new BrandView());
 		  this.getRegion('actionsfw').show(new ActionsList({collection: ActionModels}));
-		  this.getRegion('actionsuml').show(new DiagramActionsList({model: new Backbone.Model({tooltip: "Diagram    "}),collection: UmlActionModels}));
+		  this.getRegion('actionsuml').show(new DiagramActionsList({model: new Backbone.Model({tooltip: "Diagram    "})}));
 		  this.getRegion('user').show(new ActionsList({collection: UserActions}));
       var that = this;
       app.vent.on("menu:status", function(status, payload) {
