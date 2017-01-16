@@ -1,7 +1,8 @@
 /**
  *   Class: context menu for class element
- * 
+ *
  */
+ define(['module/umlsync/ds/diagram'], function(diagram) {
 (function( $, dm, undefined ) {
     dm.ms.ctx['class'] = function(menuBuilder) {
         return new dm.ms.ctx.common(menuBuilder, {'id': "class", 'uid':"classECtx"}, [
@@ -19,45 +20,36 @@
 /*
         {
             title: 'Template On/Off',
-            click: function(element){ 
-            if (element.handleTemplate != undefined) 
+            click: function(element){
+            if (element.handleTemplate != undefined)
                 element.handleTemplate();
             }
         },
         {
             title: 'Subroutine On/Off',
-            click: function(element){ 
-            if (element.handleSubroutine != undefined) 
+            click: function(element){
+            if (element.handleSubroutine != undefined)
                 element.handleSubroutine();
             }
         },
 */
         {
             title: 'Add method',
-            click: function(element){ 
-            if (element.addOperation != undefined) 
+            click: function(element){
+            if (element.addOperation != undefined)
                 element.addOperation({text:"private newmethod(int, int, void*)"});
             }
         },
         {
             title: 'Add field',
-            click: function(element){ 
-            if (element.addAttribute != undefined) 
+            click: function(element){
+            if (element.addAttribute != undefined)
                 element.addAttribute({text:"private int newfield"});
-            }
-        },
-        
-        {
-            title: 'View specific >>',
-            //Handle as reference on external menu instead of this stuff (((
-            mouseenter: function(element, event) {  // element is the jquery obj clicked on when context menu launched
-                            if (element && element.options) {
-                                  var viewid = element.options.viewid || element.parrent.options.viewid;
-                                  var p = $(event.currentTarget).offset();
-                                  dm.dm.fw.ShowElementContextMenu( element.options.type , viewid, element, {clientX:p.left + $(event.currentTarget).width(), clientY:p.top});
-                                }
             }
         }
         ]);
     };
 })(jQuery, dm);
+
+return true;
+});

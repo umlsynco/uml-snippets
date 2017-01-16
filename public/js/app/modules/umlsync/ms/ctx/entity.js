@@ -1,9 +1,8 @@
 /**
   *   Class: context menu for class element
-  * 
+  *
   */
-//@aspect
-(function( $, dm, undefined ) {
+  define(['module/umlsync/ds/diagram'], function(diagram) {(function( $, dm, undefined ) {
 
 dm.ms.ctx.entity = function(menuBuilder) {
   var url = menuBuilder.loader.url;
@@ -21,3 +20,6 @@ dm.ms.ctx.entity = function(menuBuilder) {
 }
 //@aspect
 })(jQuery, dm);
+
+return true;
+});

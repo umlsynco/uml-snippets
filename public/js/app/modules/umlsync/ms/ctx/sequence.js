@@ -1,9 +1,8 @@
 /**
   *   Class: context menu for class element
-  * 
+  *
   */
-//@aspect
-(function( $, dm, undefined ) {
+  define(['module/umlsync/ds/diagram'], function(diagram) {(function( $, dm, undefined ) {
 
 dm.ms.ctx['sequence'] = function(menuBuilder) {
   var url = menuBuilder.loader.url;
@@ -11,17 +10,17 @@ dm.ms.ctx['sequence'] = function(menuBuilder) {
   return new dm.ms.ctx['common'](menuBuilder, {id: "sequence", uid:"sequenceECtx"}, [
            {
 				title: 'Copy  Ctrl-C',
-                click: function(element) {  
+                click: function(element) {
                 }
             },
            {
 				title: 'Cut   Ctrl-X',
-                click: function(element) {  
+                click: function(element) {
                 }
             },
            {
 				title: 'Past Ctrl-V',
-                click: function(element) {  
+                click: function(element) {
                 }
             },
             {
@@ -42,7 +41,7 @@ $.getJSON(url + "../../db/class/methods/?key="+ element.getName() + "&project=st
                       var items = [];
   if (data.length == 0)
     return;
-    
+
     // see ./snavigator/hyper/sn.h for values analysis
     var mapVisibility = function(vis, vs, s) { // s - is short writing
         var out = "";
@@ -62,7 +61,7 @@ $.getJSON(url + "../../db/class/methods/?key="+ element.getName() + "&project=st
     }
                      $.each(data, function(k, d) {
      items.push('<tr><td>' + mapVisibility(parseInt(d.attr), d.attr) + '</td><td>' + d.md + '</td><td>'+ d.ret + '</td><td>'+ d.args +'</td></tr>');
-                     }); 
+                     });
 
                      var innerHtml = items.join('');
         innerHtml = "<div id='vp_main_menu2'><div><div class='scrollable' style='scroll:auto;'>\
@@ -73,7 +72,7 @@ $.getJSON(url + "../../db/class/methods/?key="+ element.getName() + "&project=st
         "<button type='submit' class='close'>Cancel</button></p>" +
         "</div></div>";
 
-        
+
 
         $('body').append(innerHtml);
         $("#vp_main_menu2").draggable({cancel: '.scrollable'});
@@ -94,7 +93,7 @@ $.getJSON(url + "../../db/class/methods/?key="+ element.getName() + "&project=st
           // load it immediately after the construction
           load: true
         });
-    
+
 $("#SearchResultTable").tablesorter({sortList: [[0,0], [1,0]]});
 
 $("#vp_main_menu2 .finish").click(function() {
@@ -109,7 +108,7 @@ $("#vp_main_menu2 .finish").click(function() {
                      });
           $("#vp_main_menu2").remove();
         });
-        
+
 $("#vp_main_menu2 .close").click(function() { $("#vp_main_menu2").remove();});
 
                     }
@@ -136,3 +135,6 @@ $("#vp_main_menu2 .close").click(function() { $("#vp_main_menu2").remove();});
 }
 //@aspect
 })(jQuery, dm);
+
+return true;
+});

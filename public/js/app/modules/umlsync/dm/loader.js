@@ -36,7 +36,9 @@ define(['jquery',
 'module/umlsync/cs/all', // load all connectors
 'module/umlsync/es/all', // load all elements
 'module/umlsync/ms/ds/common', // load menu builders
-'module/umlsync/ms/ctx/connector' // load the connector's menu
+'module/umlsync/ms/ctx/connector', // load the connector's menu
+'module/umlsync/ms/ctx/default', // load the connector's menu
+'module/umlsync/ms/ctx/class' // load the connector's menu
 ], function($) {
 
     (function($, dm, undefined) {

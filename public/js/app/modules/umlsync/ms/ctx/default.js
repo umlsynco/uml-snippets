@@ -1,7 +1,9 @@
 /**
   *   Class: context menu for class element
-  * 
+  *
   */
+
+  define(['module/umlsync/ds/diagram'], function(diagram) {
 (function( $, dm, undefined ) {
 
 dm.ms.ctx['default'] = function(menuBuilder) {
@@ -10,17 +12,17 @@ dm.ms.ctx['default'] = function(menuBuilder) {
   return new dm.ms.ctx['common'](menuBuilder, {'id': "default", 'uid':"defaultECtx"}, [
            {
                 title: 'Copy  Ctrl-C',
-                click: function(element) {  
+                click: function(element) {
                 }
             },
            {
                 title: 'Cut   Ctrl-X',
-                click: function(element) {  
+                click: function(element) {
                 }
             },
            {
                 title: 'Past Ctrl-V',
-                click: function(element) {  
+                click: function(element) {
                 }
             },
             {
@@ -45,3 +47,6 @@ dm.ms.ctx['default'] = function(menuBuilder) {
         ]);
 }
 })(jQuery, dm);
+
+return true;
+});

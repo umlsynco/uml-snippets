@@ -1,9 +1,9 @@
 /**
  *   Class: context menu for class element
- * 
+ *
  */
-//@aspect
-(function( $, dm, undefined ) {
+  define(['module/umlsync/ds/diagram'], function(diagram) {
+    (function( $, dm, undefined ) {
     dm.ms.ctx['instance'] = function(menuBuilder) {
         return new dm.ms.ctx.common(menuBuilder, {'id': "instance", 'uid':"instanceECtx"}, [
         {
@@ -16,15 +16,15 @@
         },
         {
 			title: 'Add stereotype',
-            click: function(element){ 
-            if (element.addStereotype != undefined) 
+            click: function(element){
+            if (element.addStereotype != undefined)
                 element.addStereotype("interface");
             }
         },
         {
 			title: 'Add specification field',
-            click: function(element){ 
-            if (element.addSpec!= undefined) 
+            click: function(element){
+            if (element.addSpec!= undefined)
                 element.addSpec("Field = VALUE");
             }
         },
@@ -43,3 +43,6 @@
     };
 //@aspect
 })(jQuery, dm);
+
+return true;
+});

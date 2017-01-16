@@ -1,9 +1,8 @@
 /**
  *   Class: context menu for stereotype element
- * 
+ *
  */
-//@aspect
-(function( $, dm, undefined ) {
+  define(['module/umlsync/ds/diagram'], function(diagram) {(function( $, dm, undefined ) {
     var ctx = dm.ms.ctx;
     ctx['stereotype'] = function(menuBuilder) {
         var loadUrl = "http://localhost:8000/";//menuBuilder.loader.url;
@@ -19,8 +18,8 @@
             klass: "menu-item-1" // a custom css class for this menu item (usable for styling)
         },
         'Add tagged value': {
-            click: function(element){ 
-            if (element.addTaggedValue != undefined) 
+            click: function(element){
+            if (element.addTaggedValue != undefined)
                 element.addTaggedValue("tag", "value");
             },
             klass: "second-menu-item"
@@ -29,3 +28,6 @@
     };
 //@aspect
 })(jQuery, dm);
+
+return true;
+});

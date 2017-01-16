@@ -152,6 +152,8 @@ define(['module/umlsync/ds/diagram',
 			dm.dm['ContextMenuBuilder'] = new ContextMenuBuilder(loader);
 			// load the connector context mennu on initialization
 		    dm.dm['ContextMenuBuilder'].load('connector');
+        dm.dm['ContextMenuBuilder'].load('class');
+        dm.dm['ContextMenuBuilder'].load('component');
 		}
 
 		// return the instance of the singletonClass
