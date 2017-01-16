@@ -69,7 +69,7 @@ var jsonData =
         startWithParent: false,
 
         routesList: {
-            '/*': 'homeAction', // Try to load item
+            ':content': 'homeAction', // Try to load item
             '': 'homeAction' // New item creation
         },
 
@@ -184,16 +184,27 @@ var jsonData =
             console.log('HomeModule stop');
         },
 
-        homeAction: function() {
-            var textView = new LeftSideMenu({
+        homeAction: function(content) {
+            var diagramMenu = new LeftSideMenu({
                 title: 'UmlSync'
             });
-            app.content(textView.render(), true);
+            app.content(diagramMenu.render(), true);
+            diagramMenu.$el.hide();
+            app.vent.on("diagram:menu", function(on){
+              diagramMenu.$el.toggle();
+            });
 
-            var diagramView = new DiagramView({model: new Backbone.Model({})});
-            app.content(diagramView.render());
-            diagramView.LoadDiagram(jsonData);
-            this.diagramView = diagramView;
+
+            this.diagramView = new DiagramView({model: new Backbone.Model({})});
+            app.content(this.diagramView.render());
+            // load content
+            if (content) {
+              app.vent.trigger("payload:load", "-" + content);
+            }
+            else {
+              app.vent.trigger("menu:status", "new");
+              this.diagramView.LoadDiagram(jsonData);
+            }
         }
 
     });

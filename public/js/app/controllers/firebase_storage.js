@@ -84,13 +84,16 @@ define(['marionette'],
               if (msg) {
                 var ref = msg.child(uid);
                 ref.child('version').once('value').then(function(x) {
-                  var position = x+1;
-                  ref.child(position).push({data: payload.data, payload: payload.title});
+                  var position = x.val()+1;
+                  ref
+                  .child(position)
+                  .push({data: payload.data, payload: payload.title})
                   .then(function(snapshot) {
                       if (callback) {
                         callback(snapshot.path);
                       }
-                  }.bind(this)).catch(function(error) {
+                  }.bind(this))
+                  .catch(function(error) {
                       var text = 'Error updating existing content to Firebase Database';
                       console.error(text, error);
                       callback(null, text);

@@ -110,80 +110,82 @@ if (!this.subscribedForResize) {
 
     app.on('start', function() {
         if (!Backbone.history) return;
+        var updateHistory;
+        ////////////////////////////////////////////////
+        // User login/logout
+        ////////////////////////////////////////////////
+        // Allocate storage and subscribe on user change
+        app.storage = new Storage({onAuthStateChanged: function(user) {
+          app.vent.trigger("user:change", user);
+        }});
+        // Make user log-in/out functionality
+        app.vent.on("user:login", function(method) {
+          app.storage.singIn(method);
+        });
+        // Make user log-in/out functionality
+        app.vent.on("user:logout", function(method) {
+          app.storage.singOut();
+        });
+        ////////////////////////////////////////////////
+        // Payload save/update/load
+        ////////////////////////////////////////////////
+        // Save
+        app.vent.on("payload:save", function(payload) {
+          app.storage.saveContent(payload, function(content, error) {
+            if (content && updateHistory) {
+              updateHistory(content);
+            }
+          });
+        });
+        // update
+        app.vent.on("payload:update", function(type, uid, payload) {
+          app.storage.updateContent(type, uid, payload, function(content) {
+              alert("content was updated !!!");
+          });
+        });
+        // fork
+        app.vent.on("payload:fork", function(type, uid, payload) {
+          app.storage.forkContent(type, uid, payload, function(content) {
+              alert("content was updated !!!");
+          });
+        });
+        // Save
+        app.vent.on("payload:load", function(uid) {
+          app.storage.loadContent(uid, function(content, errorMsg) {
+
+              if (content && content.type == "uml") {
+                app.vent.trigger("load:diagram", content.data);
+                app.vent.trigger("menu:status", "update", content.title );
+              }
+              else {
+                app.vent.trigger("menu:status", "error", errorMsg);
+              }
+          });
+        });
+        ////////////////////////////////////////////////
+        // menu events
+        ////////////////////////////////////////////////
+        app.vent.on("menu:save", function(title) {
+          app.vent.trigger("umlsync:action", "save", title);
+        });
+        app.vent.on("menu:update", function(title) {
+          app.vent.trigger("umlsync:action", "update", title);
+        });
+        app.vent.on("menu:fork", function(title) {
+          app.vent.trigger("umlsync:action", "fork", title);
+        });
+
         require(['js/app/menu', 'module/users', 'module/home'], function(menu) {
             app.Header.show(menu);
             Backbone.history.start({pushState: true});
             // handle history state according to content
-            var updateHistory = function(content) {
+            updateHistory = function(content) {
               var url = content.toString();
               var prefix = 'messages';
               url = url.substring(url.indexOf(prefix) + prefix.length + 2);
               Backbone.history.navigate(url);
             };
 
-
-            ////////////////////////////////////////////////
-            // User login/logout
-            ////////////////////////////////////////////////
-            // Allocate storage and subscribe on user change
-            app.storage = new Storage({onAuthStateChanged: function(user) {
-              app.vent.trigger("user:change", user);
-            }});
-            // Make user log-in/out functionality
-            app.vent.on("user:login", function(method) {
-              app.storage.singIn(method);
-            });
-            // Make user log-in/out functionality
-            app.vent.on("user:logout", function(method) {
-              app.storage.singOut();
-            });
-            ////////////////////////////////////////////////
-            // Payload save/update/load
-            ////////////////////////////////////////////////
-            // Save
-            app.vent.on("payload:save", function(payload) {
-              app.storage.saveContent(payload, function(content, error) {
-                if (content) {
-                  updateHistory(content);
-                }
-              });
-            });
-            // update
-            app.vent.on("payload:update", function(type, uid, payload) {
-              app.storage.updateContent(type, uid, payload, function(content) {
-                  alert("content was updated !!!");
-              });
-            });
-            // fork
-            app.vent.on("payload:fork", function(type, uid, payload) {
-              app.storage.forkContent(type, uid, payload, function(content) {
-                  alert("content was updated !!!");
-              });
-            });
-
-app.storage.updateContent('-Kab66C-9ubdCe5HRSeZ', {data: '{}', title: 'uml', displayName: "baragoz"},
-  function(data) {
-    console.log(data);
-});
-            // Save
-            app.vent.on("payload:load", function(type, uid) {
-              app.storage.loadContent(type, uid, function(content) {
-                  alert("content was loaded !!!");
-                  app.vent.trigger("payload:loaded", content);
-              });
-            });
-            ////////////////////////////////////////////////
-            // menu events
-            ////////////////////////////////////////////////
-            app.vent.on("menu:save", function(title) {
-              app.vent.trigger("umlsync:action", "save", title);
-            });
-            app.vent.on("menu:update", function(title) {
-              app.vent.trigger("umlsync:action", "update", title);
-            });
-            app.vent.on("menu:fork", function(title) {
-              app.vent.trigger("umlsync:action", "fork", title);
-            });
 
         });
     });

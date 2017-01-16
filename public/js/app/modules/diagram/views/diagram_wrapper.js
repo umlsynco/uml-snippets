@@ -9,10 +9,8 @@ function(app, Marionette, DiagramLoader) {
          </div>'),
     className: 'ui-scrollable-tabs ui-widget-content ui-corner-all',
             initialize: function() {
-              console.log("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
                 var that = this;
                 app.vent.on("umlsync:action", function(action, title) {
-                  console.log("DDDDDDDDDDDDDDDDDDDDDDd");
                     if (that.activeDiagram) {
                         var payload = {
                             type: "uml",
@@ -41,11 +39,14 @@ function(app, Marionette, DiagramLoader) {
        if (this.activeDiagram)
          this.activeDiagram.draw();
      },
-     LoadDiagram: function(jsonData) {
+     LoadDiagram: function(jsonDataString) {
+       var jsonData = (typeof jsonDataString == "string" ? JSON.parse(jsonDataString) : jsonDataString);
+
        //var jsonData = {baseTyp: "base", type: "class"};
        $("#diagram-c100").empty();
        var that = this;
        jsonData.editable = true;
+       jsonData.multicanvas = false;
        this.diagramLoader.Diagram(
                     jsonData.type,
                     jsonData.base_type || "base",

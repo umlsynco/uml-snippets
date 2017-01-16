@@ -872,7 +872,7 @@ var jsonSequence =
 });
 
     var DiagramActionView =  Marionette.ItemView.extend({
-        template: _.template('<a class="aiButton" id="<%= uid %>" title="<%= tooltip %>" href="#<%= uid %>"><i class="bts bt-<%= icon%>"></i><%= title %></a>'),
+        template: _.template('<a class="aiButton" id="<%= uid %>" title="<%= tooltip %>" href="#"><i class="bts bt-<%= icon%>"></i><%= title %></a>'),
         className: 'actionItem',
         events: {
           click : 'onSelect'
@@ -918,11 +918,11 @@ var jsonSequence =
       this.collection.each(function(item){
         item.set("visibility", "hidden");
       });
-      $("#edit_diagram").show();
+      $("#edit_diagram").parent().show();
       this.model.set("tooltip", model.get("tooltip"));
     },
     onCloseEdit: function() {
-      $("#edit_diagram").hide();
+      $("#edit_diagram").parent().hide();
       this.collection.each(function(item){
         item.set("visibility", "visible");
       });
@@ -950,6 +950,24 @@ var jsonSequence =
 		  this.getRegion('actionsfw').show(new ActionsList({collection: ActionModels}));
 		  this.getRegion('actionsuml').show(new DiagramActionsList({model: new Backbone.Model({tooltip: "Diagram    "}),collection: UmlActionModels}));
 		  this.getRegion('user').show(new ActionsList({collection: UserActions}));
+      var that = this;
+      app.vent.on("menu:status", function(status, payload) {
+        if (status == "new") {
+$("#update").parent().hide();
+$("#save").parent().show();
+$("#fork").parent().hide();
+        }
+        else if (status == "update") {
+          $("#update").parent().show();
+          $("#save").parent().hide();
+          $("#fork").parent().show();
+
+        }
+        else if (status == "error") {
+          $("div.actions-fw").hide();
+          $("div.actions-uml").hide();
+        }
+      });
 	  }
     });
 
