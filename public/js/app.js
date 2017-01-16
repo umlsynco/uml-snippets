@@ -160,6 +160,11 @@ if (!this.subscribedForResize) {
                   alert("content was updated !!!");
               });
             });
+
+app.storage.updateContent('-Kab66C-9ubdCe5HRSeZ', {data: '{}', title: 'uml', displayName: "baragoz"},
+  function(data) {
+    console.log(data);
+});
             // Save
             app.vent.on("payload:load", function(type, uid) {
               app.storage.loadContent(type, uid, function(content) {

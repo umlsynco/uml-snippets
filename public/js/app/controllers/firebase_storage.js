@@ -27,9 +27,8 @@ define(['marionette'],
             // Load content by key
             //
             loadContent: function(uid, callback) {
-                if (type != "uml" && typ != "markdown")
-                    return;
-                this.messagesRef = this.database.ref('.' + type + 's/' + uid).once('value').then(function(snapshot) {
+                var that = this;
+                this.messagesRef = this.database.ref('messages/' + uid).once('value').then(function(snapshot) {
                     if (callback)
                         callback(snapshot.val());
                 });
@@ -61,6 +60,7 @@ define(['marionette'],
 
                 var currentUser = this.auth.currentUser;
                 messagesRef.push({
+                    version: 0, // default is 0
                     name: currentUser ? currentUser.displayName : "unknown",
                     title: payload.title, // UML title
                     type: payload.type, // uml/class etc or markdown
@@ -79,14 +79,25 @@ define(['marionette'],
             //
             // Update an existing content
             //
-            updateContent: function(uid, payload) {
-
-            },
-            //
-            // Fork an existing content
-            //
-            forkContent: function(uid, payload) {
-
+            updateContent: function(uid, payload, callback) {
+              var msg = this._getMessageRef('content');
+              if (msg) {
+                var ref = msg.child(uid);
+                ref.child('version').once('value').then(function(x) {
+                  var position = x+1;
+                  ref.child(position).push({data: payload.data, payload: payload.title});
+                  .then(function(snapshot) {
+                      if (callback) {
+                        callback(snapshot.path);
+                      }
+                  }.bind(this)).catch(function(error) {
+                      var text = 'Error updating existing content to Firebase Database';
+                      console.error(text, error);
+                      callback(null, text);
+                  });
+                  ref.update({version: position});
+                }); // ref get value
+              }
             },
             //
             // User pop-up based authentication
