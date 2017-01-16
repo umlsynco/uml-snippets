@@ -1,6 +1,11 @@
 
-define(['app', 'marionette', 'js/app/routing-module', "module/diagram/views/menu", "module/diagram/views/diagram_wrapper"],
-function(app, Marionette, RoutingModule, LeftSideMenu, DiagramView) {
+define(['app', 'marionette', 'js/app/routing-module',
+"module/diagram/views/menu",
+"module/diagram/views/main_menu",
+"module/diagram/assets/main_menu",
+"module/diagram/views/diagram_wrapper"],
+function(app, Marionette, RoutingModule,
+         LeftSideMenu, DiagramMainMenu,MainMenuData, DiagramView) {
 
 var jsonData =
   {
@@ -191,19 +196,27 @@ var jsonData =
             app.content(diagramMenu.render(), true);
             diagramMenu.$el.hide();
             app.vent.on("diagram:menu", function(on){
-              diagramMenu.$el.toggle();
+              diagramMenu.$el.toggle(on);
             });
 
 
-            this.diagramView = new DiagramView({model: new Backbone.Model({})});
-            app.content(this.diagramView.render());
-            // load content
             if (content) {
+              this.diagramView = new DiagramView({model: new Backbone.Model({})});
+              app.content(this.diagramView.render());
+              // load content
+
               app.vent.trigger("payload:load", "-" + content);
             }
             else {
-              app.vent.trigger("menu:status", "new");
-              this.diagramView.LoadDiagram(jsonData);
+              var that = this;
+              var selectDiagram = new DiagramMainMenu({collection: new Backbone.Collection(MainMenuData)});
+              app.content(selectDiagram);
+              app.vent.on("diagram:init", function(data) {
+                that.diagramView = new DiagramView({model: new Backbone.Model({})});
+                app.content(that.diagramView.render());
+                that.diagramView.LoadDiagram(data);
+                app.vent.trigger("diagram:menu", true);
+              });
             }
         }
 
