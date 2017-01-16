@@ -1,11 +1,10 @@
-define(['app', 'marionette', 'jquery-ui/jquery-ui',
-'module/diagram/assets/main_menu',
-'module/diagram/assets/class_menu',
-'module/diagram/assets/package_menu',
-'module/diagram/assets/component_menu',
-'module/diagram/assets/sequence_menu'],
-function(Framework, Marionette, ui, MainMenu, Class, Package, Component, Sequence) {
-
+define(['marionette', 'jquery-ui/jquery-ui',
+'js/app/modules/diagram/assets/main_menu.js',
+'js/app/modules/diagram/assets/class_menu.js',
+'js/app/modules/diagram/assets/package_menu.js',
+'js/app/modules/diagram/assets/component_menu.js',
+'js/app/modules/diagram/assets/sequence_menu.js'],
+function(Marionette, ui, MainMenu, Class, Package, Component, Sequence) {
    var elementView = Marionette.ItemView.extend({
        tagName: 'li',
        className: 'element-selector',
@@ -20,7 +19,7 @@ function(Framework, Marionette, ui, MainMenu, Class, Package, Component, Sequenc
                if (opt) {
                  opt.type = this.model.get("type");
                  opt.name = this.model.get("title");
-                 Framework.vent.trigger("load:element", opt);
+                 Framework.vent.trigger("content:past", {source: "diagram-menu", context: new Backbone.DiagramModel(opt)});
                }
            } else {
                alert("FRAMEWORK WAS NOT DEFINED FOR DIAGRAM MENU ITEM !!!");
