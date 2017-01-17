@@ -29,11 +29,6 @@ return [
    "title": "Markdown text document",
    "icon": "./dm/icons/us/dss/markDown.png",
    "contentType": "markdown"
-  },
-  {"id": "snippets",
-   "title": "Snippet bubbles",
-   "icon": "./dm/icons/us/dss/snippets.png",
-   "contentType": "snippets"
   }
 ];
 });

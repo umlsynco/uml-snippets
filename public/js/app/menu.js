@@ -6,7 +6,14 @@ define(['app', 'marionette'], function(app, Marionette) {
             <span class="HW_visible" id="HW_badge_cont">\
               <span data-count-unseen="4" class="HW_visible" id="HW_badge">4</span>\
             </span></p>'),
-        className: 'branding'
+        className: 'branding',
+        events: {
+          click : 'onSelect'
+        },
+        onSelect: function(e) {
+          e.stopPropagation();
+          Backbone.navigate("/", {trigger:true});
+        }
     });
 
     var ActionModels = new Backbone.Collection([

@@ -17,6 +17,7 @@ function(Framework, Marionette, MainMenu) {
    // Collection of the elements icons
    var elementsCollection = Marionette.CollectionView.extend({
        tagName: 'ul',
+       className: 'us-main-menu',
        childView: elementView
    });
 
