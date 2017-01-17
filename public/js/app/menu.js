@@ -871,60 +871,50 @@ var jsonSequence =
       }
 });
 
-    var DiagramActionView =  Marionette.ItemView.extend({
-        template: _.template('<a class="aiButton" id="<%= uid %>" title="<%= tooltip %>" href="#"><i class="bts bt-<%= icon%>"></i><%= title %></a>'),
-        className: 'actionItem',
-        events: {
-          click : 'onSelect'
-        },
-        modelEvents: {
-          "change:visibility": "onRender"
-        },
-        onSelect: function() {
-          if (this.model.get("action") == "load:diagram") {
-            if (this.model.get("uid") == "package")
-              app.vent.trigger("load:diagram", jsonPackage);
-            else if (this.model.get("uid") == "sequence")
-              app.vent.trigger("load:diagram", jsonSequence);
-            else if (this.model.get("uid") == "class")
-              app.vent.trigger("load:diagram", jsonClass);
-            // trigger element selected
-            this.model.set("active", true);
-          }
-        },
-        onRender: function() {
-			    if (this.model.get("visibility") == "hidden")
-			      this.$el.hide();
-          else
-            this.$el.show();
-    		}
-	});
-
   var DiagramActionsList = Marionette.ItemView.extend({
     template: _.template('\
     <div style="display: block;" class="actionItem"><a class="aiButton" id="edit_diagram_btn" title="Edit Diagram" href="#"><i class="bts bt-class"></i>Edit</a></div>\
     <div style="display: none;" class="actionItem"><a class="aiButton" id="preview_diagram" title="Preview Diagram" href="#"><i class="bts bt-class"></i>Preview</a></div>\
-      <div class="actionItem" id="edit_diagram">\
-        <a class="aiButton closeButton" title="<%= tooltip %>"><input placeholder="Please add diagram title..."></a></div>\
+    <div class="actionItem" id="edit_diagram">\
+        <a class="aiButton closeButton" title="<%= tooltip %>" href="#"><input id="uniquerDiagramName" placeholder="Please add diagram title..."></a></div>\
     '),
-		childView: DiagramActionView,
 		tagName: 'nav',
 		className: 'actionCont collapsed',
+    ui: {
+      edit: 'a#edit_diagram_btn'
+    },
     events: {
-      "click div.actionItem>a#edit_diagram_btn.aiButton": "editDiagram",
-      "click div.actionItem>a#preview_diagram.aiButton": "previewDiagram",
+      "click @ui.edit": "editDiagram",
+      "click div.actionItem>a#preview_diagram": "previewDiagram",
       "click a.closeButton": "onCloseEdit"
     },
-    editDiagram: function() {
-      $("#edit_diagram_btn").hide();
-      $("#edit_diagram").parent().show();
-      $("#preview_diagram").show();
+    editDiagram: function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Show/hide buttons
+      this.ui.edit.parent().hide();
+      $("#preview_diagram").parent().show();
+
+      // make diagram title editable
+      $("#uniquerDiagramName").prop("readonly", false);
+      // change the diagram mode
+      app.vent.trigger("diagram:mode", "edit");
     },
-    editDiagram: function() {
-      $("#edit_diagram_btn").show();
-      $("#edit_diagram").parent().show();
-      $("#preview_diagram").hide();
-    }	});
+    previewDiagram: function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Show/hide buttons
+      this.ui.edit.parent().show();
+      $("#preview_diagram").parent().hide();
+
+      // Make diagram title not editable
+      $("#uniquerDiagramName").prop("readonly", true);
+      // change the diagram mode
+      app.vent.trigger("diagram:mode", "preview");
+    }
+  });
 
 	var ActionsList = Marionette.CollectionView.extend({
 		childView: ActionView,

@@ -92,13 +92,13 @@ define(['marionette'],
                       if (callback) {
                         callback(snapshot.path);
                       }
+                      ref.update({version: position});
                   }.bind(this))
                   .catch(function(error) {
                       var text = 'Error updating existing content to Firebase Database';
                       console.error(text, error);
                       callback(null, text);
                   });
-                  ref.update({version: position});
                 }); // ref get value
               }
             },
