@@ -10,6 +10,12 @@ function(app, Marionette, DiagramLoader) {
     className: 'ui-scrollable-tabs ui-widget-content ui-corner-all',
             initialize: function() {
                 var that = this;
+                // Make diagram editable or not
+                app.vent.on("diagram:mode", function(mode) {
+                   if (that.activeDiagram) {
+                     that.activeDiagram._setWidgetsOption("editable", (mode == "edit"));
+                   }
+                });
                 app.vent.on("umlsync:action", function(action, title) {
                     if (that.activeDiagram) {
                         var payload = {
