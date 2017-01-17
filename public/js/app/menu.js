@@ -118,6 +118,7 @@ define(['app', 'marionette'], function(app, Marionette) {
       $("#uniquerDiagramName").prop("readonly", false);
       // change the diagram mode
       app.vent.trigger("diagram:mode", "edit");
+      app.vent.trigger("diagram:menu", true);
     },
     previewDiagram: function(e) {
       e.preventDefault();
@@ -131,6 +132,7 @@ define(['app', 'marionette'], function(app, Marionette) {
       $("#uniquerDiagramName").prop("readonly", true);
       // change the diagram mode
       app.vent.trigger("diagram:mode", "preview");
+      app.vent.trigger("diagram:menu", false);
     }
   });
 
