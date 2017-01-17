@@ -107,8 +107,10 @@ define(['app', 'marionette'], function(app, Marionette) {
       e.stopPropagation();
     },
     editDiagram: function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
       // Show/hide buttons
       this.ui.edit.parent().hide();
@@ -121,8 +123,11 @@ define(['app', 'marionette'], function(app, Marionette) {
       app.vent.trigger("diagram:menu", true);
     },
     previewDiagram: function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      // re-user methods from the class above
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
       // Show/hide buttons
       this.ui.edit.parent().show();
@@ -135,6 +140,9 @@ define(['app', 'marionette'], function(app, Marionette) {
       app.vent.trigger("diagram:menu", false);
     }
   });
+
+  // UML actioons
+  var actionsUml = new DiagramActionsList({model: new Backbone.Model({tooltip: "Diagram    "})});
 
 	var ActionsList = Marionette.CollectionView.extend({
 		childView: ActionView,
@@ -155,7 +163,7 @@ define(['app', 'marionette'], function(app, Marionette) {
       onRender: function() {
 		  this.getRegion('brand').show(new BrandView());
 		  this.getRegion('actionsfw').show(new ActionsList({collection: ActionModels}));
-		  this.getRegion('actionsuml').show(new DiagramActionsList({model: new Backbone.Model({tooltip: "Diagram    "})}));
+		  this.getRegion('actionsuml').show(actionsUml);
 		  this.getRegion('user').show(new ActionsList({collection: UserActions}));
       var that = this;
       app.vent.on("menu:status", function(status, payload) {
@@ -163,8 +171,12 @@ define(['app', 'marionette'], function(app, Marionette) {
 $("#update").parent().hide();
 $("#save").parent().show();
 $("#fork").parent().hide();
+          actionsUml.editDiagram();
         }
         else if (status == "update") {
+
+          actionsUml.previewDiagram();
+
           $("#update").parent().show();
           $("#save").parent().hide();
           $("#fork").parent().show();

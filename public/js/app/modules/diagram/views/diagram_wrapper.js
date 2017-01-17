@@ -64,6 +64,14 @@ function(app, Marionette, DiagramLoader) {
                       that.diagramLoader.OnLoadComplete(function() {
                         setTimeout(function() {
                           obj.onFocus(true);
+//that.diagramLoader.OnLoadComplete(function() {
+//  setTimeout(function() {
+    app.vent.trigger("diagram:mode", "edit");
+                          app.vent.trigger("diagram:mode", "preview");
+//                        }, 100);
+//                        });
+
+
                         }, 500);
                       });
 

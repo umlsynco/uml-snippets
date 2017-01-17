@@ -13,7 +13,9 @@ function(Framework, Marionette, ui, MainMenu, Class, Package, Component, Sequenc
        events: {
            'click': 'onSelectMenuItem'
        },
-       onSelectMenuItem: function() {
+       onSelectMenuItem: function(e) {
+         e.preventDefault();
+         e.stopPropagation();
            if (Framework && Framework.vent) {
                var opt = this.model.get("options");
 

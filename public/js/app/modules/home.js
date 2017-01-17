@@ -7,68 +7,6 @@ define(['app', 'marionette', 'js/app/routing-module',
 function(app, Marionette, RoutingModule,
          LeftSideMenu, DiagramMainMenu,MainMenuData, DiagramView) {
 
-var jsonData =
-  {
-  	"type": "class",
-  	"base_type": "base",
-  	"multicanvas": false,
-  	"fullname": "/diagrams/classDiagramCommitRefTest.umlsync",
-  	"name": "diagram32",
-  	"viewid": "github",
-  	"connectors": [{
-  		"type": "aggregation",
-  		"fromId": "0",
-  		"toId": "1",
-  		"epoints": [{
-  			"0": "368",
-  			"1": "121"
-  		}],
-  		"labels": []
-  	}],
-  	"elements": [{
-  		"width": "150",
-  		"height": "67",
-  		"left": "266.1166826611328",
-  		"top": "220.1166521435547",
-  		"ctx_menu": "class",
-  		"type": "class",
-  		"title": "Class",
-  		"menu": "us-class-menu",
-  		"icon": "/dm/icons/us/es/class/Class.png",
-  		"z-index": "101",
-  		"name": "Class34",
-  		"operations": [],
-  		"attributes": [],
-  		"references": ["ElkaClass.umlsunc", "ElkaClass.umlsync", "packageDiagram.umlsync"],
-  		"id": "0",
-  		"pageX": "266.1166826611328",
-  		"pageY": "220.1166521435547",
-  		"height_a": "19.76666",
-  		"height_o": "19.76666"
-  	}, {
-  		"width": "150",
-  		"height": "67",
-  		"left": "922.9999834423828",
-  		"top": "120.99999870117188",
-  		"ctx_menu": "class",
-  		"type": "class",
-  		"title": "Class",
-  		"menu": "us-class-menu",
-  		"icon": "/dm/icons/us/es/class/Class.png",
-  		"z-index": "102",
-  		"name": "Class37",
-  		"operations": [],
-  		"attributes": [],
-  		"references": [],
-  		"id": "1",
-  		"pageX": "922.9999834423828",
-  		"pageY": "120.99999870117188",
-  		"height_a": "19.76666",
-  		"height_o": "19.76666"
-  	}]
-  };
-
-
     var HomeModule = RoutingModule.extend({
 
         startWithParent: false,
@@ -194,9 +132,12 @@ var jsonData =
                 title: 'UmlSync'
             });
             app.content(diagramMenu.render(), true);
-            diagramMenu.$el.hide();
+            //diagramMenu.$el.hide();
             app.vent.on("diagram:menu", function(on){
-              diagramMenu.$el.toggle(on);
+              diagramMenu.$el.parent().toggle(on);
+              $("#content-left-right-resize").toggle(on);
+              app._helperUpdateFrameWork(true);
+              app.vent.trigger("redraw:diagram");
             });
 
 

@@ -81,8 +81,13 @@ if (!this.subscribedForResize) {
 
                   var $ch, $md;
                   // recalculate the content
-                  var wd = $("main#content").width() - $("#content-left").width() - 6;
+                  var isVisble = $("#content-left").is(":visible");
+                  var left_indentation =  isVisble ? $("#content-left").width() + $("#content-left-right-resize").width() : 0;
+                  var wd = $("main#content").width() - left_indentation;
+                  console.log("WIDTH : " + wd);
                   $("#content-right").width(wd);
+                  $("#content-right").css("left", left_indentation);
+                  $("#content-right").find("DIV#diagram-c100").width(wd-12);
 
                   // Update the markdown text area
                   if ($md && $md.length != 0) {
