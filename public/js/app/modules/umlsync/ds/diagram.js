@@ -1404,7 +1404,8 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                 }
 
                 // Hide icon menu to prevent icon menu usage after element removal
-                this.menuIcon['Disable'](euid);
+                if (this.menuIcon)
+                  this.menuIcon['Disable'](euid);
 
                 this.opman.reportShort("remove", euid, true);
 

@@ -87,10 +87,12 @@ define(['app', 'marionette'], function(app, Marionette) {
 
   var DiagramActionsList = Marionette.ItemView.extend({
     template: _.template('\
-    <div style="display: block;" class="actionItem"><a class="aiButton" id="edit_diagram_btn" title="Edit Diagram" href="#"><i class="bts bt-class"></i>Edit</a></div>\
-    <div style="display: none;" class="actionItem"><a class="aiButton" id="preview_diagram" title="Preview Diagram" href="#"><i class="bts bt-class"></i>Preview</a></div>\
+    <div style="display: block; width:55px;" class="actionItem"><a class="aiButton" id="edit_diagram_btn" title="Edit Diagram" href="#"><i class="bts bt-class"></i>Edit</a></div>\
+    <div style="display: none; width:55px;" class="actionItem"><a class="aiButton" id="preview_diagram" title="Preview Diagram" href="#"><i class="bts bt-class"></i>View</a></div>\
     <div class="actionItem" id="edit_diagram">\
         <a class="aiButton closeButton" title="<%= tooltip %>" href="#"><input id="uniquerDiagramName" placeholder="Please add diagram title..."></a></div>\
+    <div style="display: none;" class="actionItem"><a class="aiButton" id="undo_diagram" title="Undo Ctrl-Z" href="#"><i class="bts bt-class"></i>Bw</a></div>\
+    <div style="display: none;" class="actionItem"><a class="aiButton" id="redo_diagram" title="Redo Ctrl-Y" href="#"><i class="bts bt-class"></i>Fw</a></div>\
     '),
 		tagName: 'nav',
 		className: 'actionCont collapsed',
@@ -100,7 +102,19 @@ define(['app', 'marionette'], function(app, Marionette) {
     events: {
       "click @ui.edit": "editDiagram",
       "click div.actionItem>a#preview_diagram": "previewDiagram",
-      "click a.closeButton": "onCloseEdit"
+      "click a.closeButton": "onCloseEdit",
+      "click #undo_diagram": "undo",
+      "click #redo_diagram": "redo"
+    },
+    undo: function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      app.vent.trigger("diagram:action", "undo");
+    },
+    redo: function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      app.vent.trigger("diagram:action", "redo");
     },
     onCloseEdit: function(e) {
       e.preventDefault();
@@ -118,6 +132,8 @@ define(['app', 'marionette'], function(app, Marionette) {
 
       // make diagram title editable
       $("#uniquerDiagramName").prop("readonly", false);
+      $("#undo_diagram").parent().show();
+      $("#redo_diagram").parent().show();
       // change the diagram mode
       app.vent.trigger("diagram:mode", "edit");
       app.vent.trigger("diagram:menu", true);
@@ -132,6 +148,8 @@ define(['app', 'marionette'], function(app, Marionette) {
       // Show/hide buttons
       this.ui.edit.parent().show();
       $("#preview_diagram").parent().hide();
+      $("#undo_diagram").parent().hide();
+      $("#redo_diagram").parent().hide();
 
       // Make diagram title not editable
       $("#uniquerDiagramName").prop("readonly", true);

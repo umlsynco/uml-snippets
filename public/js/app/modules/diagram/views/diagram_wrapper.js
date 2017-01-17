@@ -16,6 +16,14 @@ function(app, Marionette, DiagramLoader) {
                      that.activeDiagram._setWidgetsOption("editable", (mode == "edit"));
                    }
                 });
+                app.vent.on("diagram:action", function(action) {
+                   if (that.activeDiagram) {
+                     if (action == "undo")
+                       that.activeDiagram.opman.revertOperation();
+                     else
+                       that.activeDiagram.opman.repeatOperation();
+                   }
+                });
                 app.vent.on("umlsync:action", function(action, title) {
                     if (that.activeDiagram) {
                         var payload = {
