@@ -27,8 +27,9 @@ function(app, Marionette, DiagramLoader) {
                 app.vent.on("umlsync:action", function(action, title) {
                     if (that.activeDiagram) {
                         var payload = {
+                            content: that.model.get("content"),
                             type: "uml",
-                            title: title || "An empty title",
+                            title: title || "",
                             data: that.activeDiagram.getDescription()
                         };
                         app.vent.trigger("payload:" + action, payload);

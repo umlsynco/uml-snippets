@@ -1,6 +1,6 @@
 requirejs.config({
 
-    baseUrl: '',
+    baseUrl: '/',
     paths: {
         'backbone': 'js/lib/backbone/backbone',
         'marionette': 'js/lib/backbone.marionette/lib/backbone.marionette',

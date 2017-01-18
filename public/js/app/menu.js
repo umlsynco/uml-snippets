@@ -22,7 +22,7 @@ define(['app', 'marionette'], function(app, Marionette) {
 		   title: "Save",
 		   tooltip: "Save new Diagram (CTRL + S)",
 		   icon: "pencil",
-		   visibility: "visible"
+		   visibility: "hidden"
 	   },
        {
 		   uid: "update",
@@ -36,7 +36,7 @@ define(['app', 'marionette'], function(app, Marionette) {
 		   title: "Fork",
 		   tooltip: "Fork into a new item",
 		   icon: "fork",
-		   visibility: "visible"
+       visibility: "hidden"
 	   }
 	]);
 
@@ -82,9 +82,11 @@ define(['app', 'marionette'], function(app, Marionette) {
       modelEvents: {
         "change:visibility": "onRender"
       },
-      onSelect: function() {
+      onSelect: function(e) {
+        e.stopPropagation();
+        e.preventDefault();
         if (app)
-          app.vent.trigger("menu:" + this.model.get("uid"), "some title:");
+          app.vent.trigger("menu:" + this.model.get("uid"), $("#uniquerDiagramName").val());
       },
       onRender: function() {
         if (this.model.get("visibility") == "hidden")
@@ -94,9 +96,9 @@ define(['app', 'marionette'], function(app, Marionette) {
 
   var DiagramActionsList = Marionette.ItemView.extend({
     template: _.template('\
-    <div style="display: block; width:55px;" class="actionItem"><a class="aiButton" id="edit_diagram_btn" title="Edit Diagram" href="#"><i class="bts bt-class"></i>Edit</a></div>\
+    <div style="display: none; width:55px;" class="actionItem"><a class="aiButton" id="edit_diagram_btn" title="Edit Diagram" href="#"><i class="bts bt-class"></i>Edit</a></div>\
     <div style="display: none; width:55px;" class="actionItem"><a class="aiButton" id="preview_diagram" title="Preview Diagram" href="#"><i class="bts bt-class"></i>View</a></div>\
-    <div class="actionItem" id="edit_diagram">\
+    <div class="actionItem" style="display:none;" id="edit_diagram">\
         <a class="aiButton closeButton" title="<%= tooltip %>" href="#"><input id="uniquerDiagramName" placeholder="Please add diagram title..."></a></div>\
     <div style="display: none;" class="actionItem"><a class="aiButton" id="undo_diagram" title="Undo Ctrl-Z" href="#"><i class="bts bt-class"></i>Bw</a></div>\
     <div style="display: none;" class="actionItem"><a class="aiButton" id="redo_diagram" title="Redo Ctrl-Y" href="#"><i class="bts bt-class"></i>Fw</a></div>\
@@ -139,6 +141,8 @@ define(['app', 'marionette'], function(app, Marionette) {
 
       // make diagram title editable
       $("#uniquerDiagramName").prop("readonly", false);
+      $("#edit_diagram").show();
+      // do redo options
       $("#undo_diagram").parent().show();
       $("#redo_diagram").parent().show();
       // change the diagram mode
@@ -160,6 +164,7 @@ define(['app', 'marionette'], function(app, Marionette) {
 
       // Make diagram title not editable
       $("#uniquerDiagramName").prop("readonly", true);
+      $("#edit_diagram").show();
       // change the diagram mode
       app.vent.trigger("diagram:mode", "preview");
       app.vent.trigger("diagram:menu", false);
@@ -193,15 +198,13 @@ define(['app', 'marionette'], function(app, Marionette) {
       var that = this;
       app.vent.on("menu:status", function(status, payload) {
         if (status == "new") {
-$("#update").parent().hide();
-$("#save").parent().show();
-$("#fork").parent().hide();
+          $("#update").parent().hide();
+          $("#save").parent().show();
+          $("#fork").parent().hide();
           actionsUml.editDiagram();
         }
         else if (status == "update") {
-
           actionsUml.previewDiagram();
-
           $("#update").parent().show();
           $("#save").parent().hide();
           $("#fork").parent().show();

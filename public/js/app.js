@@ -143,9 +143,12 @@ if (!this.subscribedForResize) {
           });
         });
         // update
-        app.vent.on("payload:update", function(type, uid, payload) {
-          app.storage.updateContent(type, uid, payload, function(content) {
-              alert("content was updated !!!");
+        app.vent.on("payload:update", function(payload) {
+          if (!payload.content)
+            alert("UNEXPECTED CASE???");
+          app.storage.updateContent(payload.content, payload, function(content) {
+              updateHistory(content);
+              app.vent.trigger("menu:status", "preview");
           });
         });
         // fork
@@ -155,9 +158,8 @@ if (!this.subscribedForResize) {
           });
         });
         // Save
-        app.vent.on("payload:load", function(uid) {
-          app.storage.loadContent(uid, function(content, errorMsg) {
-
+        app.vent.on("payload:load", function(uid, version) {
+          app.storage.loadContent(uid, version, function(content, errorMsg) {
               if (content && content.type == "uml") {
                 app.vent.trigger("load:diagram", content.data);
                 app.vent.trigger("menu:status", "update", content.title );
@@ -177,7 +179,7 @@ if (!this.subscribedForResize) {
           app.vent.trigger("umlsync:action", "update", title);
         });
         app.vent.on("menu:fork", function(title) {
-          app.vent.trigger("umlsync:action", "fork", title);
+          app.vent.trigger("umlsync:action", "save", title);
         });
 
         require(['js/app/menu', 'module/users', 'module/home'], function(menu) {
@@ -188,7 +190,10 @@ if (!this.subscribedForResize) {
               var url = content.toString();
               var prefix = 'messages';
               url = url.substring(url.indexOf(prefix) + prefix.length + 2);
-              Backbone.history.navigate(url);
+              if (url.indexOf("/") > 0) {
+                url = url.substring(0, url.lastIndexOf("/"));
+              }
+              Backbone.history.navigate(url, {trigger:false});
             };
 
 

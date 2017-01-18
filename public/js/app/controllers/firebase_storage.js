@@ -26,13 +26,33 @@ define(['marionette'],
             //
             // Load content by key
             //
-            loadContent: function(uid, callback) {
+            loadContent: function(uid, version, callback) {
                 var that = this;
-                this.messagesRef = this.database.ref('messages/' + uid).once('value').then(function(snapshot) {
+                var handler = function(snapshot) {
                     if (callback)
                         callback(snapshot.val());
-                });
+                        var xxx = snapshot.val();
+                        console.dir(xxx);
+                };
+                var handler2 = function(snapshot) {
+                    if (callback) {
+                        var xxx = snapshot.val();
+                        for (var x in xxx) {
+                          console.log(x);
+                          console.dir(xxx[x]);
+                          callback(xxx[x]);
+                        }
+                    }
+                };
 
+                if (version) {
+                  console.log("LOADING: messages/" + uid + "/" + version);
+                  var ref = this.database.ref('messages/' + uid+"/"+version);
+                  ref.limitToFirst(1).once("value").then(handler2);
+                }
+                else {
+                  this.messagesRef = this.database.ref('messages/' + uid).once('value').then(handler);
+                }
             },
             //
             // Helper method to select an active database references
@@ -82,12 +102,12 @@ define(['marionette'],
             updateContent: function(uid, payload, callback) {
               var msg = this._getMessageRef('content');
               if (msg) {
-                var ref = msg.child(uid);
+                var ref = msg.child("-" +uid);
                 ref.child('version').once('value').then(function(x) {
                   var position = x.val()+1;
                   ref
                   .child(position)
-                  .push({data: payload.data, payload: payload.title})
+                  .push({data: payload.data, title: payload.title, type: payload.type})
                   .then(function(snapshot) {
                       if (callback) {
                         callback(snapshot.path);

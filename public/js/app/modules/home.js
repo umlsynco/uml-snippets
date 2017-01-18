@@ -13,6 +13,7 @@ function(app, Marionette, RoutingModule,
 
         routesList: {
             ':content': 'homeAction', // Try to load item
+            ':content/:id': 'homeAction', // Try to load item
             '': 'homeAction' // New item creation
         },
 
@@ -127,7 +128,7 @@ function(app, Marionette, RoutingModule,
             console.log('HomeModule stop');
         },
 
-        homeAction: function(content) {
+        homeAction: function(content, id) {
             var diagramMenu = new LeftSideMenu({
                 title: 'UmlSync'
             });
@@ -142,17 +143,19 @@ function(app, Marionette, RoutingModule,
 
 
             if (content) {
-              this.diagramView = new DiagramView({model: new Backbone.Model({})});
+              this.diagramView = new DiagramView({model: new Backbone.Model({content:content})});
               app.content(this.diagramView.render());
               // load content
 
-              app.vent.trigger("payload:load", "-" + content);
+              app.vent.trigger("payload:load", "-" + content, id);
             }
             else {
               var that = this;
               var selectDiagram = new DiagramMainMenu({collection: new Backbone.Collection(MainMenuData)});
               app.content(selectDiagram);
               app.vent.on("diagram:init", function(data) {
+                // trigger menu show
+                app.vent.trigger("menu:status", "new");
                 that.diagramView = new DiagramView({model: new Backbone.Model({})});
                 app.content(that.diagramView.render());
                 that.diagramView.LoadDiagram(data);

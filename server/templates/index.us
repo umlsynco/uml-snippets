@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title><%= title %></title>
     <% _.each(cssList, function(fileName) { %>
-    <link rel="stylesheet" href="css/<%= fileName %>"/>
+    <link rel="stylesheet" href="/css/<%= fileName %>"/>
     <% }); %>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -48,7 +48,7 @@
 <% }); %>
 
 <% _.each(jsList, function(script) { %>
-<script type="text/javascript" src="js/<%= script %>"></script>
+<script type="text/javascript" src="/js/<%= script %>"></script>
 <% }); %>
 
 </body>
