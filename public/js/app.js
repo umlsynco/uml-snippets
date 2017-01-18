@@ -140,6 +140,9 @@ if (!this.subscribedForResize) {
             if (content && updateHistory) {
               var x = updateHistory(content);
               app.vent.trigger("diagram:fork", x);
+              app.vent.trigger("menu:status", "update");
+              app.vent.trigger("diagram:mode", "edit");
+              app.vent.trigger("diagram:mode", "preview");
             }
           });
         });
