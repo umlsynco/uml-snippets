@@ -37,6 +37,11 @@ function(app, Marionette, RoutingModule,
               if (that.diagramView)
                 that.diagramView.RedrawConnectors();
             });
+            app.vent.on("diagram:fork", function(url) {
+              if (that.diagramView)
+                that.diagramView.model.set("content", url);
+            });
+
             this._helperInitializeKeyHandler();
         },
 
@@ -129,6 +134,7 @@ function(app, Marionette, RoutingModule,
         },
 
         homeAction: function(content, id) {
+
             var diagramMenu = new LeftSideMenu({
                 title: 'UmlSync'
             });

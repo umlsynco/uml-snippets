@@ -138,7 +138,8 @@ if (!this.subscribedForResize) {
         app.vent.on("payload:save", function(payload) {
           app.storage.saveContent(payload, function(content, error) {
             if (content && updateHistory) {
-              updateHistory(content);
+              var x = updateHistory(content);
+              app.vent.trigger("diagram:fork", x);
             }
           });
         });
@@ -147,8 +148,8 @@ if (!this.subscribedForResize) {
           if (!payload.content)
             alert("UNEXPECTED CASE???");
           app.storage.updateContent(payload.content, payload, function(content) {
-              updateHistory(content);
-              app.vent.trigger("menu:status", "preview");
+              var url = updateHistory(content);
+              app.vent.trigger("menu:status", "update");
           });
         });
         // fork
@@ -191,9 +192,11 @@ if (!this.subscribedForResize) {
               var prefix = 'messages';
               url = url.substring(url.indexOf(prefix) + prefix.length + 2);
               if (url.indexOf("/") > 0) {
+                // uniquiid/version
                 url = url.substring(0, url.lastIndexOf("/"));
               }
               Backbone.history.navigate(url, {trigger:false});
+              return url.split("/")[0];
             };
 
 
