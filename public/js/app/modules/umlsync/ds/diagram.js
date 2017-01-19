@@ -1772,33 +1772,6 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                 this.transformStarted = false;
             },
 
-            setSnippetMode: function(mode, ISnippetObserver) {
-                this.ISnippetObserver = ISnippetObserver;
-                if (this.snippetMode != mode && this.snippetMode) {
-                    this.snippetMode = mode;
-                    if (this.activeSnippet) {
-                        var val3 = $(this.activeSnippet + " p").text();
-                        $(this.activeSnippet).remove();
-                        this.activeSnippet = null;
-                        return val3;
-                    } else {
-                        return null;
-                    }
-                }
-                this.snippetMode = mode;
-            },
-
-            showSnippetBubble: function(activeElement) {
-                if (activeElement == undefined) {
-                    return;
-                }
-                var p = $("#" + activeElement.euid + "_Border").position();
-                p.left += $("#" + activeElement.euid + "_Border").width();
-                p.top += $("#" + activeElement.euid + "_Border").height();
-
-                this.ISnippetObserver.onSnippetClick(p); // left and top
-            },
-
             /**
              * \class Function.
              */
@@ -1807,10 +1780,6 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                 var mtype = (refElement == undefined) ? undefined : refElement.options['type'];
                 var ctrlDown = dm.dm.fw.CtrlDown;
                 this.clickedElement = refElement;
-
-                if (this.snippetMode) {
-                    this.showSnippetBubble(refElement);
-                }
 
                 // Hide all context menus
                 if (this.menuCtx)
