@@ -22,13 +22,13 @@ define(['app', 'marionette'], function(app, Marionette) {
         uid: "save",
         title: "Save",
         tooltip: "Save new Diagram (CTRL + S)",
-        icon: "pencil",
+        icon: "save",
         visibility: "hidden"
     }, {
         uid: "update",
         title: "Update",
         tooltip: "Update (CTRL + S)",
-        icon: "pencil",
+        icon: "save",
         visibility: "hidden"
     }, {
         uid: "fork",
@@ -89,12 +89,12 @@ define(['app', 'marionette'], function(app, Marionette) {
 
     var DiagramActionsList = Marionette.ItemView.extend({
         template: _.template('\
-    <div style="display: none; width:55px;" class="actionItem"><a class="aiButton" id="edit_diagram_btn" title="Edit Diagram" href="#"><i class="bts bt-class"></i>Edit</a></div>\
-    <div style="display: none; width:55px;" class="actionItem"><a class="aiButton" id="preview_diagram" title="Preview Diagram" href="#"><i class="bts bt-class"></i>View</a></div>\
+    <div style="display: none; width:80px;" class="actionItem"><a class="aiButton" id="edit_diagram_btn" title="Edit Diagram" href="#"><i class="bts bt-pencil"></i>Edit</a></div>\
+    <div style="display: none; width:80px;" class="actionItem"><a class="aiButton" id="preview_diagram" title="Preview Diagram" href="#"><i class="bts bt-pencil"></i>View</a></div>\
     <div class="actionItem" style="display:none;" id="edit_diagram">\
         <a class="aiButton closeButton" title="<%= tooltip %>" href="#"><input id="uniquerDiagramName" placeholder="Please add diagram title..."></a></div>\
-    <div style="display: none;" class="actionItem"><a class="aiButton" id="undo_diagram" title="Undo Ctrl-Z" href="#"><i class="bts bt-class"></i>Bw</a></div>\
-    <div style="display: none;" class="actionItem"><a class="aiButton" id="redo_diagram" title="Redo Ctrl-Y" href="#"><i class="bts bt-class"></i>Fw</a></div>\
+    <div style="display: none;" class="actionItem"><a class="aiButton" id="undo_diagram" title="Undo Ctrl-Z" href="#"><i class="bts bt-backward"></i>&nbsp;</a></div>\
+    <div style="display: none;" class="actionItem"><a class="aiButton" id="redo_diagram" title="Redo Ctrl-Y" href="#"><i class="bts bt-forward"></i>&nbsp;</a></div>\
     '),
         tagName: 'nav',
         className: 'actionCont collapsed',
