@@ -10,6 +10,9 @@ define([
   'module/umlsync/es/interface',
   'module/umlsync/es/port',
   'module/umlsync/es/instance',
+  'module/umlsync/es/message',
+  'module/umlsync/es/llalt',
+  'module/umlsync/es/llport',
 ], function() {
   return true;
 });

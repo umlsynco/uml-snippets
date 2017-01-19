@@ -1,7 +1,5 @@
-/**
-  *  
-  */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 dm.base.diagram("es.llalt", dm.es.element, {
     'options': {
@@ -24,7 +22,7 @@ dm.base.diagram("es.llalt", dm.es.element, {
        // Height of packet body. Width is the same for all part of element
        this.options.height_b = $("#" + this.euid + "_Border .us-alt-body").height();
        this.options.name = $("#" + this.euid + " .us-alt-body .editablefield" ).html();
-       
+
        if (this._dropped) {
          this.options.dropped = new Array();
          for (i in this._dropped) {
@@ -57,7 +55,7 @@ dm.base.diagram("es.llalt", dm.es.element, {
       this.innerHtml = '<div id="' + this.euid + '" class="us-package">\
             <div class="us-alt-body us-element-resizable-area">'+
 			this.getCond() +
-            '</div><div class="us-alt-tab"><b>'+this.getAlt()+'</b><img src="http://umlsync.org/sttaic/images/cornerb.png" style="position:absolute;bottom:-1px;right:-1px;"></div>\
+            '</div><div class="us-alt-tab"><b>'+this.getAlt()+'</b><img src="/images/icons/fw/cornerb.png" style="position:absolute;bottom:-1px;right:-1px;"></div>\
             </div>';
 
       $("#" + this.parrent.euid).append(this.innerHtml);
@@ -101,3 +99,6 @@ dm.base.diagram("es.llalt", dm.es.element, {
 });
 //@aspect
 })(jQuery, dm);
+
+return true;
+});

@@ -143,8 +143,8 @@ define(['app', 'marionette', 'jquery-ui/jquery-ui',
                 this.getRegion('sidemenu').show(this.accordion);
                 // todo reuire and then initalize items
                 this.accordion.addMenu(MainMenu[0], Class);
-                this.accordion.addMenu(MainMenu[1], Package);
-                this.accordion.addMenu(MainMenu[2], Component);
+                this.accordion.addMenu(MainMenu[1], Component);
+                this.accordion.addMenu(MainMenu[2], Package);
                 this.accordion.addMenu(MainMenu[3], Sequence);
 
                 //this.getRegion('content').show(new ElementsMenu());

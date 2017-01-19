@@ -1,6 +1,5 @@
-/**
-  *  
-  */
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 dm.base.diagram("es.finalstate", dm.es.element, {
     options: {
@@ -15,12 +14,12 @@ dm.base.diagram("es.finalstate", dm.es.element, {
       this.element = $("#"  + this.euid);
     },
     _init: function() {
-      var self = '#' + this.id;    
+      var self = '#' + this.id;
       $('#' + this.euid + "_Border").bind( "resize", function(event, ui) {
          var w = $(self).width(),
              h = $(self).height();
          var m = w;
-         if (w > h ) 
+         if (w > h )
             m = h;
          $(self + " .us-interface").width(m).height(m);
 
@@ -28,3 +27,6 @@ dm.base.diagram("es.finalstate", dm.es.element, {
     }
 });
 })(jQuery, dm);
+
+return true;
+});

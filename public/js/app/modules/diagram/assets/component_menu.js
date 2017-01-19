@@ -4,7 +4,7 @@ define(['backbone'], function (Backbone) {
    "elements": [
 	{"type": "component",
 	 "title": "Component",
-	 "icon": "./assets/icons/us/es/component/Component.png",
+	 "icon": "/images/icons/us/es/component/Component.png",
          "options": {
 		   "width": 150,
 		   "height": 66
@@ -16,7 +16,7 @@ define(['backbone'], function (Backbone) {
 	   "width": 17,
 	   "height": 17
 	 },
-	 "icon": "./assets/icons/us/es/component/Interface.png"
+	 "icon": "/images/icons/us/es/component/Interface.png"
 	},
 	{"type": "port",
 	 "title": "Port",
@@ -24,7 +24,7 @@ define(['backbone'], function (Backbone) {
 		   "width": 25,
 		   "height": 25
 		 },
-	 "icon": "./assets/icons/us/es/component/Port.png"
+	 "icon": "/images/icons/us/es/component/Port.png"
 	},
 	{"type": "empty",
 	 "title": "Empty",
@@ -40,7 +40,7 @@ define(['backbone'], function (Backbone) {
 		   "width": 150,
 		   "height": 66
 		 },
-	 "icon": "./assets/icons/us/es/component/InstanceSpecification.png"
+	 "icon": "/images/icons/us/es/component/InstanceSpecification.png"
 	},
 	{"type": "note",
 	 "title": "Note",
@@ -48,45 +48,45 @@ define(['backbone'], function (Backbone) {
 		   "width": 150,
 		   "height": 66
 		 },
-	 "icon": "./assets/icons/us/es/common/Note.png"
+	 "icon": "/images/icons/us/es/common/Note.png"
 	}
     ],
     "connectors": [
       {"type":"dependency",
 	   "title":"Dependency",
-	   "icon": "./assets/icons/us/cs/dependency.png"
+	   "icon": "/images/icons/us/cs/dependency.png"
 	  },
       {"type":"arc",
 	   "title":"Interface Observer",
-	   "icon": "./assets/icons/us/cs/interface_required.png"
+	   "icon": "/images/icons/us/cs/interface_required.png"
 	  },
       {"type":"realization",
 	   "title":"Realization",
-	   "icon": "./assets/icons/us/cs/realization.png"
+	   "icon": "/images/icons/us/cs/realization.png"
 	  },
       {"type":"association",
 	   "title":"Association",
-	   "icon": "./assets/icons/us/cs/association.png"
+	   "icon": "/images/icons/us/cs/association.png"
 	  },
       {"type":"aggregation",
 	   "title":"Aggregation",
-	   "icon": "./assets/icons/us/cs/aggregation.png"
+	   "icon": "/images/icons/us/cs/aggregation.png"
 	  },
       {"type":"composition",
 	   "title":"Composition",
-	   "icon": "./assets/icons/us/cs/composition.png"
+	   "icon": "/images/icons/us/cs/composition.png"
 	  },
       {"type":"anchor",
 	   "title":"Anchor",
-	   "icon": "./assets/icons/us/cs/AnchorToNote.png"
+	   "icon": "/images/icons/us/cs/AnchorToNote.png"
 	  },
       {"type":"anchor",
 	   "title":"Constraint",
-	   "icon": "./assets/icons/us/cs/Constrain.png"
+	   "icon": "/images/icons/us/cs/Constrain.png"
 	  },
       {"type":"nested",
 	   "title":"Containment",
-	   "icon": "./assets/icons/us/cs/nested.png"
+	   "icon": "/images/icons/us/cs/nested.png"
 	  }
     ]
    }

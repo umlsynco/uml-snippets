@@ -1,7 +1,5 @@
-/**
-  *  
-  */
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 
 dm.base.diagram("es.message", dm.es.element, {
@@ -21,7 +19,7 @@ dm.base.diagram("es.message", dm.es.element, {
 	   p = $("#" + this.euid + " #name" ).position();
 	   this.options.nameX = p.left;
 	   this.options.nameY = p.top;
-       
+
     },
     '_create': function() {
       this.innerHtml = '<div id="' + this.euid + '" style="width:100%;height:100%;">\
@@ -61,7 +59,7 @@ dm.base.diagram("es.message", dm.es.element, {
 
       if (this.options['top'])
         $('#' + this.euid + "_Border").css('top', this.options['top']);
-	  
+
       if (this.options.name) {
 	      var self = this;
           $("<div id='name' style=\"position:absolute;top:100%;z-index:99999;top:"+this.options.nameY+"px;left:"+this.options.nameX+"px;\">" + this.options.name + "</div>")
@@ -98,3 +96,6 @@ dm.base.diagram("es.message", dm.es.element, {
 
 //@aspect
 })(jQuery, dm);
+
+return true;
+});

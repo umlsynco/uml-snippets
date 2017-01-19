@@ -8,7 +8,7 @@ define(['module/umlsync/ds/diagram'], function(diagram) {
 dm.base.diagram("es.actor", dm.es.element, {
     'options': {
         'nameTemplate': "Actor",
-   	    "image_path":"http://umlsync.org/static/images/actor3.svg",
+   	    "image_path":"/images/icons/fw/actor3.svg",
         'width': 20,
         'height': 20
     },

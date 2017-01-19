@@ -377,7 +377,7 @@ define(['module/umlsync/ds/diagram',
                             },
                             "connector": [{
                                 "type": "association",
-                                "icon": "icons/cs/association.gif"
+                                "icon": "icons/cs/association.png"
                             }]
                         }, {
                             "element": {
