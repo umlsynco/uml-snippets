@@ -992,8 +992,8 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                         }
                     })
                     .bind('contextmenu', function(e) {
-                        if (diag.selectedconntector && diag.menuCtx) {
-                            diag.menuCtx['hideAll']();
+                        if (diag.selectedconntector && diag.menuCtx && diag.options.editable) {
+                            diag.menuCtx.hideAll();
                             diag.menuCtx['visit'](diag.selectedconntector, e.pageX, e.pageY);
                             e.preventDefault();
                             diag.multipleSelection = true; // work around to hide connector selection on click
@@ -1278,7 +1278,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                             if (this.menuIcon != undefined)
                                 this.menuIcon.Disable(this.euid);
                             if (this.menuCtx != undefined)
-                                this.menuCtx['hideAll']();
+                                this.menuCtx.hideAll();
                         }
                     }
                 } else {
@@ -1783,7 +1783,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
 
                 // Hide all context menus
                 if (this.menuCtx)
-                    this.menuCtx['hideAll']();
+                    this.menuCtx.hideAll();
 
                 // Nothing to add for multiple selection
                 if (ctrlDown) {
@@ -2200,7 +2200,7 @@ console.log("IS EDITABLE: " + this.options.editable);
                         // Check that context menu manager already loaded
                         var poz = $("#" + self.euid).position();
                         if (self.parrent.menuCtx) {
-                            self.parrent.menuCtx['hideAll']();
+                            self.parrent.menuCtx.hideAll();
 
                             // Prevent the context menu usage
                             if (self.parrent && self.parrent.options.editable)
