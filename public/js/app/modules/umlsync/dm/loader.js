@@ -224,7 +224,7 @@ define(['jquery',
                                 return false;
                             },
                             callback: function(data) {
-                                console.log("CREATE COMMON !!!");
+                                // Create the common diagram menu handler
                                 var obj = new dm['ms']['ds']['common'](data.type, diagram, self2);
                                 if (data.callback != undefined)
                                     data.callback(obj);
