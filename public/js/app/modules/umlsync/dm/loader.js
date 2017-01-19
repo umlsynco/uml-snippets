@@ -31,14 +31,14 @@ Version:
   2.0.0 (2012-07-12)
  */
 define(['jquery',
-'module/umlsync/ds/base', // all diagrams has base type
-'module/umlsync/ds/sequence', // except sequence diagram
-'module/umlsync/cs/all', // load all connectors
-'module/umlsync/es/all', // load all elements
-'module/umlsync/ms/ds/common', // load menu builders
-'module/umlsync/ms/ctx/connector', // load the connector's menu
-'module/umlsync/ms/ctx/default', // load the connector's menu
-'module/umlsync/ms/ctx/class' // load the connector's menu
+    'module/umlsync/ds/base', // all diagrams has base type
+    'module/umlsync/ds/sequence', // except sequence diagram
+    'module/umlsync/cs/all', // load all connectors
+    'module/umlsync/es/all', // load all elements
+    'module/umlsync/ms/ds/common', // load menu builders
+    'module/umlsync/ms/ctx/connector', // load the connector's menu
+    'module/umlsync/ms/ctx/default', // load the connector's menu
+    'module/umlsync/ms/ctx/class' // load the connector's menu
 ], function($) {
 
     (function($, dm, undefined) {
@@ -87,13 +87,13 @@ define(['jquery',
                             // It is possible that previous item
                             // loaded all necessary data yet.
                             if (item.precondition()) {
-                                var URL = (item.url[0] == "/" ? (urlArg + item.url) :item.url);
+                                var URL = (item.url[0] == "/" ? (urlArg + item.url) : item.url);
                                 require([URL], function(js) {
-                                  callback(js);
-                                  setTimeout(function() {
-                                    self.working = false;
-                                    self._process(true);
-                                  }, 1);
+                                    callback(js);
+                                    setTimeout(function() {
+                                        self.working = false;
+                                        self._process(true);
+                                    }, 1);
                                 });
                                 /*
                                 $.ajax({
@@ -115,8 +115,8 @@ define(['jquery',
                             } else {
                                 callback(data);
                                 setTimeout(function() {
-                                  self.working = false;
-                                  self._process(true);
+                                    self.working = false;
+                                    self._process(true);
                                 }, 1);
                             }
                         } else {
@@ -138,8 +138,8 @@ define(['jquery',
                     },
                     //@proexp
                     'LoadMainMenuData': function(callback) {
-                      callback({});
-                      return;
+                        callback({});
+                        return;
                         // There is no dependency on main menu load sequence
                         // therefore it is possible to load is asynchronious
                         $.ajax({
@@ -168,7 +168,7 @@ define(['jquery',
                         this._addToLoadQueue({
                             'url': "module/diagram/assets/" + type + "_menu",
                             precondition: function() {
-                              return (self.dmenus[type] == undefined);
+                                return (self.dmenus[type] == undefined);
                             },
                             callback: function(data) {
                                 self.dmenus[type] = data;
@@ -224,7 +224,7 @@ define(['jquery',
                                 return false;
                             },
                             callback: function(data) {
-                               console.log("CREATE COMMON !!!");
+                                console.log("CREATE COMMON !!!");
                                 var obj = new dm['ms']['ds']['common'](data.type, diagram, self2);
                                 if (data.callback != undefined)
                                     data.callback(obj);
@@ -243,7 +243,7 @@ define(['jquery',
                             (dm['ds']['diagram'] == undefined)) {
                             // it is secure because LazyLoad deal with queue
                             this._addToLoadQueue({
-                                url: "/ds/diagram.js",
+                                url: "/ds/diagram",
                                 precondition: function() {
                                     return true;
                                 },
@@ -273,28 +273,16 @@ define(['jquery',
                             },
                             callback: function(data) {
                                 var newdiagram = new dm['ds'][data.type](options, parrent);
-                                $.log("NAME: " + parrent);
-
-                                //        @ifdef EDITOR
-                                self['CreateDiagramMenu'](opt.diagram, newdiagram);
+                                self.CreateDiagramMenu(opt.diagram, newdiagram);
 
                                 if (argCallback) {
                                     argCallback(newdiagram);
                                 }
-
-                                //        @endif
                                 return newdiagram;
                             },
                             data: opt
                         });
-
-                        /*{
-                                    var newdiagram = new dm.ds[dType](options, jsonDesc, parrentId);
-                                    self.CreateDiagramMenu(dName, newdiagram);
-                                    return newdiagram;
-                             }*/
                     },
-                    //@proexp
                     'LoadElement': function(type) {
 
                         if (dm['es'] == undefined) {
@@ -337,7 +325,7 @@ define(['jquery',
                                 return false;
                             },
                             callback: function(o) {
-                              console.log(o.type);
+                                console.log(o.type);
                                 var e2 = new dm['es'][o.type](o.options, o.diagram);
                                 if (callback2)
                                     callback2(e2);
