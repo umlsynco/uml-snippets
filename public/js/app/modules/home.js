@@ -26,7 +26,7 @@ define(['app', 'marionette', 'js/app/routing-module',
                 // Could be triggered from the select menu, to create a new empty diagram
                 var that = this;
                 app.vent.on("load:diagram", function(payload) {
-                    that.diagramView.LoadDiagram(payload);
+                    that.diagramView.LoadDiagram(payload, false);
                     console.log("Load diagram type: " + payload.type);
                 });
                 app.vent.on("load:element", function(payload) {
@@ -169,7 +169,7 @@ define(['app', 'marionette', 'js/app/routing-module',
                             model: new Backbone.Model({})
                         });
                         app.content(that.diagramView.render());
-                        that.diagramView.LoadDiagram(data);
+                        that.diagramView.LoadDiagram(data, true);
                         app.vent.trigger("diagram:menu", true);
                     });
                 }

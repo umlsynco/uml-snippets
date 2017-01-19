@@ -14,6 +14,9 @@ define(['app', 'marionette', 'module/umlsync/dm/loader'],
                 app.vent.on("diagram:mode", function(mode) {
                     if (that.activeDiagram) {
                         that.activeDiagram._setWidgetsOption("editable", (mode == "edit"));
+
+                        that.activeDiagram.options.editable = (mode == "edit");
+                        console.log("MAKE EDITABLE: " + that.activeDiagram.options.editable);
                     }
                 });
                 app.vent.on("diagram:action", function(action) {
@@ -56,13 +59,15 @@ define(['app', 'marionette', 'module/umlsync/dm/loader'],
                 if (this.activeDiagram)
                     this.activeDiagram.draw();
             },
-            LoadDiagram: function(jsonDataString) {
+            LoadDiagram: function(jsonDataString, editable2) {
+              var editable = editable2 || false;
                 var jsonData = (typeof jsonDataString == "string" ? JSON.parse(jsonDataString) : jsonDataString);
+                jsonData.editable = editable;
 
                 //var jsonData = {baseTyp: "base", type: "class"};
                 $("#diagram-c100").empty();
                 var that = this;
-                jsonData.editable = true;
+                jsonData.editable = editable;
                 jsonData.multicanvas = false;
                 this.diagramLoader.Diagram(
                     jsonData.type,
@@ -75,14 +80,9 @@ define(['app', 'marionette', 'module/umlsync/dm/loader'],
                         that.diagramLoader.OnLoadComplete(function() {
                             setTimeout(function() {
                                 obj.onFocus(true);
-                                //that.diagramLoader.OnLoadComplete(function() {
-                                //  setTimeout(function() {
                                 app.vent.trigger("diagram:mode", "edit");
-                                app.vent.trigger("diagram:mode", "preview");
-                                //                        }, 100);
-                                //                        });
-
-
+                                if (!editable)
+                                  app.vent.trigger("diagram:mode", "preview");
                             }, 500);
                         });
 

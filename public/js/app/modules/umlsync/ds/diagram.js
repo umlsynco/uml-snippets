@@ -1276,7 +1276,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                         }
                         if (!value) {
                             if (this.menuIcon != undefined)
-                                this.menuIcon['Disable'](this.euid);
+                                this.menuIcon.Disable(this.euid);
                             if (this.menuCtx != undefined)
                                 this.menuCtx['hideAll']();
                         }
@@ -1405,7 +1405,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
 
                 // Hide icon menu to prevent icon menu usage after element removal
                 if (this.menuIcon)
-                  this.menuIcon['Disable'](euid);
+                  this.menuIcon.Disable(euid);
 
                 this.opman.reportShort("remove", euid, true);
 
@@ -1796,7 +1796,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                     if ((this.selectedElement != undefined) &&
                         (this.selectedElement != refElement)) {
                         if (this.menuIcon != undefined)
-                            this.menuIcon['Disable'](this.selectedElement);
+                            this.menuIcon.Disable(this.selectedElement);
                     }
 
                     if (refElement != undefined) {
@@ -1824,25 +1824,25 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                     if (this.menuIcon != undefined) {
                         // Disable icon menu for the current element
                         if (this.selectedElement != undefined)
-                            this.menuIcon['Disable'](this.selectedElement);
-
+                            this.menuIcon.Disable(this.selectedElement);
+console.log("IS EDITABLE: " + this.options.editable);
                         if (refElement != undefined && this.options.editable) {
                             // Enable menu for the newely selected element
                             if (mtype != undefined) {
-                                this.menuIcon['Enable'](refElement);
+                                this.menuIcon.Enable(refElement);
                             }
-                            this.menuIcon['Show'](refElement);
+                            this.menuIcon.Show(refElement);
                         }
                     }
 
                     this.selectedElement = refElement;
-                    if (refElement == undefined) {
-                        this.selectedElement = refElement;
-                        return;
+
+                    // make element selection status
+                    if (refElement) {
+                      // Hide selected elements and hightlight selected only
+                      this.selectedElement._setOption("selected", true);
                     }
 
-                    // Hide selected elements and hightlight selected only
-                    this.selectedElement._setOption("selected", true);
                     this.draw();
                 }
 
@@ -1861,14 +1861,12 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
             onFocus: function(flag) {
                 if (flag) {
                     this.draw();
-                    if (this.menuIcon) {
-                        if (this.selectedElement) {
-                            this.menuIcon['Enable'](this.selectedElement);
-                        }
+                    if (this.menuIcon && this.selectedElement) {
+                      this.menuIcon.Enable(this.selectedElement);
                     }
                 } else {
-                    if (this.selectedElement) {
-                        this.menuIcon['Disable'](this.selectedElement);
+                    if (this.menuIcon && this.selectedElement) {
+                        this.menuIcon.Disable(this.selectedElement);
                     }
                 }
             },
@@ -2259,7 +2257,7 @@ define(['jquery', 'jquery-ui/jquery-ui', 'jquery-editable'], function(jQuery, ju
                         if (element.parrent.menuIcon &&
                             element.options.selected &&
                             element.parrent.options.editable) {
-                            element.parrent.menuIcon['Show'](element);
+                            element.parrent.menuIcon.Show(element);
                             $('#' + this.id + '_REF').css({
                                 'visibility': 'visible'
                             });
