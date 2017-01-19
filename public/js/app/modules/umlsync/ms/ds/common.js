@@ -394,27 +394,35 @@ define(['module/umlsync/ds/diagram',
                             "element": {
                                 "type": "package"
                             },
-                            "connector": [{
-                                "type": "dependency",
-                                "icon": "icons/cs/dependency.png"
-                            }, {
-                                "type": "access",
-                                "icon": "icons/cs/access.png"
-                            }, {
-                                "type": "import",
-                                "icon": "icons/cs/import.png"
-                            }, {
-                                "type": "generalization",
-                                "icon": "icons/cs/generalization.png"
-                            }, {
+                            "connector": [
+                              {"type":"dependency",
+                        	   "title":"Dependency",
+                        	   "icon": "icons/us/cs/dependency.png"
+                        	  },
+                              {"type":"dependency",
+                        	   "title":"Import",
+                        	   "icon": "icons/us/cs/Import.png"
+                        	  },
+                              {"type":"dependency",
+                        	   "title":"Access",
+                        	   "icon": "icons/us/cs/Access.png"
+                        	  },
+                              {"type":"generalization",
+                        	   "title":"Generalization",
+                        	   "icon": "icons/us/cs/generalization.png"
+                        	  },
+                              {"type":"dependency",
+                        	   "title":"Merge",
+                        	   "icon": "icons/us/cs/Merge.png"
+                        	  },
+                              {"type":"nested",
+                        	   "title":"Containment",
+                        	   "icon": "icons/us/cs/nested.png"
+                           },
+                           {
                                 "type": "realization",
+                                "title": "Realizatoin",
                                 "icon": "icons/cs/realization.png"
-                            }, {
-                                "type": "dependency",
-                                "icon": "icons/cs/merge.png"
-                            }, {
-                                "type": "nested",
-                                "icon": "icons/cs/nested.png"
                             }]
                         }, {
                             "element": {

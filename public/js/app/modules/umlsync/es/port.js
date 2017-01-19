@@ -1,8 +1,5 @@
-/**
-  *  
-  */
-  
-//@aspect
+define(['module/umlsync/ds/diagram'], function(diagram) {
+
 (function( $, dm, undefined ) {
 dm.base.diagram("es.port", dm.es.element, {
     'options': {
@@ -37,3 +34,6 @@ dm.base.diagram("es.port", dm.es.element, {
 });
 //@aspect
 })(jQuery, dm);
+
+  return true;
+});
