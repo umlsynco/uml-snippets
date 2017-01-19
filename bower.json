@@ -3,6 +3,6 @@
     "dependencies": {
         "backbone.marionette": "2.2.1",
         "jquery-ui" :"1.12.1",
-        "require-css" : "latest"
+        "jquery-simplecolorpicker": "latest"
     }
 }

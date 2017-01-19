@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/<%= fileName %>"/>
     <% }); %>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/tkrotoff/jquery-simplecolorpicker/master/jquery.simplecolorpicker.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://raw.githubusercontent.com/shokai/jQuery.editable/master/jquery.editable.min.js"></script>

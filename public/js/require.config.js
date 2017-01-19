@@ -12,7 +12,8 @@ requirejs.config({
         'app': 'js/app',
         'module': 'js/app/modules',
         'model': 'js/app/models',
-        'view': 'js/app/views'
+        'view': 'js/app/views',
+        'colorpicker': 'js/lib/jquery-simplecolorpicker/jquery.simplecolorpicker'
     },
     shim: {
         'backbone': {
@@ -28,6 +29,9 @@ requirejs.config({
             exports: 'Marionette'
         },
         'jquery-editable': {
+            deps: ['jquery']
+        },
+        'colorpicker': {
             deps: ['jquery']
         },
         'underscore': {

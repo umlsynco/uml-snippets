@@ -1,4 +1,4 @@
-define(['app', 'marionette', 'module/umlsync/dm/loader'],
+define(['app', 'marionette', 'module/umlsync/dm/loader', 'colorpicker'],
     function(app, Marionette, DiagramLoader) {
 
         var ContentView = Marionette.ItemView.extend({
@@ -8,8 +8,73 @@ define(['app', 'marionette', 'module/umlsync/dm/loader'],
          <div id="diagram-c100" style="height:100%; width:80%">\
          </div>'),
             className: 'ui-scrollable-tabs ui-widget-content ui-corner-all',
+            initializeToolBox: function() {
+              var that = this;
+              $("body").append('<div id="context-toolbox" class="us-context-toolbox">\
+                  <select name="speedAa" id="speedAa" style="border: 1px solid #B3C7E1;width:60px;"></select>\
+                  <select name="borderWidth" id="borderWidth" style="border: 1px solid #B3C7E1;"></select>\
+                  <button class="ui-button"><span class="ui-icon ui-icon-font-big"/></button>\
+                  <button class="ui-button"><span class="ui-icon ui-icon-font-italic"/></button>\
+                  <button id="vatop" title="Bring Front" class="ui-button"><span class="ui-icon ui-icon-valign-top"/></button>\
+                  <button id="vacenter" class="ui-button"><span class="ui-icon ui-icon-valign-center"/></button>\
+                  <button id="vabottom" title="Bring Back" class="ui-button"><span class="ui-icon ui-icon-valign-bottom"/></button>\
+                  <button class="ui-button"><span class="ui-icon ui-icon-font-underline"/></button>\
+                  <button class="ui-button"><span class="ui-icon ui-icon-font-underline"/></button>\
+                  <select id="color5" name="colorpicker">\
+  <option value="#7bd148">Green</option>\
+  <option value="#5484ed">Bold blue</option>\
+  <option value="#a4bdfc">Blue</option>\
+  <option value="#46d6db">Turquoise</option>\
+  <option value="#7ae7bf">Light green</option>\
+  <option value="#51b749">Bold green</option>\
+  <option value="#fbd75b">Yellow</option>\
+  <option value="#ffb878">Orange</option>\
+  <option value="#ff887c">Red</option>\
+  <option value="#dc2127">Bold red</option>\
+  <option value="#dbadff">Purple</option>\
+  <option value="#e1e1e1">Gray</option>\
+</select>\
+                  </div>');
+                  $("#context-toolbox").click(function(){ $(".context-menu").hide();});
+
+                  var allFonts = ["arial", "san serif", "serif", "wide", "narrow", "comic sans ms", "Courier New", "Geramond", "Georgia", "Tahoma", "Trebuchet MS", "Verdana"];
+                  for (var loop=0; loop<allFonts.length; loop++) {
+                    var rrr = "<option value=\""+allFonts[loop] +"\">" +allFonts[loop]+"</font></option>";
+                    $(rrr).css("font-family", allFonts[loop]).appendTo('select#speedAa');
+                  }
+
+                  for (var i=1; i<11;++i) {
+                    $("#borderWidth").append("<option value='"+ i+"'>" + i +"px</option>");
+                  }
+
+                  $('select#color5').simplecolorpicker({
+                    picker: true
+                  }).on('change', function(color) {
+                    if (that.activeDiagram)
+                      that.activeDiagram._setWidgetsOption("color", color);
+                 });
+                  $('button#vatop').click(function() {
+                    if (that.activeDiagram)
+                      that.activeDiagram._setWidgetsOption("z-index", "front");
+                  });
+                  $('button#vabottom').click(function() {
+                    if (that.activeDiagram)
+                      that.activeDiagram._setWidgetsOption("z-index", "back");
+                  });
+
+                  $("#borderWidth").change(function() {
+                    if (that.activeDiagram)
+                      that.activeDiagram._setWidgetsOption("borderwidth", $(this).val() + "px");
+                  });
+
+                  $("select#speedAa").change(function() {
+                    if (that.activeDiagram)
+                      that.activeDiagram._setWidgetsOption("font-family", $(this).val());
+                  });
+            },
             initialize: function() {
                 var that = this;
+                this.initializeToolBox();
                 // Make diagram editable or not
                 app.vent.on("diagram:mode", function(mode) {
                     if (that.activeDiagram) {
