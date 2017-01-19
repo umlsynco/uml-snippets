@@ -142,7 +142,7 @@ define('app', ['marionette', 'backbone', 'jquery', 'js/app/controllers/firebase_
                 if (content && updateHistory) {
                     var x = updateHistory(content);
                     app.vent.trigger("diagram:fork", x);
-                    app.vent.trigger("menu:status", "update");
+                    app.vent.trigger("menu:status", "update", payload.title);
                     app.vent.trigger("diagram:mode", "edit");
                     app.vent.trigger("diagram:mode", "preview");
                 }
@@ -154,7 +154,7 @@ define('app', ['marionette', 'backbone', 'jquery', 'js/app/controllers/firebase_
                 alert("UNEXPECTED CASE???");
             app.storage.updateContent(payload.content, payload, function(content) {
                 var url = updateHistory(content);
-                app.vent.trigger("menu:status", "update");
+                app.vent.trigger("menu:status", "update", payload.title);
             });
         });
         // fork
