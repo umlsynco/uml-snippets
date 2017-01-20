@@ -272,7 +272,7 @@ define(['jquery',
                                 return false;
                             },
                             callback: function(data) {
-                                var newdiagram = new dm['ds'][data.type](options, parrent);
+                                var newdiagram = new dm['ds'][data.base_type](options, parrent);
                                 self.CreateDiagramMenu(opt.diagram, newdiagram);
 
                                 if (argCallback) {

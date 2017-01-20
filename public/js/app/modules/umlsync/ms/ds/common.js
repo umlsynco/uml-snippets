@@ -22,7 +22,7 @@ define(['module/umlsync/ds/diagram',
     'module/diagram/assets/component_menu',
     'module/diagram/assets/sequence_menu',
     'combomenu'
-], function(diagram, dddd) {
+], function(diagram, classMenu, packageMenu, commonMenu, sequenceMenu, jqueryCombo) {
 
     (function($, dm, undefined) {
         //
@@ -862,7 +862,7 @@ define(['module/umlsync/ds/diagram',
                     // Initialize the context menu for Elements of diagram
                     var iconMenuBuilder = new dm.ms.IconMenuBuilder(null),
                         ctxMenuBuilder = new dm.ms.ContextMenuBuilder(loader);
-                    console.log("MAKE ICON MENUS");
+
                     // Setup menus
                     diagram.setMenuBuilder("context", ctxMenuBuilder);
                     diagram.setMenuBuilder("icon", iconMenuBuilder);
@@ -939,65 +939,8 @@ define(['module/umlsync/ds/diagram',
                     iconMenuBuilder.load("note", diagram);
                     iconMenuBuilder.load("package", diagram);
                     iconMenuBuilder.load("component", diagram);
-                    /*
-                          var fw = dm.dm.fw;
-                    		fw['CreateDiagramMenu'](type, innerHtml, function() {
-                              //
-                              // Element selection menu
-                    		  //
-                    		  $("#"+ulid).listmenu({
-                    			selector: "element-selector",
-                    			urlPrefix: dm.dm.loader.getUrl(),
-                    			selectable: false,
-                    			path:"./",
-                    			data: diagramMenuBuilder.elements,
-                    			onSelect: function(item) {
-                    			  self.ec++;
-                    			  var menus = [];
-                    			  var fw = dm.dm.fw;
-                    			  var diagram = fw.getActiveDiagram();
-
-                    			  if (diagram) {
-                    			    diagram.setDropHelper();
-                    			  }
-
-                    			  if (item != undefined) {
-                    			    // Load icon menu for a specific element type
-                    			    iconMenuBuilder.load(item.type, diagram);
-                    				// Create an Element on active diagram
-                    			    if (diagram)
-                    				  diagram.Element(item.type, item.options);
-                    			  }
-                    		    }
-                    		  });
-
-                    		  //
-                    		  // Connector selection menu
-                    		  //
-                    		  $("#"+ulid).listmenu(         {
-                    			selector: "connector-selector",
-                    			selectable: true,
-                    			urlPrefix: dm.dm.loader.getUrl(),
-                    			path:"./",
-                    			data:diagramMenuBuilder.connectors,
-                    			onSelect: function(item) {
-                    			var selConn = item["type"];
-                    			var fw = dm.dm.fw;
-                    			var diagram = fw.getActiveDiagram();
-
-                    			if (diagram) {
-                    			  diagram.setDropHelper(selConn);
-                    			}
-                    		  }
-                    		  });
-                      }); // CreateDiagramMenu
-
-                    */
                 });
-
-
             }
-            //@aspect
     })(jQuery, dm);
 
     return dm.ms;

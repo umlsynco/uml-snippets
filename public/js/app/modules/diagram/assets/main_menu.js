@@ -23,7 +23,7 @@ return [
   },
   {"id": "sequence",
    "base_type": "sequence",
-   "type": "UML",
+   "type": "sequece",
    "title": "UML sequence diagram",
    "icon": "./dm/icons/us/dss/sequenceDiagram.png",
    "contentType": "diagram"
