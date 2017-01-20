@@ -768,7 +768,7 @@ define(['module/umlsync/ds/diagram',
                     this.currentMenu = this._getMenuId(element.options.type,
                         element.parrent.options.type);
                     if (!this.currentMenu) {
-                        $.log("Error: There is no icon menu for " + type + " and diagram " + diagram.options.type);
+                        $.log("Error: There is no icon menu for " + element.options.type + " and diagram " + diagram.options.type);
                         return;
                     }
 

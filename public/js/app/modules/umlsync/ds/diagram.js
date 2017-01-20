@@ -2096,7 +2096,7 @@ console.log("IS EDITABLE: " + this.options.editable);
                                 });
                                 return;
                             }
-
+console.log("ELEMENT DRAG START !!!");
                             parrentClass['onElementDragStart'](self, ui);
                             $("#tabs #us-editable").hide();
                         },

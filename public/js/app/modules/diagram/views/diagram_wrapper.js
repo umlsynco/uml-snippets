@@ -134,6 +134,11 @@ define(['app', 'marionette', 'module/umlsync/dm/loader', 'colorpicker'],
                 var that = this;
                 jsonData.editable = editable;
                 jsonData.multicanvas = false;
+                jsonData.base_type = jsonData.base_type || "base";
+                // Hmmm....
+                if (jsonData.type == "sequence") {
+                  jsonData.base_type = "sequence";
+                }
                 this.diagramLoader.Diagram(
                     jsonData.type,
                     jsonData.base_type || "base",

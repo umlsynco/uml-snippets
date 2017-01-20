@@ -165,8 +165,8 @@ define(['jquery',
                             return;
                         }
 
-                        this._addToLoadQueue({
-                            'url': "module/diagram/assets/" + type + "_menu",
+                         this._addToLoadQueue({
+                          'url': "module/diagram/assets/" + type + "_menu",
                             precondition: function() {
                                 return (self.dmenus[type] == undefined);
                             },
@@ -272,7 +272,7 @@ define(['jquery',
                                 return false;
                             },
                             callback: function(data) {
-                                var newdiagram = new dm['ds'][data.base_type](options, parrent);
+                                var newdiagram = new dm['ds'][data.type](options, parrent);
                                 self.CreateDiagramMenu(opt.diagram, newdiagram);
 
                                 if (argCallback) {
